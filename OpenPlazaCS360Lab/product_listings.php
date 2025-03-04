@@ -17,6 +17,11 @@
                 <a class = "nav-link" href = "profile.php">User Profile</a>
             </li>
         </ul>
+        <ul class="nav">
+            <li class = "nav-item">
+                <a class = "nav-link" href = "cart.php">Cart</a>
+            </li>
+        </ul>
 
         <h1>PRODUCT LISTINGS</h1>
 

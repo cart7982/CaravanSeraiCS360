@@ -24,8 +24,6 @@
             <div class = "card-body">
                 This page holds a list of all items a user has put into their cart, <br>
                 along with the requested quantities.  <br>
-                Advanced functionality would allow for a checkbox to determine which ones would go into the checkout.<br>
-                That, however, would be a stretch goal.
 
                 <?php
                 $_UserID = $_SESSION["UserID"];
@@ -47,6 +45,8 @@
                     <td><?= htmlspecialchars($row['TotalPrice']) ?></td>
                     <td><?= htmlspecialchars($row['Quantity']) ?></td>
                     <td><form action="remove_cart.php" method="post">
+                            <label for="Quantity">Quantity></label>
+                            <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
                             <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
                         </tr>
                 <?php endforeach ?>
@@ -56,7 +56,12 @@
 
         <div class = "card">
             <div class = "card-body">
-                <a href = "checkout.html">
+                <a href = "product_listings.php">
+                    Continue Shopping
+                </a>
+            </div>
+            <div class = "card-body">
+                <a href = "checkout.php">
                     Proceed to Checkout
                 </a>
             </div>

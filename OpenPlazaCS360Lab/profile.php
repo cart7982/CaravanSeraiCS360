@@ -62,12 +62,6 @@
                     </table>
 
             </div>
-            <div class = "card-body">
-                Your Trades in Progress: 
-            </div>
-            <div class = "card-body">
-                Your Completed Trades: 
-            </div>
         </div>
 
         <div class = "card">
@@ -78,7 +72,7 @@
                 <a href = "product_listings.php">See Avaliable Products</a>
             </div>
             <div class = "card-body">
-                <a href = "cart.html">See Your Cart</a>
+                <a href = "cart.php">See Your Cart</a>
             </div>
             <div class = "card-body">
                 <a href = "logout.php">Log Out</a>

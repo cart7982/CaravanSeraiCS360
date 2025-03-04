@@ -76,15 +76,45 @@ $_UserID = $_SESSION["UserID"];
 //Check if the variables needed for a transaction have been set
 if(isset($_ProductID) && isset($_UserID) && isset($_Quantity) && isset($_TotalPrice) && isset($_Price)) 
 {
-    //Put purchase information into transaction table
-    $sql = "INSERT INTO transactions (TransactionID, ProductName, ProductID, UserID, Quantity, TotalPrice, Price) VALUES ('$NewTransactionID', '$_ProductName', '$_ProductID', '$_UserID', '$_Quantity', '$_TotalPrice', '$_Price')";
-    $conn->query($sql);
+    //Check if there is already a quantity for that product ID
+    $result = mysqli_query($conn, "SELECT Quantity as quantity FROM transactions WHERE ProductID='$_ProductID' AND UserID='$_UserID'");
 
-    //Update the product with the lowered inventory amount
-    $sql = "UPDATE Products SET Amount='$NewAmount' WHERE ProductID='$_ProductID'";
-    $conn->query($sql);
+    //If a quantity is found
+    if($result->num_rows != 0)
+    {
+        //Get integer value of that quantity
+        $row = mysqli_fetch_array($result);
+        $add_on = $row['quantity'];
+        $_add_on = intval($add_on);
 
-    $conn->close();
+        //Calculate new quantity for transaction
+        $new_quantity = $_add_on + $_Quantity;
+        echo "new_quantity ".$new_quantity." ";
+        $new_total = $new_quantity * $_Price;
+
+        //Update purchase information on transaction table
+        $sql = "UPDATE transactions SET Quantity='$new_quantity', TotalPrice='$new_total' WHERE ProductID='$_ProductID' AND UserID='$_UserID'";
+        $conn->query($sql);    
+        
+        //Update the product with the lowered inventory amount
+        $sql = "UPDATE products SET Amount='$NewAmount' WHERE ProductID='$_ProductID'";
+        $conn->query($sql);
+
+    }
+    else
+    {
+        //No quantity was found, so insert new transaction
+        //Put purchase information into transaction table
+        $sql = "INSERT INTO transactions (TransactionID, ProductName, ProductID, UserID, Quantity, TotalPrice, Price) VALUES ('$NewTransactionID', '$_ProductName', '$_ProductID', '$_UserID', '$_Quantity', '$_TotalPrice', '$_Price')";
+        $conn->query($sql);
+
+        //Update the product with the lowered inventory amount
+        $sql = "UPDATE products SET Amount='$NewAmount' WHERE ProductID='$_ProductID'";
+        $conn->query($sql);
+
+        $conn->close();
+    }
+
     header('Location:cart.php');
 }
 
