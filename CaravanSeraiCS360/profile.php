@@ -17,7 +17,8 @@
 
         <div class = "card">
             <div class = "card-header">
-                Welcome, <?php echo $_SESSION["Username"] ?>!
+                Welcome, <?php echo $_SESSION["Username"] ?>!<br>
+                User ID is: <?php echo $_SESSION["UserID"] ?>
             </div>
             <div class = "card-body">
                 This page is where the user information will be.  <br>
@@ -54,5 +55,6 @@
                 <a href = "cart.html">See Your Cart</a>
             </div>
         </div>
+
     </body>
 </html>

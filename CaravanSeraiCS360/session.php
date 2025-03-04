@@ -36,16 +36,24 @@ else
     header('Location:login.html');
 }
 
+//Get the user ID to be put into a global form.
+$result = mysqli_query($conn, "SELECT UserID as userID FROM users WHERE Username='$_Username' AND Password='$_Password'");
+$row = mysqli_fetch_array($result);
+$UserID = $row['userID'];
+//$_UserID = intval($UserID);
+
+
 //Declare global session variables.
 //These variables can then be used in any session() page.
 $_SESSION["Username"] = $_Username;
 $_SESSION["Password"] = $_Password;
+$_SESSION["UserID"] = $UserID;
 
 $conn->close();
 
 //If a session started, go to product listings.
 if($result->num_rows!= 0){
-    header('Location:product_listings.php');
+    header('Location:profile.php');
 }
 
 ?>
