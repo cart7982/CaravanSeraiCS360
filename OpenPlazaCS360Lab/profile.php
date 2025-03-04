@@ -9,10 +9,17 @@
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
+    <?php
+    session_start();
+    ?>
         
         <h1>PROFILE</h1>
 
         <div class = "card">
+            <div class = "card-header">
+                Welcome, <?php echo $_SESSION["Username"] ?>!<br>
+                User ID is: <?php echo $_SESSION["UserID"] ?>
+            </div>
             <div class = "card-body">
                 This page is where the user information will be.  <br>
                 This includes username, email, and- depending on functionality 
@@ -24,7 +31,7 @@
 
         <div class = "card">
             <div class = "card-header">
-                Welcome to your OpenPlaza homepage!
+                Welcome to your CaravanSerai homepage!
             </div>
             <div class = "card-body">
                 Your Products for Trade: 
@@ -42,14 +49,12 @@
                 Actions Avaliable
             </div>
             <div class = "card-body">
-                <a href = "product_listings.html">See Avaliable Products</a>
+                <a href = "product_listings.php">See Avaliable Products</a>
             </div>
             <div class = "card-body">
                 <a href = "cart.html">See Your Cart</a>
             </div>
-            <div class = "card-body">
-                <a href = "checkout.html">Proceed to Checkout</a>
-            </div>
         </div>
+
     </body>
 </html>

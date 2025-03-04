@@ -18,8 +18,8 @@
                 Welcome to OpenPlaza!
             </div>
             <div class = "card-body">
-                OpenPlaza is an anonymous trading site that allows you to 
-                exchange goods securely, without needing any intermediary steps. 
+                OpenPlaza is a public e-commerce space that allows
+                users to post their products and browse those of others. 
             </div>
             <div class = "card-body">
                 If you've already created an account, log in <a href = "login.html">here</a>

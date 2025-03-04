@@ -11,7 +11,7 @@
     <body>
         <ul class="nav">
             <li class = "nav-item">
-                <a class = "nav-link" href = "profile.html">User Profile</a>
+                <a class = "nav-link" href = "profile.php">User Profile</a>
             </li>
         </ul>
 
