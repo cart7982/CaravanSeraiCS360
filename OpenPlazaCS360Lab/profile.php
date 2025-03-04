@@ -31,7 +31,7 @@
 
         <div class = "card">
             <div class = "card-header">
-                Welcome to your CaravanSerai homepage!
+                Welcome to your OpenPlaza homepage!
             </div>
             <div class = "card-body">
                 Your Products for Trade: 
@@ -53,6 +53,9 @@
             </div>
             <div class = "card-body">
                 <a href = "cart.html">See Your Cart</a>
+            </div>
+            <div class = "card-body">
+                <a href = "logout.php">Log Out</a>
             </div>
         </div>
 
