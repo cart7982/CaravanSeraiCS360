@@ -26,6 +26,7 @@
         </div>
 
         <?php
+        $_UserID = $_SESSION["UserID"];
         $conn = mysqli_connect("localhost","root","","openplaza");
         $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
         $data = $result->fetch_all(MYSQLI_ASSOC);
@@ -45,41 +46,10 @@
             <td><?= htmlspecialchars($row['Price']) ?></td>
             <td><?= htmlspecialchars($row['Amount']) ?></td>
             <td><?= htmlspecialchars($row['Description']) ?></td>
-            <td>        
-            <div class = "card-footer">
-                <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal2">
-                    Add To Cart
-                </button>
-            
-                <div class = "modal" id = "myModal2">
-                    <div class = "modal-dialog">
-                        <div class = "modal-content">
-            
-                            <div class = "modal-header">
-                                <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
-                            </div>
-            
-                            <div class = "modal-body">
-                                <form action="add_cart.php" method="post">
-                                    <div class = "mb-3 mt-3">
-                                        <label for = "Amount" class = "form-label">Amount: </label>
-                                        <input type = "text" class = "form-control" id = "Amount" placeholder = "Enter amount" name = "Amount">
-                                        <!-- <input type = "text" class = "form-control" value="<?= htmlspecialchars($row['ProductID']) ?>" placeholder = "Enter amount" name = "ProductID">-->
-                                    </div>
-                                    <button type = "submit" name="ProductID" value="<td><?= htmlspecialchars($row['ProductID']) ?></td>" class = "btn btn-primary"> Submit</button>
-                                </form>
-                            </div>
-            
-                            <div class = "modal-footer">
-                                <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div></td>
-        
-
-        
+            <td><form action="add_cart.php" method="post">
+                <label for="Quantity">Quantity></label>
+                <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
+                <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Add to Cart</button></form></td>
             </tr>
         <?php endforeach ?>
         </table>       

@@ -15,11 +15,11 @@ $_ProductID = $_POST['ProductID'];
 //This grabs the integer from the string:
 $ID = intval(preg_replace('/[^0-9]+/','', $_ProductID), 10);
 
-$sql = "DELETE FROM products WHERE ProductID='$ID'";
+$sql = "DELETE FROM transactions WHERE ProductID='$ID'";
 
 $conn->query($sql);
 
 $conn->close();
 
-header('Location:profile.php');
+header('Location:cart.php');
 ?>

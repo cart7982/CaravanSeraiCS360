@@ -56,7 +56,7 @@
                         <td><?= htmlspecialchars($row['Amount']) ?></td>
                         <td><?= htmlspecialchars($row['Description']) ?></td>
                         <td><form action="remove_product.php" method="post">
-                            <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<td><?= htmlspecialchars($row['ProductID']) ?></td>">Remove</button></form></td>
+                            <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
                         </tr>
                     <?php endforeach ?>
                     </table>
