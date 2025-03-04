@@ -2,7 +2,7 @@
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$dbname = "caravanserai";
+$dbname = "openplaza";
 
 session_start();
 

@@ -26,7 +26,7 @@
         </div>
 
         <?php
-        $conn = mysqli_connect("localhost","root","","caravanserai");
+        $conn = mysqli_connect("localhost","root","","openplaza");
         $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
         $data = $result->fetch_all(MYSQLI_ASSOC);
         ?>
@@ -34,6 +34,7 @@
         <table border="1">
         <tr>
             <th>Product Name</th>
+            <th>Price</th>
             <th>Amount</th>
             <th>Description</th>
             <th>Action</th>
@@ -41,11 +42,12 @@
         <?php foreach($data as $row): ?>
         <tr>
             <td><?= htmlspecialchars($row['ProductName']) ?></td>
+            <td><?= htmlspecialchars($row['Price']) ?></td>
             <td><?= htmlspecialchars($row['Amount']) ?></td>
             <td><?= htmlspecialchars($row['Description']) ?></td>
-            <td><form action="remove_product.php" method="post">
-                <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<td><?= htmlspecialchars($row['ProductID']) ?></td>">Remove</button></form></td>
-            </tr>
+            <td><form action="add_cart.php" method="post">
+                <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<td><?= htmlspecialchars($row['ProductID']) ?></td>">Add To Cart</button></form></td>
+        </tr>
         <?php endforeach ?>
         </table>       
         
@@ -69,8 +71,13 @@
                                     <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
                                 </div>
                                 <div class = "mb-3 mt-3">
+                                    <label for = "price" class = "form-label">Price: </label>
+                                    <input type = "text" class = "form-control" id = "price" placeholder = "Enter price" name = "price">
+                                </div>
+                                <div class = "mb-3 mt-3">
                                     <label for = "amount" class = "form-label">Amount: </label>
                                     <input type = "text" class = "form-control" id = "amount" placeholder = "Enter amount" name = "amount">
+                                </div>
                                 <div class = "mb-3">
                                     <label for = "description" class = "form-label">Product description:  </label>
                                     <input type = "text" class = "form-control" id = "description" placeholder = "Enter product description" name = "description">

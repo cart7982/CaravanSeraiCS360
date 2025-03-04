@@ -12,7 +12,6 @@
     <?php
     session_start();
     ?>
-        
         <h1>PROFILE</h1>
 
         <div class = "card">
@@ -34,7 +33,34 @@
                 Welcome to your OpenPlaza homepage!
             </div>
             <div class = "card-body">
-                Your Products for Trade: 
+                Your Products for Sale: 
+                    <?php
+                    $_UserID = $_SESSION["UserID"];
+                    $conn = mysqli_connect("localhost","root","","openplaza");
+                    $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID='$_UserID' LIMIT 50");
+                    $data = $result->fetch_all(MYSQLI_ASSOC);
+                    ?>
+
+                    <table border="1">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php foreach($data as $row): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['ProductName']) ?></td>
+                        <td><?= htmlspecialchars($row['Price']) ?></td>
+                        <td><?= htmlspecialchars($row['Amount']) ?></td>
+                        <td><?= htmlspecialchars($row['Description']) ?></td>
+                        <td><form action="remove_product.php" method="post">
+                            <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<td><?= htmlspecialchars($row['ProductID']) ?></td>">Remove</button></form></td>
+                        </tr>
+                    <?php endforeach ?>
+                    </table>
+
             </div>
             <div class = "card-body">
                 Your Trades in Progress: 

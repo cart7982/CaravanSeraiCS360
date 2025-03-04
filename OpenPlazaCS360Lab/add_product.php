@@ -2,7 +2,7 @@
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$dbname = "caravanserai";
+$dbname = "openplaza";
 
 session_start();
 
@@ -16,6 +16,7 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 
 $_ProductName = $_POST['product-name'];
+$_Price = $_POST['price'];
 $_Amount = $_POST['amount'];
 $_Description = $_POST['description'];
 
@@ -30,7 +31,7 @@ $_UserID = $_SESSION["UserID"];
 
 if(isset($_ProductName) && isset($_Amount) && isset($_Description)) 
 {
-    $sql = "INSERT INTO products (ProductName, ProductID, UserID, Amount, Description) VALUES ('$_ProductName', '$_ProductID', '$_UserID', '$_Amount', '$_Description')";
+    $sql = "INSERT INTO products (ProductName, ProductID, UserID, Amount, Description, Price) VALUES ('$_ProductName', '$_ProductID', '$_UserID', '$_Amount', '$_Description', '$_Price')";
 
     //Commit the query to the database connection.
     $conn->query($sql);
