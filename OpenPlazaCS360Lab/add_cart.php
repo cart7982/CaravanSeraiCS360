@@ -15,8 +15,9 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully";
 
-//Get the ProductID passed from product_listings "Add To Cart" button
+//Get the ProductID and Amount passed from product_listings "Add To Cart" button
 $_ProductID = $_POST['ProductID'];
+$_Amount = $_POST['Amount'];
 
 //UserID from the session global
 $_UserID = $_SESSION["UserID"];
