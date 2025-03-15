@@ -21,19 +21,6 @@
                 User ID is: <?php echo $_SESSION["UserID"] ?>
             </div>
             <div class = "card-body">
-                This page is where the user information will be.  <br>
-                This includes username, email, and- depending on functionality 
-                and priorities, possibly the generated listings 
-                and the most recent purchase.  <br>
-                There will be a link to the cart and checkout on the profile.  
-            </div>
-        </div>
-
-        <div class = "card">
-            <div class = "card-header">
-                Welcome to your CaravanSerai homepage!
-            </div>
-            <div class = "card-body">
                 Your Products for Trade: 
             </div>
             <div class = "card-body">

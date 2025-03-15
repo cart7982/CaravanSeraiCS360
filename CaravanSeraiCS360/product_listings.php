@@ -20,11 +20,6 @@
 
         <h1>PRODUCT LISTINGS</h1>
 
-    <div class = "card">
-        <div class = "card-header">
-            Similarly to a blogging site, this page holds the listings of various products.
-        </div>
-
         <?php
         $conn = mysqli_connect("localhost","root","","caravanserai");
         $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
@@ -34,9 +29,9 @@
         <table border="1">
         <tr>
             <th>Product Name</th>
-            <th>Amount</th>
-            <th>Description</th>
-            <th>Action</th>
+            <th>Amount      </th>
+            <th>Description </th>
+            <th>Action      </th>
         </tr>
         <?php foreach($data as $row): ?>
         <tr>
