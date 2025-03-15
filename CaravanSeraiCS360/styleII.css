@@ -4,7 +4,7 @@ body{
 }
 
 form{
-    padding-left: 2px
+    padding-left: 2px;
 }
 
 h1{
@@ -13,4 +13,17 @@ h1{
 
 a{
     color: #30fdf3
+}
+
+table{
+    border-style: dashed;
+    border-color: #c16964
+}
+
+tr{
+    padding-right:20px;
+}
+
+td{
+    padding: 5px;
 }
