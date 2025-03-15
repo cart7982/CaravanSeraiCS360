@@ -5,6 +5,7 @@
         <meta charset = "utf-8">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel = "stylesheet">
+        <link href = "styleII.css" rel = "stylesheet">
 
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
@@ -42,7 +43,7 @@
             <!-- <td><form action="remove_product.php" method="post">
                 <button style="height:20px; width:70px" input type="submit" name="ProductID" value="<td><?= htmlspecialchars($row['ProductID']) ?></td>">Remove</button></form></td>
          -->
-            </tr>
+        </tr>
         <?php endforeach ?>
         </table>       
         
