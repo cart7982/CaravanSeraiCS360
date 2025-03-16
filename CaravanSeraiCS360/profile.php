@@ -59,19 +59,116 @@
                 Welcome, <?php echo $_SESSION["Username"] ?>!<br>
                 User ID is: <?php echo $_SESSION["UserID"] ?>
             </div>
-            <div class = "card-body">
-                This page is where the user information will be.  <br>
-                This includes username, email, and- depending on functionality 
-                and priorities, possibly the generated listings 
-                and the most recent purchase.  <br>
-                There will be a link to the cart and checkout on the profile.  
-            </div>
         </div>
 
+        
         <div class = "card">
             <div class = "card-header">
                 Welcome to your OpenPlaza homepage!
             </div>
+
+            <div class = "card-body">
+                Offers You Have Made: 
+                    <?php
+                    $_UserID = $_SESSION["UserID"];
+                    $conn = mysqli_connect("localhost","root","","caravanserai");
+                    $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID1='$_UserID' LIMIT 50");
+                    $data = $result->fetch_all(MYSQLI_ASSOC);
+                    ?>
+
+                    <table border="1">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php foreach($data as $row): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['BarterMessage']) ?></td>
+                        <td><?= htmlspecialchars($row['Amount']) ?></td>
+                        </td>
+                        </tr>
+                    <?php endforeach ?>
+                    </table>
+
+            </div>
+        </div>
+
+
+
+            <div class = "card-body">
+                Offers Made To You: 
+                    <?php
+                    $_UserID = $_SESSION["UserID"];
+                    $conn = mysqli_connect("localhost","root","","caravanserai");
+                    $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID2='$_UserID' LIMIT 50");
+                    $data2 = $result->fetch_all(MYSQLI_ASSOC);
+                    ?>
+
+                    <table border="1">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php foreach($data2 as $row): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['BarterMessage']) ?></td>
+                        <td><?= htmlspecialchars($row['Amount']) ?></td>
+                        <td>
+
+
+                        <div class = "card-footer">
+            <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal2">
+                Counteroffer
+            </button>
+        
+            <div class = "modal" id = "myModal2">
+                <div class = "modal-dialog">
+                    <div class = "modal-content">
+        
+                        <div class = "modal-header">
+                            <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
+                        </div>
+        
+                        <div class = "modal-body">
+                            <form action="counteroffer.php" method="post">
+                                Time to make your offer!
+                                <div class = "mb-3 mt-3">
+                                    <label for = "message" class = "form-label">Message to send seller: </label>
+                                    <input type = "text" class = "form-control" id = "message" placeholder = "Write message here" name = "message">
+                                </div>
+                                <div class = "mb-3 mt-3">
+                                    <label for = "message" class = "form-label">Offered amount: </label>
+                                    <input type = "text" class = "form-control" id = "amount" placeholder = "amount" name = "amount">
+                                </div>
+                                <button type = "submit" class = "btn btn-primary" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>"></button> Submit</button>
+                            </form>
+                        </div>
+        
+                        <div class = "modal-footer">
+                            <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+                        </td>
+                        
+                        
+                        </tr>
+                    <?php endforeach ?>
+                    </table>
+
+            </div>
+        </div>
+
 
 
 
@@ -145,6 +242,8 @@
                 </div>
             </div>
         </div>
+
+
 
     </body>
 </html>

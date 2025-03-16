@@ -69,15 +69,21 @@ $result = mysqli_query($conn, "SELECT ProductName as pname FROM products WHERE P
 $row = mysqli_fetch_array($result);
 $_ProductName = $row['pname'];
 
+//Get the ID of second user
+$result = mysqli_query($conn, "SELECT UserID as u2ID FROM products WHERE ProductID='$_ProductID'");
+$row = mysqli_fetch_array($result);
+$_UserID2 = $row['u2ID'];
+
+//Create new transaction from new ID
 $sql = "INSERT INTO transactions (TransactionID) VALUES ('$_TransactionID')";
 $conn->query($sql);
 
 //Update purchase information on transaction table
-$sql = "UPDATE transactions SET UserID1='$_UserID',Quantity1='$_Quantity',ProductID1='$_ProductID',ProductName1='$_ProductName' WHERE TransactionID='$_TransactionID'";
+$sql = "UPDATE transactions SET UserID1='$_UserID',UserID2='$_UserID2',Quantity1='$_Quantity',ProductID1='$_ProductID',ProductName1='$_ProductName' WHERE TransactionID='$_TransactionID'";
 $conn->query($sql); 
 
 
-//Update purchase information on transaction table
+//Update inventory information on products table
 $sql = "UPDATE products SET amount='$_TotalAmount' WHERE ProductID='$_ProductID'";
 $conn->query($sql); 
 

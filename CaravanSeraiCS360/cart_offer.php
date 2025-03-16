@@ -47,6 +47,7 @@
             <a href="index.php">Product Listings</a>
         </div>
         
+
         <h1>Your Products To Offer:</h1>
 
         <div class = "card-body">
@@ -94,7 +95,7 @@
                                 </div>
                                 <div class = "mb-3 mt-3">
                                     <label for = "message" class = "form-label">Offered amount: </label>
-                                    <input type = "text" class = "form-control" id = "productName" placeholder = "Offer amount" name = "productName">
+                                    <input type = "text" class = "form-control" id = "amount" placeholder = "amount" name = "amount">
                                 </div>
                                 <button type = "submit" class = "btn btn-primary" name="TransactionID" value="<?= htmlspecialchars($_TransactionID) ?>"></button> Submit</button>
                             </form>
