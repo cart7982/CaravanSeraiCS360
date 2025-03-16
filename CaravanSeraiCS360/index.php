@@ -1,5 +1,30 @@
 <!DOCTYPE html>
 <html>
+    <style>
+    .topnav {
+    overflow: hidden;
+    background-color: #333;
+    }
+
+    .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    }
+
+    .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+    }
+
+    .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+    }
+</style>
     <head>
         <title>Landing Page</title>
         <meta charset = "utf-8">
@@ -9,7 +34,14 @@
 
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
+    
     <body>
+        <div class="topnav">
+            <a href="index.php">Home</a>
+            <a href="login.html">Login</a>
+            <a href="logout.php">Logout</a>
+            <a href="profile.php">Profile</a>
+        </div>
         
         <h1>CaravanSerai</h1>
         <h3>LANDING PAGE</h3>
@@ -22,14 +54,36 @@
                 CaravanSerai is an anonymous trading site that allows you to 
                 exchange goods securely, without needing any intermediary steps. 
             </div>
-            <div class = "card-body">
-                If you've already created an account, log in <a href = "login.html">here</a>
-            </div>
-            <div class = "card-body">
-                If you're new and you'd like to start trading, sign up <a href = "signup.html">here</a>
-            </div>
-        </div>
 
+        
+        <?php
+        //$_UserID = $_SESSION["UserID"];
+        $conn = mysqli_connect("localhost","root","","caravanserai");
+        $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        ?>
+
+        <h1>PRODUCT DESCRIPTION</h1>
+        <table border="1">
+        <tr>
+            <th>Product Name</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach($data as $row): ?>
+        <tr>
+            <td><?= htmlspecialchars($row['ProductName']) ?></td>
+            <td><?= htmlspecialchars($row['Amount']) ?></td>
+            <td><?= htmlspecialchars($row['Description']) ?></td>
+            <td><form action="barter_add.php" method="post">
+                <label for="Quantity">Quantity></label>
+                <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
+                <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Request Barter</button></form></td>
+            </tr>
+        <?php endforeach ?>
+        </table>       
+        
 
 
     </body>

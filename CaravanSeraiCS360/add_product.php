@@ -38,6 +38,6 @@ if(isset($_ProductName) && isset($_Amount) && isset($_Description))
     $conn->close();
 }
 
-header('Location:product_listings.php');
+header('Location:profile.php');
 
 ?>

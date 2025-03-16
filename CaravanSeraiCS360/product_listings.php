@@ -5,7 +5,6 @@
         <meta charset = "utf-8">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel = "stylesheet">
-        <link href = "styleII.css" rel = "stylesheet">
 
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
@@ -18,10 +17,21 @@
                 <a class = "nav-link" href = "profile.php">User Profile</a>
             </li>
         </ul>
+        <ul class="nav">
+            <li class = "nav-item">
+                <a class = "nav-link" href = "cart.php">Cart</a>
+            </li>
+        </ul>
 
         <h1>PRODUCT LISTINGS</h1>
 
+    <div class = "card">
+        <div class = "card-header">
+            Similarly to a blogging site, this page holds the listings of various products.
+        </div>
+
         <?php
+        $_UserID = $_SESSION["UserID"];
         $conn = mysqli_connect("localhost","root","","caravanserai");
         $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
         $data = $result->fetch_all(MYSQLI_ASSOC);
@@ -30,39 +40,22 @@
         <table border="1">
         <tr>
             <th>Product Name</th>
-            <th>Amount      </th>
-            <th>Description </th>
-            <th>Action      </th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Action</th>
         </tr>
         <?php foreach($data as $row): ?>
         <tr>
             <td><?= htmlspecialchars($row['ProductName']) ?></td>
+            <td><?= htmlspecialchars($row['Price']) ?></td>
             <td><?= htmlspecialchars($row['Amount']) ?></td>
-            <td>
-                <button type = "button" class = "btn btn-primary" data-bs-toggle = "modal" data-bs-target = "#itemModal">
-                    Info
-                </button>
-                <div class = "modal" id = "itemModal">
-                    <div class = "modal-dialog">
-                        <div class = "modal-header">
-                            <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
-                        </div>
-                        <div class = "modal-body">
-                            Name: <?= htmlspecialchars($row['ProductName']) ?> <br>
-                            Amount: <?= htmlspecialchars($row['Amount']) ?> <br> 
-                            Description: <?= htmlspecialchars($row['Description']) ?>
-                        </div>
-                        <div class = "modal-footer">
-                            <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div> 
-            </td>
-
-            <!-- <td><form action="remove_product.php" method="post">
-                <button style="height:20px; width:70px" input type="submit" name="ProductID" value="<td><?= htmlspecialchars($row['ProductID']) ?></td>">Remove</button></form></td>
-         -->
-        </tr>
+            <td><?= htmlspecialchars($row['Description']) ?></td>
+            <td><form action="add_cart.php" method="post">
+                <label for="Quantity">Quantity></label>
+                <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
+                <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Add to Cart</button></form></td>
+            </tr>
         <?php endforeach ?>
         </table>       
         
@@ -86,8 +79,13 @@
                                     <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
                                 </div>
                                 <div class = "mb-3 mt-3">
+                                    <label for = "price" class = "form-label">Price: </label>
+                                    <input type = "text" class = "form-control" id = "price" placeholder = "Enter price" name = "price">
+                                </div>
+                                <div class = "mb-3 mt-3">
                                     <label for = "amount" class = "form-label">Amount: </label>
                                     <input type = "text" class = "form-control" id = "amount" placeholder = "Enter amount" name = "amount">
+                                </div>
                                 <div class = "mb-3">
                                     <label for = "description" class = "form-label">Product description:  </label>
                                     <input type = "text" class = "form-control" id = "description" placeholder = "Enter product description" name = "description">

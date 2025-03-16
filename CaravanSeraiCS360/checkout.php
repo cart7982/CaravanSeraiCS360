@@ -5,14 +5,16 @@
         <meta charset = "utf-8">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel = "stylesheet">
-        <link href = "styleII.css" rel = "stylesheet">
 
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
+    <?php
+    session_start();
+    ?>
         <ul class="nav">
             <li class = "nav-item">
-                <a class = "nav-link" href = "profile.html">User Profile</a>
+                <a class = "nav-link" href = "profile.php">User Profile</a>
             </li>
         </ul>
         <h1>CHECKOUT</h1>
