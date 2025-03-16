@@ -78,7 +78,7 @@
                             <button style="height:30px; width:70px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Remove</button>
                         </form></td>
                     <td><form action="cart_offer.php" method="post">
-                            <button style="height:30px; width:70px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Make Offer</button>
+                            <button style="height:30px; width:100px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Make Offer</button>
                         </form></td>
                 </td>
                 </tr>

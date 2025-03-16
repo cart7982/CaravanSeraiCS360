@@ -79,7 +79,7 @@
             <td><form action="barter_add.php" method="post">
                 <label for="Quantity">Quantity></label>
                 <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Request Barter</button></form></td>
+                <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Request Barter</button></form></td>
             </tr>
         <?php endforeach ?>
         </table>       

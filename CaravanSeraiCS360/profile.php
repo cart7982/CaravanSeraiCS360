@@ -64,7 +64,7 @@
         
         <div class = "card">
             <div class = "card-header">
-                Welcome to your OpenPlaza homepage!
+                Welcome to your Caravanserai profile page!
             </div>
 
             <div class = "card-body">
@@ -85,7 +85,7 @@
                     <?php foreach($data as $row): ?>
                     <tr>
                         <td><?= htmlspecialchars($row['BarterMessage']) ?></td>
-                        <td><?= htmlspecialchars($row['Amount']) ?></td>
+                        <td><?= htmlspecialchars($row['Amount1']) ?></td>
                         </td>
                         </tr>
                     <?php endforeach ?>
@@ -107,59 +107,29 @@
 
                     <table border="1">
                     <tr>
-                        <th>Product Name</th>
-                        <th>Amount</th>
-                        <th>Action</th>
+                        <th>Message</th>
+                        <th>Your Product</th>
+                        <th></th>
+                        <th>Their Product</th>
+                        <th>Counteroffer</th>
                     </tr>
                     <?php foreach($data2 as $row): ?>
                     <tr>
                         <td><?= htmlspecialchars($row['BarterMessage']) ?></td>
-                        <td><?= htmlspecialchars($row['Amount']) ?></td>
-                        <td>
-
-
-                        <div class = "card-footer">
-            <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal2">
-                Counteroffer
-            </button>
-        
-            <div class = "modal" id = "myModal2">
-                <div class = "modal-dialog">
-                    <div class = "modal-content">
-        
-                        <div class = "modal-header">
-                            <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
-                        </div>
-        
-                        <div class = "modal-body">
-                            <form action="counteroffer.php" method="post">
-                                Time to make your offer!
-                                <div class = "mb-3 mt-3">
-                                    <label for = "message" class = "form-label">Message to send seller: </label>
-                                    <input type = "text" class = "form-control" id = "message" placeholder = "Write message here" name = "message">
-                                </div>
-                                <div class = "mb-3 mt-3">
-                                    <label for = "message" class = "form-label">Offered amount: </label>
-                                    <input type = "text" class = "form-control" id = "amount" placeholder = "amount" name = "amount">
-                                </div>
-                                <button type = "submit" class = "btn btn-primary" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>"></button> Submit</button>
-                            </form>
-                        </div>
-        
-                        <div class = "modal-footer">
-                            <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-                        </td>
+                        <td><?= htmlspecialchars($row['Amount1']) ?></td>
+                        <td>in exchange for</td>
+                        <td><?= htmlspecialchars($row['Amount2']) ?></td>
+                        <td><form action="counteroffer.php" method="post">
+                            <label for="Quantity">New Offer></label>
+                            <input style="height:30px; width:100px" id="amount1" name="amount1"></input>
+                            <label for="Quantity">New Request></label>
+                            <input style="height:30px; width:100px" id="amount2" name="amount2"></input>
+                            <label for="Quantity">New Message></label>
+                            <input style="height:30px; width:100px" id="message" name="message"></input>
+                            <button style="height:30px; width:150px" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
+                        <td><form action="barter_accept.php" method="post">
+                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Trade</button></form></td>
+                        
                         
                         
                         </tr>
