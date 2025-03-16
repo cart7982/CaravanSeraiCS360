@@ -38,7 +38,26 @@
         <tr>
             <td><?= htmlspecialchars($row['ProductName']) ?></td>
             <td><?= htmlspecialchars($row['Amount']) ?></td>
-            <td><?= htmlspecialchars($row['Description']) ?></td>
+            <td>
+                <button type = "button" class = "btn btn-primary" data-bs-toggle = "modal" data-bs-target = "#itemModal">
+                    Info
+                </button>
+                <div class = "modal" id = "itemModal">
+                    <div class = "modal-dialog">
+                        <div class = "modal-header">
+                            <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
+                        </div>
+                        <div class = "modal-body">
+                            Name: <?= htmlspecialchars($row['ProductName']) ?> <br>
+                            Amount: <?= htmlspecialchars($row['Amount']) ?> <br> 
+                            Description: <?= htmlspecialchars($row['Description']) ?>
+                        </div>
+                        <div class = "modal-footer">
+                            <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div> 
+            </td>
 
             <!-- <td><form action="remove_product.php" method="post">
                 <button style="height:20px; width:70px" input type="submit" name="ProductID" value="<td><?= htmlspecialchars($row['ProductID']) ?></td>">Remove</button></form></td>
