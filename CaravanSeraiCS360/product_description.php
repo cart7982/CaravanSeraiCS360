@@ -38,12 +38,7 @@
         </table>       
         
 
-        <div class = "card">
-            <div class = "card-body">
-                This page holds the details for a specific product. <br>
-                These pages will be generated from user input eventually, but they will follow a standard format.
-            </div>
-        </div>
+    
 
 
 
