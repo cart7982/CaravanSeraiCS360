@@ -75,9 +75,11 @@
                 Welcome to your Caravanserai profile page!
             </div>
 
+            
             <div class = "card-body">
                 Offers You Have Made: 
                     <?php
+                    //This needs to include a button for removing offers.
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
                     $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID1='$_UserID' LIMIT 50");
@@ -94,6 +96,9 @@
                     <tr>
                         <td><?= htmlspecialchars($row['BarterMessage']) ?></td>
                         <td><?= htmlspecialchars($row['Amount1']) ?></td>
+                        <td><form action="remove_offer.php" method="post">
+                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
+                        
                         </td>
                         </tr>
                     <?php endforeach ?>
