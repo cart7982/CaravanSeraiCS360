@@ -57,6 +57,14 @@
                 $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID='$_UserID' LIMIT 50");
                 $data = $result->fetch_all(MYSQLI_ASSOC);
 
+                if(isset($_SESSION["GroupID"]))
+                {
+                    $_GroupID = $_SESSION["GroupID"];                    
+                    $conn = mysqli_connect("localhost","root","","caravanserai");
+                    $result = mysqli_query($conn,"SELECT * FROM products, users NATURAL JOIN groups WHERE UserID='$_UserID' LIMIT 50");
+                    $data = $result->fetch_all(MYSQLI_ASSOC);
+                }
+
                 $_TransactionID = $_POST['TransactionID'];
                 ?>
 

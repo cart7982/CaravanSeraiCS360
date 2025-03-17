@@ -13,21 +13,40 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully";
 
-//Grab the username and password from login.
+session_start();
+
+if(!isset($_SESSION["UserID"]))
+{
+    echo "User not detected!  Please log in to proceed!";
+    header('Location:login.html');
+}
+
+$_UserID = $_SESSION['UserID'];
+
+//Grab the groupname and password from group login.
 $_Groupname = $_POST['groupname'];
 $_Password = $_POST['pwd'];
 
 echo $_Groupname;
 echo $_Password;
 
-//Check if that username and password combo exist in the database:
+//Check if that groupname and password combo exist in the database:
 $sql = "SELECT GroupName, Password FROM groups WHERE GroupName='$_Groupname' AND Password='$_Password'";
+$groupCheck = $conn->query($sql);
 
-$result = $conn->query($sql);
+//Check if the userID is in the group's database
+$sql = "SELECT UserID FROM $_Groupname WHERE UserID='$_UserID'";
+$userCheck = $conn->query($sql);
 
-//Check if username/password combo exists in database.  
+if($userCheck->num_rows != 0)
+{
+    echo "User not in database!  Abort!";    
+    header('Location:group_login.html');
+}
+
+//Check if groupname/password/userID combo exists in database.  
 //If so, start the session, otherwise go back to login.
-if($result->num_rows != 0){
+if($groupCheck->num_rows != 0 && $userCheck->num_rows != 0){
     session_start();
     echo "Session started!";
 }

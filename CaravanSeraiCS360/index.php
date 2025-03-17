@@ -42,7 +42,8 @@
             <a href="login.html">Login</a>
             <a href="logout.php">Logout</a>
             <a href="profile.php">Profile</a>
-            <a href="group_login.php">Group Login</a>
+            <a href="group_signup.html">Group Sign Up</a>
+            <a href="group_login.html">Group Login</a>
         </div>
         
         <h1>CaravanSerai</h1>
@@ -65,7 +66,7 @@
         $data = $result->fetch_all(MYSQLI_ASSOC);
         ?>
 
-        <h1>PRODUCT DESCRIPTION</h1>
+        <h1>WHAT'S ON THE MARKET</h1>
         <table border="1">
         <tr>
             <th>Product Name</th>

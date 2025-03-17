@@ -21,7 +21,7 @@ $_Email = $_POST['email'];
 $_Password = $_POST['pwd'];
 
 //Grab the highest ID in the GroupID column, then increment it by one for the new GroupID to be assigned.
-$result = mysqli_query($conn, "SELECT MAX(GroupID) AS max FROM users");
+$result = mysqli_query($conn, "SELECT MAX(GroupID) AS max FROM groups");
 $row = mysqli_fetch_array($result);
 $PrevID = $row['max'];
 $NewID = intval($PrevID) + 1;
@@ -51,6 +51,21 @@ else
 
         //Commit the query to the database connection.
         $conn->query($sql);
+
+        // sql to create table
+        $sql = "CREATE TABLE $_Groupname (
+            UserID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            Username VARCHAR(30) NOT NULL,
+            FirstName VARCHAR(30) NOT NULL,
+            LastName VARCHAR(30) NOT NULL,
+            Email VARCHAR(50),
+            reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            )";
+
+
+
+        $conn->query($sql);
+
 
         $conn->close();
     }

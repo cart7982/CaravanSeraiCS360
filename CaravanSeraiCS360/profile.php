@@ -52,6 +52,7 @@
         <a href="index.php">Product Listings</a>
         <a href="group_login.php">Group Login</a>
         <a href="group_create.html">Group Create</a>
+        <a href="group_logout.php">Group Logout</a>
     </div>
 
         <h1>PROFILE</h1>
@@ -124,6 +125,8 @@
                         <th>Your Product</th>
                         <th></th>
                         <th>Their Product</th>
+                        <th></th>
+                        <th></th>
                         <th>Counteroffer</th>
                     </tr>
                     <?php foreach($data2 as $row): ?>
@@ -132,16 +135,18 @@
                         <td><?= htmlspecialchars($row['Amount1']) ?></td>
                         <td>in exchange for</td>
                         <td><?= htmlspecialchars($row['Amount2']) ?></td>
+                        <td><form action="barter_accept.php" method="post">
+                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Trade</button></form></td>
+                        <td><form action="remove_offer.php" method="post">
+                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Reject Trade</button></form></td>
                         <td><form action="counteroffer.php" method="post">
-                            <label for="Quantity">New Offer></label>
+                            <label for="Quantity">Your Product></label>
                             <input style="height:30px; width:100px" id="amount1" name="amount1"></input>
-                            <label for="Quantity">New Request></label>
+                            <label for="Quantity">Their Product></label>
                             <input style="height:30px; width:100px" id="amount2" name="amount2"></input>
                             <label for="Quantity">New Message></label>
                             <input style="height:30px; width:100px" id="message" name="message"></input>
                             <button style="height:30px; width:150px" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
-                        <td><form action="barter_accept.php" method="post">
-                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Trade</button></form></td>
                         
                         
                         
