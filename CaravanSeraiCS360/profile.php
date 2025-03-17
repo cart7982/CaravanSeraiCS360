@@ -55,18 +55,23 @@
         <a href="group_logout.php">Group Logout</a>
     </div>
 
-        <h1>PROFILE</h1>
+        <h1>MERCHANT PROFILE</h1>
 
         <div class = "card">
             <div class = "card-header">
                 Welcome, <?php echo $_SESSION["Username"] ?>!<br>
                 User ID is: <?php echo $_SESSION["UserID"] ?><br>
+                Email is: <?php echo $_SESSION["Email"] ?><br>
                 <?php 
                     if(isset($_SESSION["GroupID"]))
                     {
                         echo "Logged into group: ".$_SESSION["GroupName"]."";
                     }
+                    $_UserID = $_SESSION["UserID"];
                     ?>
+                <form action="profile_edit.html" method="post">
+                        <button style="height:30px; width:120px" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Edit Profile</button></form><br>
+                    
             </div>
         </div>
 
@@ -89,7 +94,7 @@
 
                     <table border="1">
                     <tr>
-                        <th>Product Name</th>
+                        <th>Your Message</th>
                         <th>Amount</th>
                         <th>Action</th>
                     </tr>

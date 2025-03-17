@@ -29,7 +29,7 @@ $_UserID = $_SESSION["UserID"];
 
 echo('user id is '. $_UserID .'');
 
-//Get the ProductID and Amount passed from Offer Barter button
+//Get the ProductID and Amount passed from Request Barter button
 $ProductID = $_POST['ProductID'];
 $Quantity = $_POST['Quantity'];
 

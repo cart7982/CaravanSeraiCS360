@@ -40,16 +40,25 @@
         <a href="login.html">Login</a>
         <a href="logout.php">Logout</a>
     </div>
-    
 
-        <h1>LOGIN TO YOUR PROFILE</h1>
+    <?php
+    session_start();
+
+    if(!isset($_SESSION["UserID"]))
+    {
+        echo "User not detected!  Please log in to proceed!";
+        header('Location:login.html');
+    }
+    ?>
+
+        <h1>LOGIN TO A GROUP</h1>
 
         <!--This form starts the user session.  This allows for the usage of
             global variables as described in session.php.-->
-        <form action="session.php" method="post">
+        <form action="group_session.php" method="post">
             <div class = "mb-3 mt-3">
-                <label for = "username" class = "form-label">Username: </label>
-                <input type = "username" class = "form-control" id = "username" placeholder = "Enter username" name = "username">
+                <label for = "groupname" class = "form-label">Groupname: </label>
+                <input type = "groupname" class = "form-control" id = "groupname" placeholder = "Enter group name" name = "groupname">
             </div>
             <div class = "mb-3">
                 <label for = "pwd" class = "form-label"> Password: </label>

@@ -48,21 +48,32 @@
         </div>
         
 
-        <h1>Your Products To Offer:</h1>
+        <h1>Your Products Available To Offer:</h1>
 
         <div class = "card-body">
                 <?php
-                $_UserID = $_SESSION["UserID"];
-                $conn = mysqli_connect("localhost","root","","caravanserai");
-                $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID='$_UserID' LIMIT 50");
-                $data = $result->fetch_all(MYSQLI_ASSOC);
 
                 if(isset($_SESSION["GroupID"]))
                 {
-                    $_GroupID = $_SESSION["GroupID"];                    
+                    $_GroupID = $_SESSION["GroupID"];
+                    $_GroupName = $_SESSION["GroupName"];
+
+                    //$GroupID = intval($_GroupID);
+                    echo"Signed into group: ".$_SESSION['GroupName'];
+                    //echo"\nSigned into group: ".$_SESSION['GroupID'];
+
                     $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM products, users NATURAL JOIN groups WHERE UserID='$_UserID' LIMIT 50");
+                    $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID IN (SELECT UserID FROM $_GroupName)");
                     $data = $result->fetch_all(MYSQLI_ASSOC);
+
+                }
+                else
+                {
+                    $_UserID = $_SESSION["UserID"];
+                    $conn = mysqli_connect("localhost","root","","caravanserai");
+                    $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID='$_UserID' LIMIT 50");
+                    $data = $result->fetch_all(MYSQLI_ASSOC);
+
                 }
 
                 $_TransactionID = $_POST['TransactionID'];

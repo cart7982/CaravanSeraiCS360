@@ -42,12 +42,17 @@ $row = mysqli_fetch_array($result);
 $UserID = $row['userID'];
 //$_UserID = intval($UserID);
 
+//Get the user email
+$result = mysqli_query($conn, "SELECT Email as email FROM users WHERE Username='$_Username' AND Password='$_Password'");
+$row = mysqli_fetch_array($result);
+$Email = $row['email'];
 
 //Declare global session variables.
 //These variables can then be used in any session() page.
 $_SESSION["Username"] = $_Username;
 $_SESSION["Password"] = $_Password;
 $_SESSION["UserID"] = $UserID;
+$_SESSION["Email"] = $Email;
 
 $conn->close();
 

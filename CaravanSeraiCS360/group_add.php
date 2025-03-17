@@ -4,8 +4,6 @@ $username = "root";
 $password = "";
 $dbname = "caravanserai";
 
-session_start();
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -22,6 +20,8 @@ if(!isset($_SESSION["UserID"]))
     echo "User not detected!  Please log in to proceed!";
     header('Location:login.html');
 }
+else
+{
 
 $_UserID = $_SESSION["UserID"];
 $_Username = $_SESSION["Username"];
@@ -33,7 +33,8 @@ $_Password = $_POST['pwd'];
 if($_Groupname == NULL || $_Password == NULL)
 {
     //If not all fields have been filled, return without committing.
-    header('Location:group_signup.php');
+    echo 'Not all fields filled!';
+    //header('Location:group_signup.php');
 }
 else
 {
@@ -63,8 +64,11 @@ else
 
         $conn->close();
     }
-    header('Location:login.html');
+    if(isset($_SESSION["UserID"]))
+    {
+        header('Location:group_login.html');
+    }
 }
-
+}
 
 ?>
