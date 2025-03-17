@@ -3,12 +3,12 @@
     <style>
     .topnav {
     overflow: hidden;
-    background-color: #333;
+    background-color: rgb(133, 255, 255);
     }
 
     .topnav a {
     float: left;
-    color: #f2f2f2;
+    color:rgb(0, 0, 0);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -21,7 +21,7 @@
     }
 
     .topnav a.active {
-    background-color: #04AA6D;
+    background-color:blue;
     color: white;
     }
 </style>
@@ -72,7 +72,7 @@
             <th>Product Name</th>
             <th>Amount</th>
             <th>Description</th>
-            <th>Action</th>
+            <th>How Much You Want</th>
         </tr>
         <?php foreach($data as $row): ?>
         <tr>

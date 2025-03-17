@@ -26,7 +26,7 @@ $_Email = $_POST['email'];
 
 
 if(isset($_POST['username']) && $_Username != null && $_Username != '')
-{    
+{
     $_SESSION["Username"] = $_Username;
     $sql = "UPDATE Users SET Username='$_Username' WHERE UserID='$_UserID'";
     $conn->query($sql);

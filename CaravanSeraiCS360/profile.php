@@ -3,12 +3,12 @@
     <style>
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: rgb(133, 255, 255);
 }
 
 .topnav a {
   float: left;
-  color: #f2f2f2;
+  color:rgb(0, 0, 0);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -53,6 +53,7 @@
         <a href="group_login.php">Group Login</a>
         <a href="group_create.html">Group Create</a>
         <a href="group_logout.php">Group Logout</a>
+        <a href="group_signup.html">Group Signup</a>
     </div>
 
         <h1>MERCHANT PROFILE</h1>
