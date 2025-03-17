@@ -19,6 +19,12 @@ $_Message = $_POST['message'];
 $_Amount1 = $_POST['amount'];//Amount of product being offered
 $_TransactionID = $_POST['TransactionID'];
 
+$_ProductID = $_POST['ProductID'];
+$_ProductName = $_POST['ProductName'];
+
+echo '_ProductID is '.$_ProductID;
+echo 'ProductName is '.$_ProductName;
+
 echo("Message is ".$_Message);
 
 $Amount = intval($_Amount1);
@@ -58,11 +64,17 @@ $row = mysqli_fetch_array($result);
 $PrevID = $row['amount1'];
 $_Amount2 = intval($PrevID);
 
+//Get the second productname from the transaction
+$result = mysqli_query($conn, "SELECT ProductName1 AS pname1 FROM transactions WHERE TransactionID='$_TransactionID'");
+$row = mysqli_fetch_array($result);
+$_ProductName2 = $row['pname1'];
+//$_ProductName2 = intval($PrevID);
+
 
 $sql = "INSERT INTO messages (MessageID) VALUES ('$_MessageID')";
 $conn->query($sql);
 
-$sql = "UPDATE messages SET TransactionID='$_TransactionID',Amount1='$_Amount1',Amount2='$_Amount2',UserID1='$_UserID',UserID2='$_UserID2',BarterMessage='$_Message' WHERE MessageID='$_MessageID'";
+$sql = "UPDATE messages SET ProductName1='$_ProductName',ProductName2='$_ProductName2',TransactionID='$_TransactionID',Amount1='$_Amount1',Amount2='$_Amount2',UserID1='$_UserID',UserID2='$_UserID2',BarterMessage='$_Message' WHERE MessageID='$_MessageID'";
 $conn->query($sql);
 
 

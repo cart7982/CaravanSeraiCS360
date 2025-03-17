@@ -89,47 +89,19 @@
                 <tr>
                     <td><?= htmlspecialchars($row['ProductName']) ?></td>
                     <td><?= htmlspecialchars($row['Amount']) ?></td>
-                
-                    <td>
+                    <td><form action="make_offer.php" method="post">
+                            <label for="amount">Quantity></label>
+                            <input style="height:30px; width:100px" id="amount" name="amount"></input>
+                            <label for="message">Message to Send to Seller></label>
+                            <input style="height:30px; width:100px" id="message" name="message"></input>
+                            <!-- Hidden Input for ProductName -->
+                            <input type="hidden" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>"></input>
+                            <input type="hidden" name="ProductName" value="<?= htmlspecialchars($row['ProductName']) ?>"></input>
 
-                    <div class = "card-footer">
-            <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
-                Make an Offer
-            </button>
-        
-            <div class = "modal" id = "myModal1">
-                <div class = "modal-dialog">
-                    <div class = "modal-content">
-        
-                        <div class = "modal-header">
-                            <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
-                        </div>
-        
-                        <div class = "modal-body">
-                            <form action="make_offer.php" method="post">
-                                Time to make your offer!
-                                <div class = "mb-3 mt-3">
-                                    <label for = "message" class = "form-label">Message to send seller: </label>
-                                    <input type = "text" class = "form-control" id = "message" placeholder = "Write message here" name = "message">
-                                </div>
-                                <div class = "mb-3 mt-3">
-                                    <label for = "message" class = "form-label">Offered amount: </label>
-                                    <input type = "text" class = "form-control" id = "amount" placeholder = "amount" name = "amount">
-                                </div>
-                                <button type = "submit" class = "btn btn-primary" name="TransactionID" value="<?= htmlspecialchars($_TransactionID) ?>"></button> Submit</button>
-                            </form>
-                        </div>
-        
-                        <div class = "modal-footer">
-                            <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <button style="height:30px; width:100px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($_TransactionID) ?>">Make Offer</button>
+                        </form></td>
 
 
-                    </td>
 
                 
                 </tr>
