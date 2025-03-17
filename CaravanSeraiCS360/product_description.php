@@ -10,11 +10,14 @@
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
-        <ul class="nav">
-            <li class = "nav-item">
-                <a class = "nav-link" href = "profile.php">User Profile</a>
-            </li>
-        </ul>
+        <div class="topnav">
+            <a href="index.php">Home</a>
+            <a href="login.html">Login</a>
+            <a href="group_login.php">Group Login</a>
+            <a href="logout.php">Logout</a>
+            <a href="profile.php">Profile</a>
+            <a href="product_listings.php">Product Listings</a>
+        </div>
 
         <h1>PRODUCT DESCRIPTION</h1>
         <table border="1">

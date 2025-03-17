@@ -12,16 +12,20 @@
     <?php
     session_start();
     ?>
-        <ul class="nav">
-            <li class = "nav-item">
-                <a class = "nav-link" href = "profile.php">User Profile</a>
-            </li>
-        </ul>
+        <div class="topnav">
+            <a href="index.php">Home</a>
+            <a href="login.html">Login</a>
+            <a href="group_login.php">Group Login</a>
+            <a href="logout.php">Logout</a>
+            <a href="profile.php">Profile</a>
+            <a href="product_listings.php">Product Listings</a>
+        </div>
+
         <h1>CHECKOUT</h1>
 
         <div class = "card">
             <div class = "card-body">
-                This page serves as final confirmation for the purchased items.  
+                Last check!  Please confirm that these are the items you wish to trade.  
             </div>
         </div>
 

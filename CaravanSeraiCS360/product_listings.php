@@ -12,23 +12,21 @@
     <?php
     session_start();
     ?>
-        <ul class="nav">
-            <li class = "nav-item">
-                <a class = "nav-link" href = "profile.php">User Profile</a>
-            </li>
-        </ul>
-        <ul class="nav">
-            <li class = "nav-item">
-                <a class = "nav-link" href = "cart.php">Cart</a>
-            </li>
-        </ul>
+        <div class="topnav">
+            <a href="index.php">Home</a>
+            <a href="login.html">Login</a>
+            <a href="group_login.php">Group Login</a>
+            <a href="logout.php">Logout</a>
+            <a href="profile.php">Profile</a>
+            <!--<a href="product_listings.php">Product Listings</a> -->
+        </div>
 
         <h1>PRODUCT LISTINGS</h1>
 
-    <div class = "card">
-        <div class = "card-header">
-            Similarly to a blogging site, this page holds the listings of various products.
-        </div>
+        <div class = "card">
+            <div class = "card-header">
+                All avaliable listings should be here, up to the first 50.
+            </div>
 
         <?php
         $_UserID = $_SESSION["UserID"];

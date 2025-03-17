@@ -1,30 +1,5 @@
 <!DOCTYPE html>
 <html>
-    <style>
-        .topnav {
-        overflow: hidden;
-        background-color: rgb(133, 255, 255);
-        }
-
-        .topnav a {
-        float: left;
-        color:rgb(0, 0, 0);
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-        }
-
-        .topnav a:hover {
-        background-color: #ddd;
-        color: black;
-        }
-
-        .topnav a.active {
-        background-color: #04AA6D;
-        color: white;
-        }
-    </style>
     <head>
         <title>Cart</title>
         <meta charset = "utf-8">
@@ -42,9 +17,10 @@
         <div class="topnav">
             <a href="index.php">Home</a>
             <a href="login.html">Login</a>
+            <a href="group_login.php">Group Login</a>
             <a href="logout.php">Logout</a>
             <a href="profile.php">Profile</a>
-            <a href="index.php">Product Listings</a>
+            <a href="product_listings.php">Product Listings</a>
         </div>
         
         <h1>CART</h1>
