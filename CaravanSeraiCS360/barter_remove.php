@@ -42,7 +42,7 @@ $current_Amount = intval($Amount);
 echo 'current_Amount '.$current_Amount;
 
 //Get the new amount
-$_amount = $current_Amount - $Quantity;
+$_amount = $current_Amount - $_Quantity;
 echo '_amount '.$_amount;
 
 

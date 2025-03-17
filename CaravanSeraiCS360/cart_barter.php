@@ -87,19 +87,6 @@
             </div>
         </div>
 
-        <div class = "card">
-            <div class = "card-body">
-                <a href = "product_listings.php">
-                    Continue Shopping
-                </a>
-            </div>
-            <div class = "card-body">
-                <a href = "checkout.php">
-                    Proceed to Checkout
-                </a>
-            </div>
-        </div>
-
 
     </body>
 </html>
