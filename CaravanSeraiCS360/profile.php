@@ -85,28 +85,47 @@
             
             <div class = "card-body">
                 Offers You Have Made: 
-                    <?php
-                    //This needs to include a button for removing offers.
+                <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
                     $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID1='$_UserID' LIMIT 50");
-                    $data = $result->fetch_all(MYSQLI_ASSOC);
+                    $data2 = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
                     <table border="1">
                     <tr>
-                        <th>Your Message</th>
-                        <th>Amount</th>
-                        <th>Action</th>
+                        <th>Message</th>
+                        <th></th>
+                        <th>Your Product</th>
+                        <th></th>
+                        <th></th>
+                        <th>Their Product</th>
+                        <th>Accept</th>
+                        <th>Reject</th>
+                        <th>Counteroffer</th>
                     </tr>
-                    <?php foreach($data as $row): ?>
+                    <?php foreach($data2 as $row): ?>
                     <tr>
                         <td><?= htmlspecialchars($row['BarterMessage']) ?></td>
                         <td><?= htmlspecialchars($row['Amount1']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductName1']) ?></td>
+                        <td>in exchange for</td>
+                        <td><?= htmlspecialchars($row['Amount2']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductName2']) ?></td>
+                        <td><form action="barter_accept.php" method="post">
+                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
                         <td><form action="remove_offer.php" method="post">
                             <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
                         
-                        </td>
+                        <td><form action="counteroffer.php" method="post">
+                            <label for="Quantity">Your Product></label>
+                            <input style="height:30px; width:100px" id="amount1" name="amount1"></input>
+                            <label for="Quantity">Their Product></label>
+                            <input style="height:30px; width:100px" id="amount2" name="amount2"></input>
+                            <label for="Quantity">New Message></label>
+                            <input style="height:30px; width:100px" id="message" name="message"></input>
+                            <button style="height:30px; width:150px" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
+                                                                        
                         </tr>
                     <?php endforeach ?>
                     </table>
@@ -133,6 +152,8 @@
                         <th></th>
                         <th></th>
                         <th>Their Product</th>
+                        <th>Accept</th>
+                        <th>Reject</th>
                         <th>Counteroffer</th>
                     </tr>
                     <?php foreach($data2 as $row): ?>
