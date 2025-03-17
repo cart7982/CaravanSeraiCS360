@@ -13,19 +13,22 @@
 
         <h1>SIGN UP</h1>
 
-        <form action="add_user.php" method="post">
+        <form action="group_create.php" method="post">
             <div class = "mb-3 mt-3">
-                <label for = "username" class = "form-label">Username: </label>
-                <input type = "text" class = "form-control" id = "username" placeholder = "Enter username" name = "username">
+                <label for = "groupname" class = "form-label">Group Name: </label>
+                <input type = "text" class = "form-control" id = "groupname" placeholder = "Enter group name" name = "groupname">
             </div>
             <div class = "mb-3 mt-3">
-                <label for = "email" class = "form-label">Email: </label>
+                <label for = "email" class = "form-label">Group Email: </label>
                 <input type = "email" class = "form-control" id = "email" placeholder = "Enter email" name = "email">
             <div class = "mb-3">
-                <label for = "pwd" class = "form-label"> Password: </label>
+                <label for = "pwd" class = "form-label"> Group Password: </label>
                 <input type = "password" class = "form-control" id = "pwd" placeholder = "Enter password" name = "pwd">
             </div>
             <button type = "submit" class = "btn btn-primary"> Submit</button>
         </form>
+
+
+        
     </body>
 </html>

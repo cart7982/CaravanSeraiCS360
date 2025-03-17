@@ -38,9 +38,11 @@
     <body>
         <div class="topnav">
             <a href="index.php">Home</a>
+            <a href="signup.html">Sign Up</a>
             <a href="login.html">Login</a>
             <a href="logout.php">Logout</a>
             <a href="profile.php">Profile</a>
+            <a href="group_login.php">Group Login</a>
         </div>
         
         <h1>CaravanSerai</h1>
@@ -52,7 +54,7 @@
             </div>
             <div class = "card-body">
                 CaravanSerai is an anonymous trading site that allows you to 
-                exchange goods securely, without needing any intermediary steps. 
+                exchange goods securely.
             </div>
 
         

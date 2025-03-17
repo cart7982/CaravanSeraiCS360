@@ -50,6 +50,8 @@
         <a href="logout.php">Logout</a>
         <a href="cart_barter.php">Barters</a>
         <a href="index.php">Product Listings</a>
+        <a href="group_login.php">Group Login</a>
+        <a href="group_create.html">Group Create</a>
     </div>
 
         <h1>PROFILE</h1>
@@ -57,7 +59,13 @@
         <div class = "card">
             <div class = "card-header">
                 Welcome, <?php echo $_SESSION["Username"] ?>!<br>
-                User ID is: <?php echo $_SESSION["UserID"] ?>
+                User ID is: <?php echo $_SESSION["UserID"] ?><br>
+                <?php 
+                    if(isset($_SESSION["GroupID"]))
+                    {
+                        echo "Logged into group: ".$_SESSION["GroupName"]."";
+                    }
+                    ?>
             </div>
         </div>
 
