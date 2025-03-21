@@ -93,11 +93,11 @@
                             <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
                         
                         <td><form action="counteroffer.php" method="post">
-                            <label for="Quantity">Your Product></label>
+                            <label for="amount1">Your Product></label>
                             <input style="height:30px; width:100px" id="amount1" name="amount1"></input>
-                            <label for="Quantity">Their Product></label>
+                            <label for="amount2">Their Product></label>
                             <input style="height:30px; width:100px" id="amount2" name="amount2"></input>
-                            <label for="Quantity">New Message></label>
+                            <label for="message">Message to Send Back></label>
                             <input style="height:30px; width:100px" id="message" name="message"></input>
                             <button style="height:30px; width:150px" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
                                                                         

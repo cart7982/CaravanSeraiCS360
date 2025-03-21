@@ -38,14 +38,14 @@ else
 
     $result = $conn->query($sql);
 
-    //If user exists, result will have >0 rows
+    //If user group, result will have >0 rows
     if($result->num_rows!= 0){
         echo "Registration failed!";
         header('Location:group_create.html');
     }
     else
     {
-        //Register the new user.  This assigns them a unique UserID.
+        //Register the new group.  This assigns them a unique GroupID.
         $sql = "INSERT INTO groups (GroupName, Password, Email, GroupID) VALUES ('$_Groupname', '$_Password', '$_Email', '$NewID')";
         //$sql = "INSERT INTO users (FirstName, LastName, Passwrd, Email) VALUES ('Saruman', 'TheWhite', 'mine', 'neutral@sauron.com')";
 
@@ -53,6 +53,7 @@ else
         $conn->query($sql);
 
         // sql to create table
+        //Each group contains basic user data to keep track of members.
         $sql = "CREATE TABLE $_Groupname (
             UserID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             Username VARCHAR(30) NOT NULL,

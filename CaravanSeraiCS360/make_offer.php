@@ -45,6 +45,18 @@ else
 //UserID from the session global
 $_UserID = $_SESSION["UserID"];
 
+ //Get the amount of product currently in the database
+ $result = mysqli_query($conn, "SELECT Amount as pamount FROM products WHERE ProductID='$_ProductID'");
+ $row = mysqli_fetch_array($result);
+ $_pAmount = $row['pamount'];
+ $pAmount = intval($_pAmount);
+
+ if($Amount > $pAmount)
+ {
+    echo "Not enough product!";
+    header('Location:make_offer.php');
+ }
+
 
 //Grab the highest ID in the messages column, then increment it by one for the new MessageID to be assigned.
 $result = mysqli_query($conn, "SELECT MAX(MessageID) AS max FROM messages");
@@ -71,10 +83,15 @@ $_ProductName2 = $row['pname1'];
 //$_ProductName2 = intval($PrevID);
 
 
+//Update the transaction with the second product name and ID
+$sql = "UPDATE transactions SET ProductName2='$_ProductName',ProductID2='$_ProductID',Quantity2='$Amount' WHERE TransactionID='$_TransactionID'";
+$conn->query($sql);
+
+
 $sql = "INSERT INTO messages (MessageID) VALUES ('$_MessageID')";
 $conn->query($sql);
 
-$sql = "UPDATE messages SET ProductName1='$_ProductName',ProductName2='$_ProductName2',TransactionID='$_TransactionID',Amount1='$_Amount1',Amount2='$_Amount2',UserID1='$_UserID',UserID2='$_UserID2',BarterMessage='$_Message' WHERE MessageID='$_MessageID'";
+$sql = "UPDATE messages SET ProductName1='$_ProductName',ProductName2='$_ProductName2',TransactionID='$_TransactionID',Amount1='$_Amount1',Amount2='$_Amount2',UserID1='$_UserID',UserID2='$_UserID2',BarterMessage='$_Message',MessageUserID='$_UserID' WHERE MessageID='$_MessageID'";
 $conn->query($sql);
 
 
