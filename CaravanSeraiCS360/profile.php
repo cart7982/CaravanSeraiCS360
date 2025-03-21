@@ -185,6 +185,8 @@
                         <td><?= htmlspecialchars($row['Amount']) ?></td>
                         <td><form action="remove_product.php" method="post">
                             <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
+                        <td><form action="product_edit_entry.php" method="post">
+                            <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">EDIT</button></form></td>
                         </tr>
                     <?php endforeach ?>
                     </table>
