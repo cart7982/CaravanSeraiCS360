@@ -5,6 +5,7 @@
         <meta charset = "utf-8">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel = "stylesheet">
+        <link href = "styleII.css" rel = "stylesheet">
 
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
@@ -25,7 +26,10 @@
 
         <div class = "card">
             <div class = "card-header">
-                All avaliable listings should be here, up to the first 50.
+                Find products you would like to barter for!
+            </div>
+            <div class = "card-body">
+                All currently avaliable products should be listed here.
             </div>
 
         <?php

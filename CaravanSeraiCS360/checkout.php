@@ -14,7 +14,7 @@
     ?>
         <div class="topnav">
             <a href="index.php">Home</a>
-            <a href="login.html">Login</a>
+            <!-- <a href="login.html">Login</a> -->
             <a href="group_login.php">Group Login</a>
             <a href="logout.php">Logout</a>
             <a href="profile.php">Profile</a>
@@ -25,7 +25,9 @@
 
         <div class = "card">
             <div class = "card-body">
-                Last check!  Please confirm that these are the items you wish to trade.  
+                Final confirmation!  <br>
+                Please confirm that these are the barters you wish to make- <br>
+                quantity, quality, and that the barter is satisfactory.  
             </div>
         </div>
 
