@@ -44,9 +44,15 @@
                     <td><?= htmlspecialchars($row['ProductName']) ?></td>
                     <td><?= htmlspecialchars($row['TotalPrice']) ?></td>
                     <td><?= htmlspecialchars($row['Quantity']) ?></td>
-                    <td><form action="remove_cart.php" method="post">
+                    <td><form action="cart_increase.php" method="post">
                             <label for="Quantity">Quantity></label>
                             <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
+                            <input type="hidden" id="TransactionID" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>"></input>
+                            <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
+                    <td><form action="cart_remove.php" method="post">
+                            <label for="Quantity">Quantity></label>
+                            <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
+                            <input type="hidden" id="TransactionID" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>"></input>
                             <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
                         </tr>
                 <?php endforeach ?>
