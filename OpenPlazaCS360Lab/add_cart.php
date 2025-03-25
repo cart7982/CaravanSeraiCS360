@@ -15,6 +15,15 @@ echo "Connected successfully";
 
 session_start();
 
+if(!isset($_SESSION["UserID"]))
+{
+    echo"User not found!  Back to login!";
+    header('Location:login.html');
+}
+else
+{
+
+
 //Get the ProductID and Amount passed from product_listings "Add To Cart" button
 $ProductID = $_POST['ProductID'];
 $Quantity = $_POST['Quantity'];
@@ -117,7 +126,7 @@ if(isset($_ProductID) && isset($_UserID) && isset($_Quantity) && isset($_TotalPr
 
     header('Location:cart.php');
 }
-
+}
 //header('Location:product_listings.php');
 
 ?>

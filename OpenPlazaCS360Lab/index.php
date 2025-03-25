@@ -11,15 +11,15 @@
     </head>
     <body>
         
-        <h1>CaravanSerai</h1>
+        <h1>OpenPlaza</h1>
         <h3>LANDING PAGE</h3>
 
         <div class = "card">
             <div class = "card-header">
-                Welcome to CaravanSerai!
+                Welcome to OpenPlaza!
             </div>
             <div class = "card-body">
-                CaravanSerai is an anonymous trading site that allows you to 
+                OpenPlaza is an anonymous trading site that allows you to 
                 exchange goods securely, without needing any intermediary steps. 
             </div>
             <div class = "card-body">
@@ -33,7 +33,7 @@
         
         <?php
         //$_UserID = $_SESSION["UserID"];
-        $conn = mysqli_connect("localhost","root","","caravanserai");
+        $conn = mysqli_connect("localhost","root","","openplaza");
         $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
         $data = $result->fetch_all(MYSQLI_ASSOC);
         ?>
