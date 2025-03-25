@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-    
     <head>
         <title>Landing Page</title>
         <meta charset = "utf-8">
@@ -18,7 +17,7 @@
             <a href="group_signup.html">Group Sign Up</a>
             <a href="login.html">Login</a>
             <a href="group_login.php">Group Login</a>
-            <a href="logout.php">Logout</a>
+            <!-- <a href="logout.php">Logout</a> -->
             <a href="profile.php">Profile</a>
         </div>
         

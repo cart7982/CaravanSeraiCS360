@@ -10,25 +10,25 @@
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
-    <?php
-    session_start();
-    if(!isset($_SESSION["UserID"]))
-    {
-        echo "User not detected!  Please log in to proceed!";
-        header('Location:login.html');
-    }
-    ?>
+        <?php
+        session_start();
+        if(!isset($_SESSION["UserID"]))
+        {
+            echo "User not detected!  Please log in to proceed!";
+            header('Location:login.html');
+        }
+        ?>
 
-    <div class="topnav">
-        <a href="index.php">Home</a>
-        <a href="group_signup.html">Group Signup</a>
-        <a href="login.html">Login</a>
-        <a href="group_login.php">Group Login</a>
-        <a href="logout.php">Logout</a>
-        <a href="group_logout.php">Group Logout</a>
-        <a href="index.php">Product Listings</a>
-        <a href="group_create.html">Group Create</a>        
-    </div>
+        <div class="topnav">
+            <a href="index.php">Home</a>
+            <a href="group_create.html">Group Create</a> 
+            <a href="group_signup.html">Group Signup</a>
+            <!-- <a href="login.html">Login</a> -->
+            <a href="group_login.php">Group Login</a>
+            <a href="logout.php">Logout</a>
+            <a href="group_logout.php">Group Logout</a>
+            <a href="index.php">Product Listings</a>      
+        </div>
 
         <h1>MERCHANT PROFILE</h1>
 
@@ -50,11 +50,7 @@
             </div>
         </div>
 
-        
-        <div class = "card">
-            <div class = "card-header">
-                Welcome to your Caravanserai profile page!
-            </div>
+            
         <div class="card">
             <div class = "card-body">
                 <h2>START A BARTER</h2><br>
@@ -90,10 +86,7 @@
                 <?php endforeach ?>
                 </table> 
             </div>
-        </div>
-
-
-
+    
             
             <div class = "card-body">
                 <h2>OFFERS YOU HAVE MADE:</h2> 
@@ -140,8 +133,6 @@
                     </table>
 
             </div>
-        </div>
-
 
 
             <div class = "card-body">
@@ -189,10 +180,7 @@
                     </table>
 
             </div>
-        </div>
-
-
-
+        
 
             <div class = "card-body">
                 <h2>Your Products for Sale: </h2>
@@ -222,52 +210,50 @@
                     </table>
 
             </div>
-        </div>
 
-        <div class = "card-footer">
-            <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
-                Create a Listing
-            </button>
-        
-            <div class = "modal" id = "myModal1">
-                <div class = "modal-dialog">
-                    <div class = "modal-content">
-        
-                        <div class = "modal-header">
-                            <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
-                        </div>
-        
-                        <div class = "modal-body">
-                            <form action="add_product.php" method="post">
-                                <div class = "mb-3 mt-3">
-                                    <label for = "product-name" class = "form-label">Product to sell: </label>
-                                    <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
-                                </div>
-                                <div class = "mb-3 mt-3">
-                                    <label for = "price" class = "form-label">Price: </label>
-                                    <input type = "text" class = "form-control" id = "price" placeholder = "Enter price" name = "price">
-                                </div>
-                                <div class = "mb-3 mt-3">
-                                    <label for = "amount" class = "form-label">Amount: </label>
-                                    <input type = "text" class = "form-control" id = "amount" placeholder = "Enter amount" name = "amount">
-                                </div>
-                                <div class = "mb-3">
-                                    <label for = "description" class = "form-label">Product description:  </label>
-                                    <input type = "text" class = "form-control" id = "description" placeholder = "Enter product description" name = "description">
-                                </div>
-                                <button type = "submit" class = "btn btn-primary"> Submit</button>
-                            </form>
-                        </div>
-        
-                        <div class = "modal-footer">
-                            <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <div class = "card-footer">
+                <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
+                    Create a Listing
+                </button>
+            
+                <div class = "modal" id = "myModal1">
+                    <div class = "modal-dialog">
+                        <div class = "modal-content">
+            
+                            <div class = "modal-header">
+                                <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
+                            </div>
+            
+                            <div class = "modal-body">
+                                <form action="add_product.php" method="post">
+                                    <div class = "mb-3 mt-3">
+                                        <label for = "product-name" class = "form-label">Product to sell: </label>
+                                        <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
+                                    </div>
+                                    <div class = "mb-3 mt-3">
+                                        <label for = "price" class = "form-label">Price: </label>
+                                        <input type = "text" class = "form-control" id = "price" placeholder = "Enter price" name = "price">
+                                    </div>
+                                    <div class = "mb-3 mt-3">
+                                        <label for = "amount" class = "form-label">Amount: </label>
+                                        <input type = "text" class = "form-control" id = "amount" placeholder = "Enter amount" name = "amount">
+                                    </div>
+                                    <div class = "mb-3">
+                                        <label for = "description" class = "form-label">Product description:  </label>
+                                        <input type = "text" class = "form-control" id = "description" placeholder = "Enter product description" name = "description">
+                                    </div>
+                                    <button type = "submit" class = "btn btn-primary"> Submit</button>
+                                </form>
+                            </div>
+            
+                            <div class = "modal-footer">
+                                <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
 
     </body>
 </html>

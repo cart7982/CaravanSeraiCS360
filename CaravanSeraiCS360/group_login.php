@@ -12,7 +12,7 @@
 
     <div class="topnav">
         <a href="index.php">Home</a>
-        <a href="login.html">Login</a>
+        <!-- <a href="login.html">Login</a> -->
         <a href="logout.php">Logout</a>
         <a href="profile.php">Profile</a>
     </div>
@@ -28,6 +28,15 @@
     ?>
 
         <h1>LOGIN TO A GROUP</h1>
+        <div class = "card">
+            <div class = "card-body">
+                Groups allow for the use of resources collectively; that is, each user who joins the group 
+                allows their items to be used by any member of the group.  
+            </div>
+            <div class = "card-body">
+                To log into a group, please enter the name of the group and the group password.
+            </div>
+        </div>
 
         <!--This form starts the user session.  This allows for the usage of
             global variables as described in session.php.-->

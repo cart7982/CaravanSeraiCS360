@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-    
     <head>
         <title>Profile Edit</title>
         <meta charset = "utf-8">
@@ -13,7 +12,7 @@
 
     <div class="topnav">
         <a href="index.php">Home</a>
-        <a href="login.html">Login</a>
+        <!-- <a href="login.html">Login</a> -->
         <a href="logout.php">Logout</a>
     </div>
     

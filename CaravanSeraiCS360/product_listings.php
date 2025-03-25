@@ -25,7 +25,7 @@
 
         <div class = "card">
             <div class = "card-header">
-                All avaliable listings should be here, up to the first 50.
+                All products avaliable for barter are visible here. 
             </div>
 
         <?php

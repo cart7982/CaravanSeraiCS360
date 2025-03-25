@@ -16,7 +16,7 @@
         
         <div class="topnav">
             <a href="index.php">Home</a>
-            <a href="login.html">Login</a>
+            <!-- <a href="login.html">Login</a> -->
             <a href="group_login.php">Group Login</a>
             <a href="logout.php">Logout</a>
             <a href="profile.php">Profile</a>
@@ -24,7 +24,12 @@
         </div>
         
 
-        <h1>Your Products Available To Offer:</h1>
+        <h1>Make a Counteroffer:</h1>
+
+        <div class = "card-header">
+            Do you consider the current bargain not fair?  <br>
+            Make your counteroffer and include a message to the other seller.
+        </div>
 
         <div class = "card-body">
                 <?php

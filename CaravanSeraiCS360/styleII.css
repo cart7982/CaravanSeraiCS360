@@ -5,8 +5,14 @@ body{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+card-body{
+    background-color: #f6d2a6;
+    font-size: 15px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 form{
-    padding-left: 2px;
+    padding-left: 4px;
 }
 
 h1{
@@ -62,7 +68,6 @@ table{
 th{
     background-color: #c16964;
     font-size: 16px;
-
 }
 
 tr{

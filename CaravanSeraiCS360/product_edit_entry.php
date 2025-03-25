@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-    
     <head>
         <title>Product Edit</title>
         <meta charset = "utf-8">
@@ -23,6 +22,15 @@
     ?>
 
         <h1>EDIT YOUR PRODUCT</h1>
+
+        <div class = "card">
+            <div class = "card-body">
+                To ensure accurate barters, you may need to update your product information. 
+            </div>
+            <div class = "card-body">
+                Please ensure that you have accurate, up-to-date information. 
+            </div>
+        </div>
 
         <!--This form starts the user session.  This allows for the usage of
             global variables as described in session.php.-->
