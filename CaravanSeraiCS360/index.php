@@ -13,11 +13,12 @@
     <body>
         <div class="topnav">
             <a href="index.php">Home</a>
-            <a href="signup.html">Sign Up</a>
-            <a href="group_signup.html">Group Sign Up</a>
+            <a href="signup.html">Sign Up As Merchant</a>
             <a href="login.html">Login</a>
+            <a href="logout.php">Logout</a>
+            <a href="group_signup.html">Sign Up For Group</a>
             <a href="group_login.php">Group Login</a>
-            <!-- <a href="logout.php">Logout</a> -->
+            <a href="group_logout.php">Group Logout</a>
             <a href="profile.php">Profile</a>
         </div>
         

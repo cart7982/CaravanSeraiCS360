@@ -195,12 +195,14 @@
                     <tr>
                         <th>Product Name</th>
                         <th>Amount</th>
+                        <th>Description</th>
                         <th>Action</th>
                     </tr>
                     <?php foreach($data as $row): ?>
                     <tr>
                         <td><?= htmlspecialchars($row['ProductName']) ?></td>
                         <td><?= htmlspecialchars($row['Amount']) ?></td>
+                        <td><?= htmlspecialchars($row['Description']) ?></td>
                         <td><form action="remove_product.php" method="post">
                             <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
                         <td><form action="product_edit_entry.php" method="post">
@@ -229,10 +231,6 @@
                                     <div class = "mb-3 mt-3">
                                         <label for = "product-name" class = "form-label">Product to sell: </label>
                                         <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
-                                    </div>
-                                    <div class = "mb-3 mt-3">
-                                        <label for = "price" class = "form-label">Price: </label>
-                                        <input type = "text" class = "form-control" id = "price" placeholder = "Enter price" name = "price">
                                     </div>
                                     <div class = "mb-3 mt-3">
                                         <label for = "amount" class = "form-label">Amount: </label>

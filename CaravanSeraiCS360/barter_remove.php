@@ -65,13 +65,13 @@ $_Putback = intval($Putback);
 echo '_PutBack '.$_Putback;
 
 
-if(intval($_amount) == 0)
+if(intval($_amount) <= 0)
 {
     //Calculate the amount to go back into products table
-    $amount_Putback = $current_Amount + $_Putback;
+    //$amount_Putback = $current_Amount + $_Putback;
 
-    $sql = "UPDATE products SET Amount='$amount_Putback' WHERE ProductID='$ID'";
-    $conn->query($sql);
+    //$sql = "UPDATE products SET Amount='$amount_Putback' WHERE ProductID='$ID'";
+    //$conn->query($sql);
 
     $sql = "DELETE FROM transactions WHERE TransactionID='$_TransactionID'";
     $conn->query($sql);
