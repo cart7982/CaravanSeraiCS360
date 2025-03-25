@@ -16,7 +16,7 @@
         
         <div class="topnav">
             <a href="index.php">Home</a>
-            <a href="login.html">Login</a>
+            <!--<a href="login.html">Login</a> -->
             <a href="group_login.php">Group Login</a>
             <a href="logout.php">Logout</a>
             <a href="profile.php">Profile</a>
@@ -27,8 +27,9 @@
 
         <div class="card">
             <div class = "card-body">
-                This page holds a list of all items a user has put into their cart, <br>
-                along with the requested quantities.  <br>
+                Look at the items you're currently bartering! <br>
+                Continue to make offers until you're satisfied. <br>
+                
 
                 <?php
                 $_UserID = $_SESSION["UserID"];

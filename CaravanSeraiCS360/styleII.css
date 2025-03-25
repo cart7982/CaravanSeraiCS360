@@ -5,12 +5,20 @@ body{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+card-body{
+    background-color: #f5d2bc;
+    font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
 form{
-    padding-left: 2px;
+    padding-left: 4px;
 }
 
 h1{
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 17px;
     background-color: #83f390;
     color: #5C0800;
 }
@@ -22,6 +30,7 @@ a{
 .topnav {
     overflow: hidden;
     background-color: rgb(133, 255, 255);
+    color: #006308;
 }
 
 .topnav a {
@@ -55,7 +64,6 @@ table{
 th{
     background-color: #c16964;
     font-size: 16px;
-
 }
 
 tr{

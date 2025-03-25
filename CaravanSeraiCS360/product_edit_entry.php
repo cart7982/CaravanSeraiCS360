@@ -23,6 +23,15 @@
     ?>
 
         <h1>EDIT YOUR PRODUCT</h1>
+        <div class = card>
+            <div class = card-body>
+                Alter details about your products.
+            </div>
+            <div class = card-body>
+                Up-to-date descriptions ensure that fellow users can understand what you have to offer 
+                and ensure fair, informed barters.  <br>
+            </div>
+        </div>
 
         <!--This form starts the user session.  This allows for the usage of
             global variables as described in session.php.-->

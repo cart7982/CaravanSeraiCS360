@@ -12,7 +12,7 @@
 
     <div class="topnav">
         <a href="index.php">Home</a>
-        <a href="login.html">Login</a>
+        <!-- <a href="login.html">Login</a> -->
         <a href="logout.php">Logout</a>
         <a href="profile.php">Profile</a>
     </div>
@@ -28,6 +28,18 @@
     ?>
 
         <h1>LOGIN TO A GROUP</h1>
+
+        <div class = card>
+            <div class = card-header>
+                A group will allow you to barter using the group's resources collectively.  <br>
+                This can enable you to make better deals. <br>
+                Please be mindful of your group members' goods.
+            </div>
+            <div class = card-body>
+                You will need the group name and the password, which were decided on creation. <br>
+                If you do not know these things, please contact the creator of the group.
+            </div>
+        </div>
 
         <!--This form starts the user session.  This allows for the usage of
             global variables as described in session.php.-->

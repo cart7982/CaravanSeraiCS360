@@ -16,7 +16,7 @@
         
         <div class="topnav">
             <a href="index.php">Home</a>
-            <a href="login.html">Login</a>
+            <!-- <a href="login.html">Login</a> -->
             <a href="group_login.php">Group Login</a>
             <a href="logout.php">Logout</a>
             <a href="profile.php">Profile</a>
