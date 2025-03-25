@@ -14,6 +14,8 @@ if(!isset($_SESSION["UserID"]))
     echo "First User not detected!  Please log in to proceed!";
     header('Location:login.html');
 }
+else
+{
 
 //UserID from the session global
 $_UserID = $_SESSION["UserID"];
@@ -30,5 +32,5 @@ $sql = "DELETE FROM messages WHERE MessageID='$_MessageID'";
 $conn->query($sql);
 header('Location:profile.php');
 
-
+}
 ?>

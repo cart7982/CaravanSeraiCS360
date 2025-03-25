@@ -55,8 +55,10 @@ echo("Total amount is ".$_TotalAmount);
 if($_TotalAmount < 0)
 {
     echo ("Insufficient amount of product in database.");
-    //header('Location:profile.php');
+    header('Location:profile.php');
 }
+else
+{
 
 //Grab the highest ID in the transaction column, then increment it by one for the new ProductID to be assigned.
 $result = mysqli_query($conn, "SELECT MAX(TransactionID) AS max FROM transactions");
@@ -79,29 +81,29 @@ $sql = "INSERT INTO transactions (TransactionID) VALUES ('$_TransactionID')";
 $conn->query($sql);
 
 //Update purchase information on transaction table
-$sql = "UPDATE transactions SET UserID1='$_UserID',UserID2='$_UserID2',Quantity1='$_Quantity',ProductID1='$_ProductID',ProductName1='$_ProductName' WHERE TransactionID='$_TransactionID'";
+$sql = "UPDATE transactions SET UserID1='$_UserID2',UserID2='$_UserID',Quantity1='$_Quantity',ProductID1='$_ProductID',ProductName1='$_ProductName' WHERE TransactionID='$_TransactionID'";
 $conn->query($sql); 
 
 
-//Update inventory information on products table
-$sql = "UPDATE products SET amount='$_TotalAmount' WHERE ProductID='$_ProductID'";
-$conn->query($sql); 
+//Update inventory information on products table - THIS SHOULD HAPPEN DURING THE ACCEPT PHASE ONLY
+//$sql = "UPDATE products SET amount='$_TotalAmount' WHERE ProductID='$_ProductID'";
+//$conn->query($sql); 
 
 //header('Location:barter_cart.php');
 
 if(!isset($_SESSION["UserID"]))
 {
     echo "User not detected!  Please log in to proceed!";
-    header('Location:login.html');
+    //header('Location:login.html');
 }
 else
 {
     
     //UserID from the session global
-    header('Location:cart_barter.php');
+    header('Location:profile.php');
 }
 
 }
-
+}
 
 ?>

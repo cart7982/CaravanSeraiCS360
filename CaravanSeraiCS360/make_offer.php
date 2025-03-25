@@ -18,6 +18,7 @@ session_start();
 $_Message = $_POST['message'];
 $_Amount1 = $_POST['amount'];//Amount of product being offered
 $_TransactionID = $_POST['TransactionID'];
+$_ProdUserID = $_POST['UserID'];
 
 $_ProductID = $_POST['ProductID'];
 $_ProductName = $_POST['ProductName'];
@@ -56,6 +57,8 @@ $_UserID = $_SESSION["UserID"];
     echo "Not enough product!";
     header('Location:make_offer.php');
  }
+ else
+ {
 
 
 //Grab the highest ID in the messages column, then increment it by one for the new MessageID to be assigned.
@@ -63,6 +66,16 @@ $result = mysqli_query($conn, "SELECT MAX(MessageID) AS max FROM messages");
 $row = mysqli_fetch_array($result);
 $PrevID = $row['max'];
 $_MessageID = intval($PrevID) + 1;
+
+
+
+
+
+//Get the first user ID from the transaction
+$result = mysqli_query($conn, "SELECT UserID1 AS u1ID FROM transactions WHERE TransactionID='$_TransactionID'");
+$row = mysqli_fetch_array($result);
+$PrevID = $row['u1ID'];
+$_UserID1 = intval($PrevID);
 
 //Get the second user ID from the transaction
 $result = mysqli_query($conn, "SELECT UserID2 AS u2ID FROM transactions WHERE TransactionID='$_TransactionID'");
@@ -82,22 +95,33 @@ $row = mysqli_fetch_array($result);
 $_ProductName2 = $row['pname1'];
 //$_ProductName2 = intval($PrevID);
 
+echo "_ProductName is: ".$_ProductName;
+echo "_UserID is: ".$_UserID;
+echo "_UserID2 is: ".$_UserID2;
+echo "_ProductName2 is: ".$_ProductName2;
 
 //Update the transaction with the second product name and ID
+//$sql = "UPDATE transactions SET ProductName2='$_ProductName',ProductID2='$_ProductID',UserID2='$_ProdUserID',Quantity2='$Amount' WHERE TransactionID='$_TransactionID'";
+
+//THIS NEEDS TO KEEP THE USER IDS THE SAME
+//SO THAT THE ORIGINAL USER STAYS IN THE LOOP
+//THE TRANSACTION SHOULD NOT BE ALTERED FROM HERE UNTIL ACCEPTANCE
 $sql = "UPDATE transactions SET ProductName2='$_ProductName',ProductID2='$_ProductID',Quantity2='$Amount' WHERE TransactionID='$_TransactionID'";
+
 $conn->query($sql);
 
 
 $sql = "INSERT INTO messages (MessageID) VALUES ('$_MessageID')";
 $conn->query($sql);
 
-$sql = "UPDATE messages SET ProductName1='$_ProductName',ProductName2='$_ProductName2',TransactionID='$_TransactionID',Amount1='$_Amount1',Amount2='$_Amount2',UserID1='$_UserID',UserID2='$_UserID2',BarterMessage='$_Message',MessageUserID='$_UserID' WHERE MessageID='$_MessageID'";
+$sql = "UPDATE messages SET Product1UserID='$_ProdUserID',Product2UserID='$_UserID1',ProductName1='$_ProductName',ProductName2='$_ProductName2',TransactionID='$_TransactionID',Amount1='$_Amount1',Amount2='$_Amount2',UserID1='$_UserID',UserID2='$_UserID1',BarterMessage='$_Message',MessageUserID='$_UserID' WHERE MessageID='$_MessageID'";
 $conn->query($sql);
 
 
 header('Location:profile.php');
 
 
+}
 }
 
 

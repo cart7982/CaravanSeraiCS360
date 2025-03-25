@@ -52,7 +52,16 @@
 
                 }
 
-                $_TransactionID = $_POST['TransactionID'];
+                //$_TransactionID = $_POST['TransactionID'];
+                $_Message = $_POST['message'];
+                $_Amount2 = $_POST['amount2']; //Their amount
+                $_ProductName2 = $_POST['ProductName2']; //Their productname
+                $_MessageID = $_POST['MessageID'];
+
+                echo "_ProductName2 is: ".$_ProductName2;
+                echo "_Message is: ".$_Message;
+                echo "_Amount2 is: ".$_Amount2;
+                echo "_MessageID is: ".$_MessageID;
                 ?>
 
                 <table border="1">
@@ -65,17 +74,20 @@
                 <tr>
                     <td><?= htmlspecialchars($row['ProductName']) ?></td>
                     <td><?= htmlspecialchars($row['Amount']) ?></td>
-                    <td><form action="make_offer.php" method="post">
-                            <label for="amount">Quantity></label>
-                            <input style="height:30px; width:100px" id="amount" name="amount"></input>
+                    <td><form action="counteroffer.php" method="post">
+                            <label for="amount1">How Much You're Offering></label>
+                            <input style="height:30px; width:100px" id="amount1" name="amount1"></input>
                             <label for="message">Message to Send to Seller></label>
                             <input style="height:30px; width:100px" id="message" name="message"></input>
+                            <label for="message">How Much You Want></label>
+                            <input style="height:30px; width:100px" id="amount2" name="amount2"></input>
                             <!-- Hidden Input for ProductName -->
-                            <input type="hidden" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>"></input>
-                            <input type="hidden" name="ProductName" value="<?= htmlspecialchars($row['ProductName']) ?>"></input>
+                            <input type="hidden" name="ProductID1" value="<?= htmlspecialchars($row['ProductID']) ?>"></input>
+                            <input type="hidden" name="ProductName1" value="<?= htmlspecialchars($row['ProductName']) ?>"></input>
                             <input type="hidden" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>"></input>
+                            <input type="hidden" name="ProductName2" value="<?= $_ProductName2 ?>"></input>
 
-                            <button style="height:30px; width:100px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($_TransactionID) ?>">Make Offer</button>
+                            <button style="height:30px; width:100px" input type="submit" name="MessageID" value="<?= htmlspecialchars($_MessageID) ?>">Make Offer</button>
                         </form></td>
 
 

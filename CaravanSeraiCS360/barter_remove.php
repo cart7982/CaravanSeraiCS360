@@ -14,6 +14,8 @@ if(!isset($_SESSION["UserID"]))
     echo "First User not detected!  Please log in to proceed!";
     header('Location:login.html');
 }
+else
+{
 
 //UserID from the session global
 $_UserID = $_SESSION["UserID"];
@@ -73,7 +75,7 @@ if(intval($_amount) == 0)
 
     $sql = "DELETE FROM transactions WHERE TransactionID='$_TransactionID'";
     $conn->query($sql);
-    header('Location:cart_barter.php');
+    header('Location:profile.php');
 }
 else if (intval($_amount) > 0)
 {
@@ -88,13 +90,14 @@ else if (intval($_amount) > 0)
 
     $sql = "UPDATE transactions SET Quantity1='$_amount' WHERE TransactionID='$_TransactionID'";
     $conn->query($sql);
-    header('Location:cart_barter.php');
+    header('Location:profile.php');
 }
 else
 {
-    header('Location:cart_barter.php');
+    header('Location:profile.php');
 }
 
 $conn->close();
 
+}
 ?>
