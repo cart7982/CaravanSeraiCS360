@@ -23,8 +23,7 @@ if(!isset($_SESSION["UserID"]))
 else
 {
 
-
-//Get the ProductID and Amount passed from product_listings "Add To Cart" button
+//Get the ProductID and Amount passed from index "Add To Cart" button
 $ProductID = $_POST['ProductID'];
 $Quantity = $_POST['Quantity'];
 
@@ -36,7 +35,7 @@ $_Quantity = intval($Quantity);
 // echo "ProdID ".$ProductID." ";
 // echo "_ProdID ".$_ProductID." ";
 
-//Get the Amount as an integer to test if taking more than total:
+//Get the Amount as an integer to test if taking more than amount of product in database:
 $result = mysqli_query($conn, "SELECT Amount as amount FROM products WHERE ProductID='$_ProductID'");
 $row = mysqli_fetch_array($result);
 $Prod_Amount = $row['amount'];
@@ -51,8 +50,6 @@ if($_Quantity > $_Prod_Amount)
 }
 else
 {
-    $NewAmount = $_Prod_Amount - $_Quantity;
-}
 
 //Get the Price as an integer to be used with Amount to find a total checkout price:
 $result = mysqli_query($conn, "SELECT Price as price FROM products WHERE ProductID='$_ProductID'");
@@ -106,8 +103,8 @@ if(isset($_ProductID) && isset($_UserID) && isset($_Quantity) && isset($_TotalPr
         $conn->query($sql);    
         
         //Update the product with the lowered inventory amount
-        $sql = "UPDATE products SET Amount='$NewAmount' WHERE ProductID='$_ProductID'";
-        $conn->query($sql);
+        //$sql = "UPDATE products SET Amount='$NewAmount' WHERE ProductID='$_ProductID'";
+        //$conn->query($sql);
 
     }
     else
@@ -118,13 +115,14 @@ if(isset($_ProductID) && isset($_UserID) && isset($_Quantity) && isset($_TotalPr
         $conn->query($sql);
 
         //Update the product with the lowered inventory amount
-        $sql = "UPDATE products SET Amount='$NewAmount' WHERE ProductID='$_ProductID'";
-        $conn->query($sql);
+        //$sql = "UPDATE products SET Amount='$NewAmount' WHERE ProductID='$_ProductID'";
+        //$conn->query($sql);
 
         $conn->close();
     }
 
     header('Location:cart.php');
+}
 }
 }
 //header('Location:product_listings.php');
