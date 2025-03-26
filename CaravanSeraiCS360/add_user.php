@@ -26,6 +26,8 @@ $row = mysqli_fetch_array($result);
 $PrevID = $row['max'];
 $NewID = intval($PrevID) + 1;
 
+
+
 if($_Username == NULL || $_Password == NULL || $_Email == NULL)
 {
     //If not all fields have been filled, return without committing.

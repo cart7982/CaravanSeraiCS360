@@ -77,9 +77,6 @@
 
                             <button style="height:30px; width:100px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($_TransactionID) ?>">Make Offer</button>
                         </form></td>
-
-
-
                 
                 </tr>
                 <?php endforeach ?>

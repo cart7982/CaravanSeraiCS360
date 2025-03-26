@@ -48,7 +48,7 @@ $_amount = $current_Amount - $_Quantity;
 echo '_amount '.$_amount;
 
 
-//Get the current amount of the product in the products table in order to restore it
+//Get the ProductID from the tranaction.
 $result = mysqli_query($conn, "SELECT ProductID1 as pID FROM transactions WHERE TransactionID='$_TransactionID'");
 $row = mysqli_fetch_array($result);
 $ID = $row['pID'];
@@ -56,23 +56,9 @@ $_ProductID = intval($ID);
 
 
 
-//Get the current amount of the product in the products table in order to restore it
-$result = mysqli_query($conn, "SELECT Amount as putback FROM products WHERE ProductID='$_ProductID'");
-$row = mysqli_fetch_array($result);
-$Putback = $row['putback'];
-$_Putback = intval($Putback);
-
-echo '_PutBack '.$_Putback;
-
 
 if(intval($_amount) <= 0)
 {
-    //Calculate the amount to go back into products table
-    //$amount_Putback = $current_Amount + $_Putback;
-
-    //$sql = "UPDATE products SET Amount='$amount_Putback' WHERE ProductID='$ID'";
-    //$conn->query($sql);
-
     $sql = "DELETE FROM transactions WHERE TransactionID='$_TransactionID'";
     $conn->query($sql);
     header('Location:profile.php');
