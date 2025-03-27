@@ -35,7 +35,66 @@ a{
 .topnav {
     overflow: hidden;
     background-color: rgb(133, 255, 255);
+    display: inline-block;
+    position: relative;
+    outline: none;
 }
+
+.dropbtn {
+    padding: 12px 16px;
+    transition: 0.35s ease-out;
+}
+
+.topnav .drop-content {
+    position: absolute;
+    top: 50%;
+    min-width: 120%;
+    z-index: 100000;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.35s ease-out;
+}
+
+.drop-content a{
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+    transition: 0.35s ease-out;
+}
+
+.drop-content a:hover{
+    background-color: #eaeaea;
+}
+
+.topnav:focus .drop-content {
+    outline: none;
+    transform: translateY(20px);
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropbtn:hover, .topnav:focus .dropbtn {
+    background-color: #691692;
+}
+
+.topnav .db2 {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0; opacity: 0;
+    z-index: 10;
+    display: none;
+}
+
+.topnav:focus .db2 {
+    display: inline-block;
+}
+
+.topnav .db2:focus .dropdown-content {
+    outline:none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+
 
 .topnav a {
     float: left;

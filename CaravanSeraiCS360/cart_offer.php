@@ -14,13 +14,26 @@
     session_start();
     ?>
         
-        <div class="topnav">
-            <a href="index.php">Home</a>
-            <!-- <a href="login.html">Login</a> -->
-            <a href="group_login.php">Group Login</a>
-            <a href="logout.php">Logout</a>
-            <a href="profile.php">Profile</a>
-            <a href="product_listings.php">Product Listings</a>
+        <div class = "topnav" tabindex = "1">
+            <i class = "db2" tabindex = "1"></i>
+            <a class = "dropbtn">Account</a>
+            <div class = "drop-content">
+                <a href = "signup.html">Sign Up</a>
+                <a href = "login.html">Login</a>
+                <a href = "logout.php">Logout</a>
+                <a href = "profile.php">Profile</a>
+                <a href = "index.php">Listings</a>
+            </div>
+        </div>
+
+        <div class = "topnav" tabindex = "1">
+            <i class = "db2" tabindex = "1"></i>
+            <a class = "dropbtn">Groups</a>
+            <div class = "drop-content">
+                <a href = "group_signup.html">Create Group</a>
+                <a href = "group_login.php">Enter Group</a>
+                <a href = "group_logout.php">Group Logout</a>
+            </div>
         </div>
         
 
