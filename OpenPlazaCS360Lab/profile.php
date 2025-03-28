@@ -18,21 +18,14 @@
                 <i class="db2" tabindex="1"></i>
                 <a class="dropbtn">Account</a>
                 <div class="dropdown-content">
-                    <a href = "signup.html">Sign Up</a>
-                    <a href = "login.html">Log In</a>
                     <a href = "logout.php">Log Out</a>
+                    <a href = "profile.php">Profile</a>
                 </div>
             </div>
+            <a href = "product_listings.php" class="dropbtn">Product Listings</a>
+            <a href = "cart.php" class="dropbtn">Cart</a>
+            <a href = "checkout.php" class="dropbtn">Checkout</a>
 
-            <div class="dropdown" tabindex="1">
-                <i class="db2" tabindex="1"></i>
-                <a class="dropbtn">Trade</a>
-                <div class="dropdown-content">
-                    <a href = "product_listings.php">Product Listings</a>
-                    <a href = "cart.php">Cart</a>
-                    <a href = "checkout.php">Checkout</a>
-                </div>
-            </div>
         </div>
         
         <h1>PROFILE</h1>
@@ -79,26 +72,11 @@
                         <td><?= htmlspecialchars($row['Amount']) ?></td>
                         <td><?= htmlspecialchars($row['Description']) ?></td>
                         <td><form action="remove_product.php" method="post">
-                            <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
+                            <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
                         </tr>
                     <?php endforeach ?>
                     </table>
 
-            </div>
-        </div>
-
-        <div class = "card">
-            <div class = "card-header">
-                Actions Avaliable
-            </div>
-            <div class = "card-body">
-                <a href = "product_listings.php">See Avaliable Products</a>
-            </div>
-            <div class = "card-body">
-                <a href = "cart.php">See Your Cart</a>
-            </div>
-            <div class = "card-body">
-                <a href = "logout.php">Log Out</a>
             </div>
         </div>
 

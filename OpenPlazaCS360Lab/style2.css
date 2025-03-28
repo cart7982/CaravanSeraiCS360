@@ -7,10 +7,14 @@ body{
 
 /*Dropdown Menu Handling*/
 .navbar{
-    overflow: hidden;
     background-color: #4cc3ff;
     font-family: monospace;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
+
+
 
 .dropdown{
     display: inline-block;

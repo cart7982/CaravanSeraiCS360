@@ -19,18 +19,13 @@
                     <a href = "signup.html">Sign Up</a>
                     <a href = "login.html">Log In</a>
                     <a href = "logout.php">Log Out</a>
+                    <a href = "profile.php">Profile</a>
                 </div>
             </div>
-
-            <div class="dropdown" tabindex="1">
-                <i class="db2" tabindex="1"></i>
-                <a class="dropbtn">Trade</a>
-                <div class="dropdown-content">
-                    <a href = "product_listings.php">Product Listings</a>
-                    <a href = "cart.php">Cart</a>
-                    <a href = "checkout.php">Checkout</a>
-                </div>
-            </div>
+            
+            <a href = "product_listings.php" class="dropbtn">Product Listings</a>
+            <a href = "cart.php" class="dropbtn">Cart</a>
+            <a href = "checkout.php" class="dropbtn">Checkout</a>
         </div>
         
         <h1>OpenPlaza</h1>
@@ -41,14 +36,7 @@
                 Welcome to OpenPlaza!
             </div>
             <div class = "card-body">
-                OpenPlaza is an anonymous trading site that allows you to 
-                exchange goods securely, without needing any intermediary steps. 
-            </div>
-            <div class = "card-body">
-                If you've already created an account, log in <a href = "login.html">here</a>
-            </div>
-            <div class = "card-body">
-                If you're new and you'd like to start trading, sign up <a href = "signup.html">here</a>
+                Here you can post goods and make purchases from others, entirely anonymously!
             </div>
         </div>
 
@@ -77,7 +65,7 @@
             <td><form action="add_cart.php" method="post">
                 <label for="Quantity">Quantity></label>
                 <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Add to Cart</button></form></td>
+                <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Add to Cart</button></form></td>
             </tr>
         <?php endforeach ?>
         </table>       
