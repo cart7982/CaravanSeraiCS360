@@ -38,14 +38,13 @@
             </div>
             <a href = "product_listings.php" class="dropbtn">Product Listings</a>
             <a href = "cart.php" class="dropbtn">Cart</a>
-            <a href = "checkout.php" class="dropbtn">Checkout</a>
         </div>
         <h1>CHECKOUT</h1>
         This page serves as final confirmation for the purchased items.
 
          <!--This form starts the user session.  This allows for the usage of
             global variables as described in session.php.-->
-            <form action="profile.php" method="post">
+            <form action="checkout_confirm.php" method="post">
             <div class = "mb-3 mt-3">
                 <label for = "cardnum" class = "form-label">Card Number: </label>
                 <input type = "cardnum" class = "form-control" id = "cardnum" placeholder = "Enter cardnum" name = "cardnum">
