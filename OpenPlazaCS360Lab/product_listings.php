@@ -9,9 +9,16 @@
 
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
-    <>
+    
+    
     <?php
     session_start();
+    if (!isset($_SESSION["UserID"]))
+    {
+        echo "Login failed!  No user ID found!";
+        header("Location:login.html");
+        exit();
+    }
     ?>
         <div class = "navbar">    
             <div class="dropdown" tabindex="1">
@@ -26,9 +33,13 @@
             </div>
             <a href = "product_listings.php" class="dropbtn">Product Listings</a>
             <a href = "cart.php" class="dropbtn">Cart</a>
-            <a href = "checkout.php" class="dropbtn">Checkout</a>
         </div>
+
         <h1>PRODUCT LISTINGS</h1>
+    <div class = "card-header">
+        Welcome, <?php echo $_SESSION["Username"] ?>!<br>
+        User ID is: <?php echo $_SESSION["UserID"] ?>
+    </div>
 
     <div class = "card">
         <div class = "card-header">
@@ -59,7 +70,7 @@
             <td><form action="add_cart.php" method="post">
                 <label for="Quantity">Quantity></label>
                 <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Add to Cart</button></form></td>
+                <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Add to Cart</button></form></td>
             </tr>
         <?php endforeach ?>
         </table>       

@@ -25,7 +25,6 @@
             
             <a href = "product_listings.php" class="dropbtn">Product Listings</a>
             <a href = "cart.php" class="dropbtn">Cart</a>
-            <a href = "checkout.php" class="dropbtn">Checkout</a>
         </div>
         
         <h1>OpenPlaza</h1>

@@ -12,6 +12,12 @@
     <body>
     <?php
     session_start();
+    if (!isset($_SESSION["UserID"]))
+    {
+        echo "Login failed!  No user ID found!";
+        header("Location:login.html");
+        exit();
+    }
     ?>
         <div class = "navbar">    
             <div class="dropdown" tabindex="1">
@@ -25,8 +31,6 @@
                 </div>
             </div>
             <a href = "product_listings.php" class="dropbtn">Product Listings</a>
-            <a href = "cart.php" class="dropbtn">Cart</a>
-            <a href = "checkout.php" class="dropbtn">Checkout</a>
         </div> 
         
         <h1>CART</h1>
@@ -59,28 +63,18 @@
                             <label for="Quantity">Quantity></label>
                             <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
                             <input type="hidden" id="TransactionID" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>"></input>
-                            <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Add More</button></form></td>
+                            <button style="height:30px; width:120px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Add More</button></form></td>
                     <td><form action="cart_remove.php" method="post">
                             <label for="Quantity">Quantity></label>
                             <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
                             <input type="hidden" id="TransactionID" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>"></input>
-                            <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
+                            <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
                         </tr>
                 <?php endforeach ?>
                 </table> 
             </div>
-        </div>
-
-        <div class = "card">
-            <div class = "card-body">
-                <a href = "product_listings.php">
-                    Continue Shopping
-                </a>
-            </div>
-            <div class = "card-body">
-                <a href = "checkout.php">
-                    Proceed to Checkout
-                </a>
+            <div class = "card-body">                
+                <a class="dropbtn" href = "checkout.php" class="dropbtn">Checkout</a>
             </div>
         </div>
 

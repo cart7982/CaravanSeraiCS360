@@ -12,6 +12,12 @@
     <body>
     <?php
     session_start();
+    if (!isset($_SESSION["UserID"]))
+    {
+        echo "Login failed!  No user ID found!";
+        header("Location:login.html");
+        exit();
+    }
     ?>
         <div class = "navbar">    
             <div class="dropdown" tabindex="1">
@@ -24,7 +30,6 @@
             </div>
             <a href = "product_listings.php" class="dropbtn">Product Listings</a>
             <a href = "cart.php" class="dropbtn">Cart</a>
-            <a href = "checkout.php" class="dropbtn">Checkout</a>
 
         </div>
         
