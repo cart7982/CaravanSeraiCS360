@@ -4,8 +4,6 @@ $username = "root";
 $password = "";
 $dbname = "openplaza";
 
-session_start();
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -14,6 +12,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully";
+
+session_start();
+if (!isset($_SESSION["UserID"]))
+{
+    echo "Login failed!  No user ID found!";
+    header("Location:login.html");
+    exit();
+}
 
 $_ProductName = $_POST['product-name'];
 $_Price = $_POST['price'];

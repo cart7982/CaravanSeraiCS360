@@ -19,6 +19,7 @@ if(!isset($_SESSION["UserID"]))
 {
     echo"User not found!  Back to login!";
     header('Location:login.html');
+    exit();
 }
 else
 {

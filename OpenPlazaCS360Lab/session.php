@@ -34,6 +34,7 @@ if($result->num_rows != 0){
 else
 {
     header('Location:login.html');
+    exit();
 }
 
 //Get the user ID to be put into a global form.
@@ -51,7 +52,7 @@ $_SESSION["UserID"] = $UserID;
 
 $conn->close();
 
-//If a session started, go to product listings.
+//If a session started, go to profile.
 if($result->num_rows!= 0){
     header('Location:profile.php');
 }

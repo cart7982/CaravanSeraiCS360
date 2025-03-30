@@ -15,26 +15,21 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully";
 
-
+//Get username, email, and password from the signup page.
 $_Username = $_POST['username'];
 $_Email = $_POST['email'];
 $_Password = $_POST['pwd'];
 
-//Grab the highest ID in the UserID column, then increment it by one for the new UserID to be assigned.
-$result = mysqli_query($conn, "SELECT MAX(UserID) AS max FROM users");
-$row = mysqli_fetch_array($result);
-$PrevID = $row['max'];
-//$NewID = intval($PrevID) + 1;
-
+//Generate a new GUID for the user.
 $NewID = GUID();
 
 echo "GUID is: ".$NewID;
-
 
 if($_Username == NULL || $_Password == NULL || $_Email == NULL)
 {
     //If not all fields have been filled, return without committing.
     header('Location:signup.php');
+    exit();
 }
 else
 {
@@ -73,21 +68,6 @@ function GUID()
     return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
 }
 
-// Function to generate a GUID
-function generateGUID() {
-    if (function_exists('com_create_guid')) {
-        return trim(com_create_guid(), '{}'); // Works on Windows
-    } else {
-        return sprintf(
-            '%04X%04X-%04X-%04X-%04X-%04X%04X%04X',
-            mt_rand(0, 0xFFFF), mt_rand(0, 0xFFFF),
-            mt_rand(0, 0xFFFF),
-            mt_rand(0, 0x0FFF) | 0x4000,
-            mt_rand(0, 0x3FFF) | 0x8000,
-            mt_rand(0, 0xFFFF), mt_rand(0, 0xFFFF), mt_rand(0, 0xFFFF)
-        );
-    }
-}
 
 
 ?>

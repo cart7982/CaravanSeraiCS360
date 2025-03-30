@@ -5,6 +5,12 @@ $password = "";
 $dbname = "openplaza";
 
 session_start();
+if (!isset($_SESSION["UserID"]))
+{
+    echo "Login failed!  No user ID found!";
+    header("Location:login.html");
+    exit();
+}
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

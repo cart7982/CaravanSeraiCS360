@@ -43,7 +43,7 @@
 
     <div class = "card">
         <div class = "card-header">
-             Products are avaliable here to barter!
+             Here's What's On The Market:
         </div>
 
         <?php
