@@ -85,5 +85,48 @@
             </div>
         </div>
 
+        <div class = "card-footer">
+            <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
+                Create a Listing
+            </button>
+        
+            <div class = "modal" id = "myModal1">
+                <div class = "modal-dialog">
+                    <div class = "modal-content">
+        
+                        <div class = "modal-header">
+                            <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
+                        </div>
+        
+                        <div class = "modal-body">
+                            <form action="add_product.php" method="post">
+                                <div class = "mb-3 mt-3">
+                                    <label for = "product-name" class = "form-label">Product to sell: </label>
+                                    <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
+                                </div>
+                                <div class = "mb-3 mt-3">
+                                    <label for = "price" class = "form-label">Price: </label>
+                                    <input type = "text" class = "form-control" id = "price" placeholder = "Enter price" name = "price">
+                                </div>
+                                <div class = "mb-3 mt-3">
+                                    <label for = "amount" class = "form-label">Amount: </label>
+                                    <input type = "text" class = "form-control" id = "amount" placeholder = "Enter amount" name = "amount">
+                                </div>
+                                <div class = "mb-3">
+                                    <label for = "description" class = "form-label">Product description:  </label>
+                                    <input type = "text" class = "form-control" id = "description" placeholder = "Enter product description" name = "description">
+                                </div>
+                                <button type = "submit" class = "btn btn-primary"> Submit</button>
+                            </form>
+                        </div>
+        
+                        <div class = "modal-footer">
+                            <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>
