@@ -19,27 +19,29 @@
         exit();
     }
     ?>
-        <div class = "navbar">    
+        <div class = "navbar">
+            <img src = "pillar.jpg" alt = "Pillar" class = "logo">
             <div class="dropdown" tabindex="1">
                 <i class="db2" tabindex="1"></i>
                 <a class="dropbtn">Account</a>
                 <div class="dropdown-content">
-                    <a href = "signup.html">Sign Up</a>
-                    <a href = "login.html">Log In</a>
                     <a href = "logout.php">Log Out</a>
                     <a href = "profile.php">Profile</a>
                 </div>
             </div>
             <a href = "product_listings.php" class="dropbtn">Product Listings</a>
-        </div> 
+            <a href = "cart.php" class="dropbtn">Cart</a>
+
+        </div>
         
         <h1>CART</h1>
 
         <div class="card">
+            <div class = "card-header">
+                Welcome to your cart!  <br>
+                Items you have selected for purchase will appear here.
+            </div>
             <div class = "card-body">
-                This page holds a list of all items a user has put into their cart, <br>
-                along with the requested quantities.  <br>
-
                 <?php
                 $_UserID = $_SESSION["UserID"];
                 $conn = mysqli_connect("localhost","root","","openplaza");

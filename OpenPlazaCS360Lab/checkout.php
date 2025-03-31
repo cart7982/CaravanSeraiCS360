@@ -25,22 +25,27 @@
     //Once the info has been received, the products table is checked again for amounts and adjusted with new totals.
 
     ?>
-        <div class = "navbar">    
+        <div class = "navbar">
+            <img src = "pillar.jpg" alt = "Pillar" class = "logo">
             <div class="dropdown" tabindex="1">
                 <i class="db2" tabindex="1"></i>
                 <a class="dropbtn">Account</a>
                 <div class="dropdown-content">
-                    <a href = "signup.html">Sign Up</a>
-                    <a href = "login.html">Log In</a>
                     <a href = "logout.php">Log Out</a>
                     <a href = "profile.php">Profile</a>
                 </div>
             </div>
             <a href = "product_listings.php" class="dropbtn">Product Listings</a>
             <a href = "cart.php" class="dropbtn">Cart</a>
+
         </div>
         <h1>CHECKOUT</h1>
-        Please provide your payment information.  <br> We solemnly promise that WE won't steal it.<br>
+
+        <p>
+            Please provide your payment information.  <br> 
+            We solemnly promise that WE won't steal it.<br> 
+            Thank you for shopping with OpenPlaza!
+        </p>
 
         <?php
             $_UserID = $_SESSION["UserID"];
@@ -71,7 +76,7 @@
 
          <!--This form starts the user session.  This allows for the usage of
             global variables as described in session.php.-->
-            <form action="checkout_confirm.php" method="post">
+        <form action="checkout_confirm.php" method="post">
             <div class = "mb-3 mt-3">
                 <label for = "cardnum" class = "form-label">Card Number: </label>
                 <input type = "cardnum" class = "form-control" id = "cardnum" placeholder = "Enter cardnum" name = "cardnum">

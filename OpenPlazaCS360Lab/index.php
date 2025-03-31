@@ -11,20 +11,19 @@
     </head>
     <body>
         
-        <div class = "navbar">    
+        <div class = "navbar">
+            <img src = "pillar.jpg" alt = "Pillar" class = "logo">
             <div class="dropdown" tabindex="1">
                 <i class="db2" tabindex="1"></i>
                 <a class="dropbtn">Account</a>
                 <div class="dropdown-content">
-                    <a href = "signup.html">Sign Up</a>
-                    <a href = "login.html">Log In</a>
                     <a href = "logout.php">Log Out</a>
                     <a href = "profile.php">Profile</a>
                 </div>
             </div>
-            
             <a href = "product_listings.php" class="dropbtn">Product Listings</a>
             <a href = "cart.php" class="dropbtn">Cart</a>
+
         </div>
         
         <h1>OpenPlaza</h1>
@@ -36,6 +35,10 @@
             </div>
             <div class = "card-body">
                 Here you can post goods and make purchases from others, entirely anonymously!
+            </div>
+            <div class = "card-body">
+                We promise a degree of privacy and security due to the fact that we have NO corporate sponsors <br>
+                and NO ads whatsoever!  Nobody is attempting to buy or sell your data!
             </div>
         </div>
 
