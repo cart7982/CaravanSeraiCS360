@@ -41,10 +41,17 @@
 
         
         <?php
-        //$_UserID = $_SESSION["UserID"];
         $conn = mysqli_connect("localhost","root","","openplaza");
         $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
         $data = $result->fetch_all(MYSQLI_ASSOC);
+        
+        session_start();
+        if(isset($_SESSION['UserID']))
+        {
+            $_UserID = $_SESSION["UserID"];
+            header('Location:product_listings.php');
+            exit();
+        }
         ?>
 
         <table border="1">

@@ -54,9 +54,19 @@ echo "_State is: ".$_State;
 //This simulates a third party authentication occurred and confirmed payment.
 if($_CardNumber != null && $_CSV != null && $_Date != null && $_StreetAddress != null && $_Zipcode != null && $_City != null && $_State != null )
 {
+    //Insert payment info into the paymentinfo table for record keeping... possibly illegal
+    $sql = "INSERT INTO paymentinfo (UserID, PaymentID, CardNumber, CSV, Date, StreetAddress, Zipcode, City, State) VALUES ('$_UserID','$_PaymentID','$_CardNumber','$_CSV','$_Date','$_StreetAddress','$_Zipcode','$_City','$_State')";
+    $conn->query($sql);
+
     //Get a table of ProductIDs and Quantities from the user's transactions
-    $sql = "SELECT ProductID, Quantity FROM transactions WHERE UserID='$_UserID'";
+    $sql = "SELECT ProductID, Quantity FROM transactions WHERE UserID='$_UserID' AND PAID='0'";
     $result = $conn->query($sql);
+
+    $sql = "SELECT ProductID, Quantity FROM transactions WHERE UserID=? AND PAID='0'";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $_UserID);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if($result->num_rows > 0)
     {
@@ -73,14 +83,14 @@ if($_CardNumber != null && $_CSV != null && $_Date != null && $_StreetAddress !=
             $Quantity = intval($_Quantity);
 
             //Get the amount of product in the database
-            $result = mysqli_query($conn, "SELECT Amount AS amt FROM products WHERE ProductID='$_ProductID'");
-            $row = mysqli_fetch_array($result);
-            $_Amount = $row['amt'];
+            $amt = mysqli_query($conn, "SELECT Amount AS amt FROM products WHERE ProductID='$_ProductID'");
+            $rowamt = mysqli_fetch_array($amt);
+            $_Amount = $rowamt['amt'];
             $Amount = intval($_Amount);
 
             if($Quantity > $Amount)
             {
-                echo"Not enough product to complete purchase!  Cancelling!";
+                echo"Not enough inventory to complete purchase!  Cancelling!";
                 //header("Location:cart.php");
                 exit();
             }
@@ -95,10 +105,17 @@ if($_CardNumber != null && $_CSV != null && $_Date != null && $_StreetAddress !=
         }
     
         //Update transactions to remove them from user's control by marking them PAID
-        $sql = "UPDATE transactions SET PAID='1' WHERE UserID='$_UserID'";
+        $sql = "UPDATE transactions SET PAID='1',PaymentID='$_PaymentID' WHERE UserID='$_UserID' AND PAID='0'";
         $conn->query($sql);
         $conn->close();
         header("Location:profile.php");
+    }
+    else
+    {
+        echo "No transactions found!  Go back to profile!";
+        $conn->close();
+        //header("Location:profile.php");
+
     }
 
 }

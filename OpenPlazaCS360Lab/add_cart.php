@@ -47,7 +47,8 @@ $_Prod_Amount = intval($Prod_Amount);
 if($_Quantity > $_Prod_Amount)
 {
     echo "Not enough inventory!  Transaction failed!";
-    header('Location:product_listings.php');
+    //header('Location:product_listings.php');
+    exit();
 }
 else
 {
@@ -84,7 +85,7 @@ $_UserID = $_SESSION["UserID"];
 if(isset($_ProductID) && isset($_UserID) && isset($_Quantity) && isset($_TotalPrice) && isset($_Price)) 
 {
     //Check if there is already a quantity for that product ID
-    $result = mysqli_query($conn, "SELECT Quantity as quantity FROM transactions WHERE ProductID='$_ProductID' AND UserID='$_UserID'");
+    $result = mysqli_query($conn, "SELECT Quantity as quantity FROM transactions WHERE ProductID='$_ProductID' AND UserID='$_UserID' AND PAID='0'");
 
     //If a quantity is found
     if($result->num_rows != 0)
@@ -100,7 +101,7 @@ if(isset($_ProductID) && isset($_UserID) && isset($_Quantity) && isset($_TotalPr
         $new_total = $new_quantity * $_Price;
 
         //Update purchase information on transaction table
-        $sql = "UPDATE transactions SET Quantity='$new_quantity', TotalPrice='$new_total' WHERE ProductID='$_ProductID' AND UserID='$_UserID'";
+        $sql = "UPDATE transactions SET Quantity='$new_quantity', TotalPrice='$new_total' WHERE ProductID='$_ProductID' AND UserID='$_UserID' AND PAID='0'";
         $conn->query($sql);    
         
         //Update the product with the lowered inventory amount
