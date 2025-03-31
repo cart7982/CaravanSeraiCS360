@@ -38,14 +38,10 @@
         <div class = "card">
             <div class = "card-header">
                 Welcome, <?php echo $_SESSION["Username"] ?>!<br>
-                User ID is: <?php echo $_SESSION["UserID"] ?>
-            </div>
-            <div class = "card-body">
-                This page is where the user information will be.  <br>
-                This includes username, email, and- depending on functionality 
-                and priorities, possibly the generated listings 
-                and the most recent purchase.  <br>
-                There will be a link to the cart and checkout on the profile.  
+                User ID is: <?php echo $_SESSION["UserID"] ?><br>
+                <form action="profile_edit_entry.php" method="post">
+                        <button style="height:30px; width:170px" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Edit Profile</button></form><br>
+                 
             </div>
         </div>
 

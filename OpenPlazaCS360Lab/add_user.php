@@ -52,7 +52,7 @@ else
         //Commit the query to the database connection.
         $conn->query($sql);
 
-        $conn->close();
+        //$conn->close();
     }
     header('Location:login.html');
     $conn->close();

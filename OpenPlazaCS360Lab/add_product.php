@@ -42,10 +42,9 @@ if(isset($_ProductName) && isset($_Amount) && isset($_Description))
     //Commit the query to the database connection.
     $conn->query($sql);
 
-    $conn->close();
 }
 
-header('Location:product_listings.php');
+header('Location:profile.php');
 $conn->close();
 
 ?>
