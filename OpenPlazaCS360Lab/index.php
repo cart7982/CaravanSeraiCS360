@@ -34,7 +34,7 @@
                 Welcome to OpenPlaza!
             </div>
             <div class = "card-body">
-                Here you can post goods and make purchases from others, entirely anonymously!
+                The Grand Marketplace:
             </div>
             <div class = "card-body">
                 We promise a degree of privacy and security due to the fact that we have NO corporate sponsors <br>
@@ -47,13 +47,18 @@
         $conn = mysqli_connect("localhost","root","","openplaza");
         $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
         $data = $result->fetch_all(MYSQLI_ASSOC);
-        
+
         session_start();
         if(isset($_SESSION['UserID']))
         {
             $_UserID = $_SESSION["UserID"];
             header('Location:product_listings.php');
             exit();
+        }
+        else
+        {
+            session_unset();
+            session_destroy();
         }
         ?>
 
