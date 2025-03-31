@@ -63,6 +63,7 @@ function GUID()
 {
     if (function_exists('com_create_guid') === true)
     {
+        //It says this is wrong, but it still works, so w/e
         return trim(com_create_guid(), '{}');
     }
 
