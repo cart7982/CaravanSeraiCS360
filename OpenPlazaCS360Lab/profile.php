@@ -20,7 +20,7 @@
     }
     ?>
         <div class = "navbar">
-            <img src = "pillar.jpg" alt = "Pillar" class = "logo">
+            <!-- <img src = "pillar.jpg" alt = "Pillar" class = "logo"> -->
             <div class="dropdown" tabindex="1">
                 <i class="db2" tabindex="1"></i>
                 <a class="dropbtn">Account</a>

@@ -6,7 +6,7 @@ body{
 }
 
 .card-header{
-    background-image: linear-gradient(to right,#85ffff,#C686FF);
+    background: #e8f1f0;
     font-size: 20px;
     font-family: 'Courier New', Courier, monospace;
 }
