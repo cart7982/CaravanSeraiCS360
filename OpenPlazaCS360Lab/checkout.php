@@ -40,7 +40,34 @@
             <a href = "cart.php" class="dropbtn">Cart</a>
         </div>
         <h1>CHECKOUT</h1>
-        This page serves as final confirmation for the purchased items.
+        Please provide your payment information.  <br> We solemnly promise that WE won't steal it.<br>
+
+        <?php
+            $_UserID = $_SESSION["UserID"];
+            $conn = mysqli_connect("localhost","root","","openplaza");
+            $result = mysqli_query($conn,"SELECT * FROM transactions WHERE UserID='$_UserID' AND PAID='0' LIMIT 50");
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+
+            //Acquire the sum of the TotalPrice column for the specific UserID.
+            $result = mysqli_query($conn, "SELECT SUM(TotalPrice) AS ttlprc FROM transactions WHERE UserID='$_UserID' AND PAID='0'");
+            $row = mysqli_fetch_array($result);
+
+            if($result->num_rows > 0 && $row != null)
+            {
+                $TotalTransactionPrice = $row['ttlprc'];
+                $_TotalTransactionPrice = intval($TotalTransactionPrice);
+
+                echo "<br>Total Transaction Price = ".$_TotalTransactionPrice;
+
+            }
+            else
+            {
+                echo "No prices found!  Why are you checking out?  Feel free to give us money, though.";
+                $conn->close();
+                //header("Location:cart.php");
+                exit();
+            }
+        ?>
 
          <!--This form starts the user session.  This allows for the usage of
             global variables as described in session.php.-->
@@ -60,6 +87,10 @@
             <div class = "mb-3">
                 <label for = "street" class = "form-label"> Street Address: </label>
                 <input class = "form-control" id = "street" placeholder = "Enter street" name = "street">
+            </div>
+            <div class = "mb-3">
+                <label for = "City" class = "form-label"> City: </label>
+                <input class = "form-control" id = "City" placeholder = "Enter City" name = "City">
             </div>
             <div class = "mb-3">
                 <label for = "State" class = "form-label"> State: </label>

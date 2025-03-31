@@ -17,7 +17,7 @@ session_start();
 
 if(!isset($_SESSION["UserID"]))
 {
-    echo"User not found!  Back to login!";
+    echo"User not found!  Back to login!"; //Could use a pop up here of some kind
     header('Location:login.html');
     exit();
 }
@@ -106,6 +106,7 @@ if(isset($_ProductID) && isset($_UserID) && isset($_Quantity) && isset($_TotalPr
         //Update the product with the lowered inventory amount
         //$sql = "UPDATE products SET Amount='$NewAmount' WHERE ProductID='$_ProductID'";
         //$conn->query($sql);
+        $conn->close();
 
     }
     else

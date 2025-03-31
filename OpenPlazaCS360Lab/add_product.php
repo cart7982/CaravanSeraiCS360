@@ -46,5 +46,6 @@ if(isset($_ProductName) && isset($_Amount) && isset($_Description))
 }
 
 header('Location:product_listings.php');
+$conn->close();
 
 ?>

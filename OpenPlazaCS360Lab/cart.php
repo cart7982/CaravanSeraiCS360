@@ -43,8 +43,23 @@
                 <?php
                 $_UserID = $_SESSION["UserID"];
                 $conn = mysqli_connect("localhost","root","","openplaza");
-                $result = mysqli_query($conn,"SELECT * FROM transactions WHERE UserID='$_UserID' LIMIT 50");
+                $result = mysqli_query($conn,"SELECT * FROM transactions WHERE UserID='$_UserID' AND PAID='0' LIMIT 50");
                 $data = $result->fetch_all(MYSQLI_ASSOC);
+
+                $result = mysqli_query($conn, "SELECT SUM(TotalPrice) AS ttlprc FROM transactions WHERE UserID='$_UserID' AND PAID='0'");
+                $row = mysqli_fetch_array($result);
+    
+                if($result->num_rows > 0 && $row != null)
+                {
+                    $TotalTransactionPrice = $row['ttlprc'];
+                    $_TotalTransactionPrice = intval($TotalTransactionPrice);
+    
+                    echo "Total Transaction Price = ".$_TotalTransactionPrice;
+                }
+                else
+                {
+                    echo "Nothing in Your Cart!";
+                }
                 ?>
 
                 <table border="1">

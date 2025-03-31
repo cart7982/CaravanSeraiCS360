@@ -4,6 +4,9 @@ $username = "root";
 $password = "";
 $dbname = "openplaza";
 
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
 session_start();
 if (!isset($_SESSION["UserID"]))
 {
@@ -11,9 +14,6 @@ if (!isset($_SESSION["UserID"]))
     header("Location:login.html");
     exit();
 }
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
 
 //Get the vars thrown from cart.php
 $_ProductID = $_POST['ProductID'];

@@ -55,6 +55,7 @@ else
         $conn->close();
     }
     header('Location:login.html');
+    $conn->close();
 }
 
 
