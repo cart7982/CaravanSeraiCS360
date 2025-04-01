@@ -34,11 +34,11 @@
                 Welcome to OpenPlaza!
             </div>
             <div class = "card-body">
-                The Grand Marketplace:
-            </div>
-            <div class = "card-body">
                 We promise a degree of privacy and security due to the fact that we have NO corporate sponsors <br>
                 and NO ads whatsoever!  Nobody is attempting to buy or sell your data!
+            </div>
+            <div class = "card-body">
+                The Grand Marketplace:
             </div>
         </div>
 
