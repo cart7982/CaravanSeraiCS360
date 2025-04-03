@@ -17,7 +17,9 @@
                 <i class="db2" tabindex="1"></i>
                 <a class="dropbtn">Account</a>
                 <div class="dropdown-content">
+                    <a href = "login.php">Log In</a>
                     <a href = "logout.php">Log Out</a>
+                    <a href = "singup.html">Sign Up</a>
                     <a href = "profile.php">Profile</a>
                 </div>
             </div>
