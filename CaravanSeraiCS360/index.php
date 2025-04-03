@@ -72,6 +72,10 @@
             <td><?= htmlspecialchars($row['ProductName']) ?></td>
             <td><?= htmlspecialchars($row['Amount']) ?></td>
             <td><?= htmlspecialchars($row['Description']) ?></td>
+            <!-- <?php //$imagePath = !empty($row['ImagePath']) ? htmlspecialchars($row['ImagePath']) : 'images/placeholder.png'; ?>
+        echo "
+            <td><img src='$imagePath' alt='Product Image' style='width:100px;height:auto;'></td>"; -->
+
             <td><form action="barter_add.php" method="post">
                 <label for="Quantity">Quantity></label>
                 <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
