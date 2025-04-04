@@ -50,6 +50,7 @@
                 You can trade as an individual merchant or as part of a group, 
                 allowing access to collective resources. 
             </div>
+        </div>
 
         
         <?php
