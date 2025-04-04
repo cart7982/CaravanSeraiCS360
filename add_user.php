@@ -20,18 +20,18 @@ $_Username = $_POST['username'];
 $_Email = $_POST['email'];
 $_Password = $_POST['pwd'];
 
-//Grab the highest ID in the UserID column, then increment it by one for the new UserID to be assigned.
-$result = mysqli_query($conn, "SELECT MAX(UserID) AS max FROM users");
-$row = mysqli_fetch_array($result);
-$PrevID = $row['max'];
-$NewID = intval($PrevID) + 1;
+//Generate a new GUID for the user.
+$NewID = GUID();
 
+//echo "GUID is: ".$NewID;
 
+$_HashedPassword = password_hash($_Password, PASSWORD_DEFAULT);
 
 if($_Username == NULL || $_Password == NULL || $_Email == NULL)
 {
     //If not all fields have been filled, return without committing.
-    header('Location:signup.php');
+    echo "Not all fields filled!";
+    //header('Location:signup.php');
 }
 else
 {
@@ -42,13 +42,15 @@ else
 
     //If user exists, result will have >0 rows
     if($result->num_rows!= 0){
-        echo "Registration failed!";
-        header('Location:signup.php');
+        echo "User already exists! Registration failed!";
+        //header('Location:signup.php');
     }
     else
     {
+
+        echo "GUID is: ".$NewID;
         //Register the new user.  This assigns them a unique UserID.
-        $sql = "INSERT INTO users (Username, Password, Email, UserID) VALUES ('$_Username', '$_Password', '$_Email', '$NewID')";
+        $sql = "INSERT INTO users (Username, Password, Email, UserID) VALUES ('$_Username', '$_HashedPassword', '$_Email', '$NewID')";
         //$sql = "INSERT INTO users (FirstName, LastName, Passwrd, Email) VALUES ('Saruman', 'TheWhite', 'mine', 'neutral@sauron.com')";
 
         //Commit the query to the database connection.
@@ -59,5 +61,16 @@ else
     header('Location:login.html');
 }
 
+
+function GUID()
+{
+    if (function_exists('com_create_guid') === true)
+    {
+        //It says this is wrong, but it still works, so w/e
+        return trim(com_create_guid(), '{}');
+    }
+
+    return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+}
 
 ?>

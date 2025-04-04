@@ -55,7 +55,7 @@ else
         // sql to create table
         //Each group contains basic user data to keep track of members.
         $sql = "CREATE TABLE $_Groupname (
-            UserID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            UserID VARCHAR(255) PRIMARY KEY,
             Username VARCHAR(30) NOT NULL,
             FirstName VARCHAR(30) NOT NULL,
             LastName VARCHAR(30) NOT NULL,
