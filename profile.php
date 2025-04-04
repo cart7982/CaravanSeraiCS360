@@ -35,8 +35,9 @@
             <i class = "db2" tabindex = "1"></i>
             <a class = "dropbtn">Groups</a>
             <div class = "drop-content">
-                <a href = "group_signup.html">Create Group</a>
-                <a href = "group_login.php">Enter Group</a>
+                <a href = "group_create.html">Create Group</a>
+                <a href = "group_signup.html">Sign Up for A Group</a>
+                <a href = "group_login.php">Group Login</a>
                 <a href = "group_logout.php">Group Logout</a>
             </div>
         </div>

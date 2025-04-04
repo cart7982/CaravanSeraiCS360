@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2025 at 06:11 PM
+-- Generation Time: Apr 04, 2025 at 06:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `groups` (
-  `GroupID` int(11) NOT NULL,
+  `GroupID` varchar(255) NOT NULL,
   `GroupName` text NOT NULL,
   `Documents` text NOT NULL,
   `Password` text NOT NULL,
@@ -40,8 +40,9 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`GroupID`, `GroupName`, `Documents`, `Password`, `Email`) VALUES
-(1, 'aaa', '', 'aaa', 'aaa@aaa'),
-(2, 'bbb', '', 'bbb', 'bbb@bbb');
+('1', 'aaa', '', 'aaa', 'aaa@aaa'),
+('2', 'bbb', '', 'bbb', 'bbb@bbb'),
+('C8033AED-DDA5-4E62-9859-EF9F2663FC8D', 'mmm', '', '$2y$12$3WSg3vzl3eBViJAjo8HGLOrcRCKuBbNBY5RxXZCkEd65c4R8phhVG', 'mmm@mm');
 
 -- --------------------------------------------------------
 
@@ -63,6 +64,28 @@ CREATE TABLE `messages` (
   `Product1UserID` int(11) NOT NULL,
   `Product2UserID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mmm`
+--
+
+CREATE TABLE `mmm` (
+  `UserID` varchar(255) NOT NULL,
+  `Username` varchar(30) NOT NULL,
+  `FirstName` varchar(30) NOT NULL,
+  `LastName` varchar(30) NOT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mmm`
+--
+
+INSERT INTO `mmm` (`UserID`, `Username`, `FirstName`, `LastName`, `Email`, `reg_date`) VALUES
+('4C198BB6-4DE2-46E5-AE77-C7FB5FCA2DBB', 'mm', '', '', NULL, '2025-04-04 16:48:28');
 
 -- --------------------------------------------------------
 
@@ -166,6 +189,16 @@ INSERT INTO `users` (`Username`, `Email`, `Password`, `UserID`, `isAdmin`) VALUE
 ('xx', 'xx@xx', '$2y$12$.q..UZDTC0edL6zDXHG88uiElZb8c63.nCIKSp8WtVS3XlSaGr3ny', '3', 0),
 ('mm', 'mm@mm', '$2y$12$u1EPF6874HXOsYUR5aVzE.DukOzWwfZsoU4hvRdYE6mH/p3DzNUle', '4C198BB6-4DE2-46E5-AE77-C7FB5FCA2DBB', 0),
 ('qq', 'qq@qq', '$2y$12$.u044wYk8hLPnHwvKmAO.uN0FFfTkIcE9ahRS5l4UIyAJ28r2EOaq', 'F59BE4DC-AFC2-401E-BF36-5CCF62BC40D6', 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `mmm`
+--
+ALTER TABLE `mmm`
+  ADD PRIMARY KEY (`UserID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

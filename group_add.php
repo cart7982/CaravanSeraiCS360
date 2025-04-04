@@ -18,7 +18,7 @@ session_start();
 if(!isset($_SESSION["UserID"]))
 {
     echo "User not detected!  Please log in to proceed!";
-    header('Location:login.html');
+    //header('Location:login.html');
 }
 else
 {
@@ -66,7 +66,7 @@ else
     }
     if(isset($_SESSION["UserID"]))
     {
-        header('Location:group_login.html');
+        //header('Location:group_login.html');
     }
 }
 }

@@ -25,6 +25,7 @@ $NewID = GUID();
 
 //echo "GUID is: ".$NewID;
 
+//Create hashed password
 $_HashedPassword = password_hash($_Password, PASSWORD_DEFAULT);
 
 if($_Username == NULL || $_Password == NULL || $_Email == NULL)
