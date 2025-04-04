@@ -20,11 +20,11 @@ $_Groupname = $_POST['groupname'];
 $_Email = $_POST['email'];
 $_Password = $_POST['pwd'];
 
-//Grab the highest ID in the GroupID column, then increment it by one for the new GroupID to be assigned.
-$result = mysqli_query($conn, "SELECT MAX(GroupID) AS max FROM groups");
-$row = mysqli_fetch_array($result);
-$PrevID = $row['max'];
-$NewID = intval($PrevID) + 1;
+//Generate a new GUID for the group.
+$NewID = GUID();
+
+//Create hashed password
+$_HashedPassword = password_hash($_Password, PASSWORD_DEFAULT);
 
 if($_Groupname == NULL || $_Password == NULL || $_Email == NULL)
 {
@@ -46,7 +46,7 @@ else
     else
     {
         //Register the new group.  This assigns them a unique GroupID.
-        $sql = "INSERT INTO groups (GroupName, Password, Email, GroupID) VALUES ('$_Groupname', '$_Password', '$_Email', '$NewID')";
+        $sql = "INSERT INTO groups (GroupName, Password, Email, GroupID) VALUES ('$_Groupname', '$_HashedPassword', '$_Email', '$NewID')";
         //$sql = "INSERT INTO users (FirstName, LastName, Passwrd, Email) VALUES ('Saruman', 'TheWhite', 'mine', 'neutral@sauron.com')";
 
         //Commit the query to the database connection.
@@ -73,5 +73,15 @@ else
     header('Location:profile.php');
 }
 
+function GUID()
+{
+    if (function_exists('com_create_guid') === true)
+    {
+        //It says this is wrong, but it still works, so w/e
+        return trim(com_create_guid(), '{}');
+    }
+
+    return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+}
 
 ?>
