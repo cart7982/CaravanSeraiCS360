@@ -34,10 +34,12 @@ $ProductID = $_POST['ProductID'];
 $Quantity = $_POST['Quantity'];
 
 //Turn numbers into integers for calculations
+//Since quantity is the only user input here, this also hardens for SQL
 $_ProductID = intval($ProductID);
 $_Quantity = intval($Quantity);
 
 //Get the amount currently in the database
+//Does not use external inputs, so not prepared
 $result = mysqli_query($conn, "SELECT Amount as amount FROM products WHERE ProductID='$_ProductID'");
 $row = mysqli_fetch_array($result);
 $Amount = $row['amount'];

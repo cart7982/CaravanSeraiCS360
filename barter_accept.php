@@ -19,6 +19,13 @@ else
 //UserID from the session global
 $_UserID = $_SESSION["UserID"];
 
+//This accept process uses ONLY internal database information.
+//This means it does not need to be extensively hardened,
+//as it is not controlled directly by users.
+
+//Further, it sounds like theft to let an admin accept a trade on the behalf of users,
+//so that will not be implemented.
+
 //Transaction database will be updated in here using MessageID
 //This means getting BOTH productIDs (Or the transactionID and ProductID2)
 //This also needs to remove the message from the database
@@ -64,10 +71,10 @@ if($accept1 != null && $accept1 != $_UserID)
     $row = mysqli_fetch_array($result);
     $_ProductID1 = $row['prdID1'];
 
-     //Get the productID for the second product
-     $result = mysqli_query($conn, "SELECT ProductID AS prdID2 FROM products WHERE UserID='$_Product2UserID' AND ProductName='$_ProductName2'");
-     $row = mysqli_fetch_array($result);
-     $_ProductID2 = $row['prdID2'];
+    //Get the productID for the second product
+    $result = mysqli_query($conn, "SELECT ProductID AS prdID2 FROM products WHERE UserID='$_Product2UserID' AND ProductName='$_ProductName2'");
+    $row = mysqli_fetch_array($result);
+    $_ProductID2 = $row['prdID2'];
 
     $Amount1 = intval($_Amount1);
     $Amount2 = intval($_Amount2);

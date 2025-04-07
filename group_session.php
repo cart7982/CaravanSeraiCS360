@@ -32,7 +32,6 @@ echo $_Password;
 
 //Check if that groupname exists in the database:
 $sql = "SELECT GroupName as grpname, Password as pwd FROM groups WHERE GroupName='$_Groupname'";
-
 $result = $conn->query($sql);
 
 

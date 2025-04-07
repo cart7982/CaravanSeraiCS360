@@ -25,6 +25,7 @@ $Quantity = $_POST['Quantity'];
 $_TransactionID = $_POST['TransactionID'];
 
 //Get integer value of quantity
+//This also hardens for SQL
 $_Quantity = intval($Quantity);
 
 echo '_Quantity is '.$_Quantity;

@@ -30,11 +30,13 @@ $_UserID = $_SESSION["UserID"];
 
 if(isset($_ProductName) && isset($_Amount) && isset($_Description)) 
 {
-    $sql = "INSERT INTO products (ProductName, ProductID, UserID, Amount, Description) VALUES ('$_ProductName', '$_ProductID', '$_UserID', '$_Amount', '$_Description')";
+    //Insert information for new product
+    //bind_param is used to sanitize
+    $stmt = $conn->prepare("INSERT INTO products (ProductName, ProductID, UserID, Amount, Description) VALUES (?,?,?,?,?)");
+    $stmt->bind_param("sssss", $_ProductName, $_ProductID, $_UserID, $_Amount, $_Description);
+    $stmt->execute();
 
-    //Commit the query to the database connection.
-    $conn->query($sql);
-
+    $stmt->close();
     $conn->close();
 }
 

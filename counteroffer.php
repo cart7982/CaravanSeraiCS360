@@ -103,22 +103,23 @@ else
 $result = mysqli_query($conn, "SELECT UserID1 AS u1ID FROM messages WHERE MessageID='$_MessageID'");
 $row = mysqli_fetch_array($result);
 $UserID1 = $row['u1ID'];
-$_UserID1 = intval($UserID1);
 
 //Get the second user ID from the transaction
 $result = mysqli_query($conn, "SELECT UserID2 AS u2ID FROM messages WHERE MessageID='$_MessageID'");
 $row = mysqli_fetch_array($result);
 $UserID2 = $row['u2ID'];
-$_UserID2 = intval($UserID2);
 
 //Update the message with the new information.
-//THIS IS ONLY UPDATING PRODUCTNAME1
-//THIS WILL NOT WORK FOR BOTH COUNTEROFFERS
-//$sql = "UPDATE messages SET Amount1='$_Amount1',Amount2='$_Amount2',ProductName1='$_ProductName1',BarterMessage='$_Message',MessageUserID='$_GUserID',Product1UserID='$_UserID' WHERE MessageID='$_MessageID'";
 
 if($_GUserID == $UserID1)
 {
+    $stmt = $conn->prepare("UPDATE messages SET Amount1=?,Amount2=?,ProductName1=?,BarterMessage=?,MessageUserID=?,Product1UserID=? WHERE MessageID=?");
+    $stmt->bind_param("iisssss", $_Amount1, $_Amount2, $_ProductName1, $_Message, $_GUserID, $_UserID, $_MessageID);
+    $stmt->execute();
+    $stmt->close();
+
     $sql = "UPDATE messages SET Amount1='$_Amount1',Amount2='$_Amount2',ProductName1='$_ProductName1',BarterMessage='$_Message',MessageUserID='$_GUserID',Product1UserID='$_UserID' WHERE MessageID='$_MessageID'";
+
 }
 else
 {
