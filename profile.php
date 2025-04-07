@@ -139,7 +139,6 @@
                             <input type="hidden" name="amount2" value="<?= htmlspecialchars($row['Amount2']) ?>"></input>
                             <input type="hidden" name="ProductName2" value="<?= htmlspecialchars($row['ProductName2']) ?>"></input>
                             <button style="height:30px; width:150px" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
-                                                                        
                         </tr>
                     <?php endforeach ?>
                     </table>

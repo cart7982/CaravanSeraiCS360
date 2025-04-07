@@ -23,10 +23,12 @@ $_ProductName = $_POST['productname'];
 $_Description = $_POST['description'];
 $_ProductID = $_POST['ProductID'];
 
-$sql = "UPDATE products SET ProductName='$_ProductName',Description='$_Description' WHERE ProductID='$_ProductID'";
-$conn->query($sql);
-
+$stmt = $conn->prepare("UPDATE products SET ProductName=?,Description=? WHERE ProductID=?");
+$stmt->bind_param("sss", $_ProductName, $_Description, $_ProductID);
+$stmt->execute();
+$stmt->close();
 
 header('Location:profile.php');
+exit();
 }
 ?>

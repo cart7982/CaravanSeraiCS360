@@ -4,6 +4,9 @@ $username = "root";
 $password = "";
 $dbname = "caravanserai";
 
+//This page may not be currently in use.
+
+
 session_start();
 
 // Create connection
@@ -19,7 +22,7 @@ $_Quantity = intval($Quantity);
 // echo 'Quantity is '.$_Quantity;
 
 //This grabs the integer from the string:
-$ID = intval(preg_replace('/[^0-9]+/','', $_ProductID), 10);
+//$ID = intval(preg_replace('/[^0-9]+/','', $_ProductID), 10);
 
 //$sql = "DELETE FROM transactions WHERE ProductID='$ID'";
 
