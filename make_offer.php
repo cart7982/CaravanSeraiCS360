@@ -67,10 +67,6 @@ $row = mysqli_fetch_array($result);
 $PrevID = $row['max'];
 $_MessageID = intval($PrevID) + 1;
 
-
-
-
-
 //Get the first user ID from the transaction
 $result = mysqli_query($conn, "SELECT UserID1 AS u1ID FROM transactions WHERE TransactionID='$_TransactionID'");
 $row = mysqli_fetch_array($result);
@@ -106,18 +102,49 @@ echo "_ProductName2 is: ".$_ProductName2;
 //THIS NEEDS TO KEEP THE USER IDS THE SAME
 //SO THAT THE ORIGINAL USER STAYS IN THE LOOP
 //THE TRANSACTION SHOULD NOT BE ALTERED FROM HERE UNTIL ACCEPTANCE
-$sql = "UPDATE transactions SET ProductName2='$_ProductName',ProductID2='$_ProductID',Quantity2='$Amount' WHERE TransactionID='$_TransactionID'";
+$stmt = $conn->prepare("UPDATE transactions SET ProductName2 = ?, ProductID2 = ?, Quantity2 = ? WHERE TransactionID = ?");
+$stmt->bind_param("ssis", $_ProductName, $_ProductID, $Amount, $_TransactionID);
+$stmt->execute();
+$stmt->close();
 
-$conn->query($sql);
+//Create the initial message
+$stmt = $conn->prepare("INSERT INTO messages (MessageID) VALUES (?)");
+$stmt->bind_param("s", $_MessageID);
+$stmt->execute();
+$stmt->close();
 
-
-$sql = "INSERT INTO messages (MessageID) VALUES ('$_MessageID')";
-$conn->query($sql);
-
-$sql = "UPDATE messages SET Product1UserID='$_ProdUserID',Product2UserID='$_UserID1',ProductName1='$_ProductName',ProductName2='$_ProductName2',TransactionID='$_TransactionID',Amount1='$_Amount1',Amount2='$_Amount2',UserID1='$_UserID',UserID2='$_UserID1',BarterMessage='$_Message',MessageUserID='$_UserID' WHERE MessageID='$_MessageID'";
-$conn->query($sql);
-
-
+//Add the barter information into the message
+$stmt = $conn->prepare("UPDATE messages SET 
+    Product1UserID = ?, 
+    Product2UserID = ?, 
+    ProductName1 = ?, 
+    ProductName2 = ?, 
+    TransactionID = ?, 
+    Amount1 = ?, 
+    Amount2 = ?, 
+    UserID1 = ?, 
+    UserID2 = ?, 
+    BarterMessage = ?, 
+    MessageUserID = ?
+    WHERE MessageID = ?"
+);
+$stmt->bind_param(
+    "ssssssssssss", 
+    $_ProdUserID,      // string
+    $_UserID1,         // string
+    $_ProductName,     // string
+    $_ProductName2,    // string
+    $_TransactionID,   // string
+    $_Amount1,         // string
+    $_Amount2,         // string
+    $_UserID,          // string
+    $_UserID1,         // string
+    $_Message,         // string
+    $_UserID,          // string
+    $_MessageID        // string
+);
+$stmt->execute();
+$stmt->close();
 header('Location:profile.php');
 
 
