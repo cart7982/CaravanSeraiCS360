@@ -62,12 +62,12 @@ if(intval($_amount) <= 0)
 {
     $sql = "DELETE FROM transactions WHERE TransactionID='$_TransactionID'";
     $conn->query($sql);
-    header('Location:profile.php');
+    $conn->close();
 }
 else if (intval($_amount) > 0)
 {
     //Calculate the amount to go back into products table
-    $amount_Putback = $_Quantity + $_Putback;
+    $amount_Putback = $_Quantity;
     $new_total = $_amount;
 
     //echo 'amount_Putback '.$amount_Putback;
@@ -77,14 +77,15 @@ else if (intval($_amount) > 0)
 
     $sql = "UPDATE transactions SET Quantity1='$_amount' WHERE TransactionID='$_TransactionID'";
     $conn->query($sql);
-    header('Location:profile.php');
+    $conn->close();
 }
 else
 {
     header('Location:profile.php');
 }
 
-$conn->close();
+header('Location:profile.php');
+exit();
 
 }
 ?>

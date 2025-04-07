@@ -113,25 +113,24 @@ $UserID2 = $row['u2ID'];
 
 if($_GUserID == $UserID1)
 {
+    //Here we harden for SQL, since this is no longer internal data only
     $stmt = $conn->prepare("UPDATE messages SET Amount1=?,Amount2=?,ProductName1=?,BarterMessage=?,MessageUserID=?,Product1UserID=? WHERE MessageID=?");
     $stmt->bind_param("iisssss", $_Amount1, $_Amount2, $_ProductName1, $_Message, $_GUserID, $_UserID, $_MessageID);
     $stmt->execute();
     $stmt->close();
 
-    $sql = "UPDATE messages SET Amount1='$_Amount1',Amount2='$_Amount2',ProductName1='$_ProductName1',BarterMessage='$_Message',MessageUserID='$_GUserID',Product1UserID='$_UserID' WHERE MessageID='$_MessageID'";
+    //$sql = "UPDATE messages SET Amount1='$_Amount1',Amount2='$_Amount2',ProductName1='$_ProductName1',BarterMessage='$_Message',MessageUserID='$_GUserID',Product1UserID='$_UserID' WHERE MessageID='$_MessageID'";
 
 }
 else
 {
-    $sql = "UPDATE messages SET Amount1='$_Amount2',Amount2='$_Amount1',ProductName2='$_ProductName1',BarterMessage='$_Message',MessageUserID='$_GUserID',Product2UserID='$_UserID' WHERE MessageID='$_MessageID'";
+    $stmt = $conn->prepare("UPDATE messages SET Amount1=?,Amount2=?,ProductName2=?,BarterMessage=?,MessageUserID=?,Product2UserID=? WHERE MessageID=?");
+    $stmt->bind_param("iisssss", $_Amount2, $_Amount1, $_ProductName1, $_Message, $_GUserID, $_UserID, $_MessageID);
+    $stmt->execute();
+    $stmt->close();
+
+    //$sql = "UPDATE messages SET Amount1='$_Amount2',Amount2='$_Amount1',ProductName2='$_ProductName1',BarterMessage='$_Message',MessageUserID='$_GUserID',Product2UserID='$_UserID' WHERE MessageID='$_MessageID'";
 }
-
-
-$conn->query($sql); 
-
-//$sql = "UPDATE transactions SET Quantity2='$_Amount1',ProductName2='$_ProductName1',ProductID2='$_ProductID1',UserID2='$_UserID1' WHERE TransactionID='$_TransactionID'";
-
-//$conn->query($sql); 
 
 
 
