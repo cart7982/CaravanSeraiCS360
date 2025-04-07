@@ -15,7 +15,6 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully";
 
-
 $_Groupname = $_POST['groupname'];
 $_Email = $_POST['email'];
 $_Password = $_POST['pwd'];
@@ -62,8 +61,6 @@ else
             Email VARCHAR(50),
             reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             )";
-
-
 
         $conn->query($sql);
 

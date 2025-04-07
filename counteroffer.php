@@ -30,7 +30,6 @@ echo("Message is ".$_Message);
 
 $Amount1 = intval($_Amount1);
 $Amount2 = intval($_Amount2);
-$MessageID = intval($_MessageID);
 
 echo("Counteroffer _Amount1 is ".$_Amount1);
 echo("_Amount2 is ".$_Amount2);

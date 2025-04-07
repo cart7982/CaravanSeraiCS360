@@ -20,6 +20,16 @@ $_Username = $_POST['username'];
 $_Email = $_POST['email'];
 $_Password = $_POST['pwd'];
 
+if(isset($_POST['admin']))
+{
+    $_isAdmin = GUID();
+    echo "_isAdmin is: ".$_isAdmin;
+}
+else
+{
+    $_isAdmin = '0';
+}
+
 //Generate a new GUID for the user.
 $NewID = GUID();
 
@@ -33,33 +43,39 @@ if($_Username == NULL || $_Password == NULL || $_Email == NULL)
     //If not all fields have been filled, return without committing.
     echo "Not all fields filled!";
     //header('Location:signup.php');
+    exit();
 }
 else
 {
     //Check if user already exists
-    $sql = "SELECT Username, Email FROM users WHERE Username='$_Username' AND Email='$_Email'";
+    //Using prepared statements to protect against SQL injection
+    $stmt = $conn->prepare("SELECT Username FROM users WHERE Username = ? AND Email = ?");
+    $stmt->bind_param("ss", $_Username, $_Email);
+    $stmt->execute();
+    $stmt->store_result();
 
-    $result = $conn->query($sql);
-
-    //If user exists, result will have >0 rows
-    if($result->num_rows!= 0){
+    if ($stmt->num_rows > 0) {
         echo "User already exists! Registration failed!";
-        //header('Location:signup.php');
-    }
-    else
-    {
-
-        echo "GUID is: ".$NewID;
-        //Register the new user.  This assigns them a unique UserID.
-        $sql = "INSERT INTO users (Username, Password, Email, UserID) VALUES ('$_Username', '$_HashedPassword', '$_Email', '$NewID')";
-        //$sql = "INSERT INTO users (FirstName, LastName, Passwrd, Email) VALUES ('Saruman', 'TheWhite', 'mine', 'neutral@sauron.com')";
-
-        //Commit the query to the database connection.
-        $conn->query($sql);
-
+        $stmt->close();
         $conn->close();
+        exit;
     }
-    header('Location:login.html');
+    $stmt->close();
+
+
+    // Insert new user into the database
+    $stmt = $conn->prepare("INSERT INTO users (Username, Password, Email, UserID, AdminID) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $_Username, $_HashedPassword, $_Email, $NewID, $_isAdmin);
+    if ($stmt->execute()) {
+        echo "Registration successful!";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+    $stmt->close();
+
+    $conn->close();
+
+    //header('Location:login.html');
 }
 
 

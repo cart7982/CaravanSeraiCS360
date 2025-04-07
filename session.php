@@ -20,19 +20,22 @@ $_Password = $_POST['pwd'];
 echo $_Username;
 echo $_Password;
 
-//Check if that username and password combo exist in the database:
-$sql = "SELECT Username as username, Password as pwd FROM users WHERE Username='$_Username'";
 
-$result = $conn->query($sql);
+//Prepare statement to check for user by username
+$stmt = $conn->prepare("SELECT Password, UserID, Email FROM users WHERE Username = ?");
+$stmt->bind_param("s", $_Username);
+$stmt->execute();
+$result = $stmt->get_result();
 
-//Check if username/password combo exists in database.  
+
+//Check if username exists in database.  
 //If so, start the session, otherwise go back to login.
-if($result->num_rows != 0){
+if($result->num_rows === 1){
 
     $row = mysqli_fetch_array($result); 
 
     //Retrieve the hashed password
-    $_pwd = $row['pwd'];
+    $_pwd = $row['Password'];
 
     //Check the hashed password against inputted password
     if(password_verify($_Password, $_pwd))
@@ -40,24 +43,22 @@ if($result->num_rows != 0){
         session_start();
         echo "Session started!";
         
-        //Get the user ID to be put into a global form.
-        $result = mysqli_query($conn, "SELECT UserID as userID FROM users WHERE Username='$_Username'");
-        $row = mysqli_fetch_array($result);
-        $UserID = $row['userID'];
-        //$_UserID = intval($UserID);
-
-        //Get the user email
-        $result = mysqli_query($conn, "SELECT Email as email FROM users WHERE Username='$_Username'");
-        $row = mysqli_fetch_array($result);
-        $Email = $row['email'];
-
-        //Declare global session variables.
-        //These variables can then be used in any session() page.
+        //Put the user into global form
         $_SESSION["Username"] = $_Username;
-        $_SESSION["Password"] = $_Password;
-        $_SESSION["UserID"] = $UserID;
-        $_SESSION["Email"] = $Email;
+        $_SESSION["UserID"] = $row['UserID'];
+        $_SESSION["Email"] = $row['Email'];
+        
 
+                // Saved code from a different project 
+                //Get the age of the pet from the pets table.
+                //  $stmt_age = $conn->prepare("SELECT Age as age FROM pets WHERE PetID=?");
+                //  $stmt_age->bind_param("s", $petID);
+                //  $stmt_age->execute();
+                //  $result_age = $stmt_age->get_result();
+                //  $row = mysqli_fetch_array($result_age);
+                //  $ageatownership = $row['age'];
+                 
+        $stmt->close();
         $conn->close();
 
         //If a session started, go to profile.
