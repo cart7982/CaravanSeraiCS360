@@ -14,6 +14,10 @@
     session_start();
     ?>
         
+        <div class = "topnav">
+            <img src = "logo_1.jpg">
+        </div>
+
         <div class = "topnav" tabindex = "1">
             <i class = "db2" tabindex = "1"></i>
             <a class = "dropbtn">Account</a>
@@ -38,7 +42,7 @@
         
 
         <h1>Your Products Available To Offer:</h1>
-
+        <div class = "card">
         <div class = "card-body">
                 <?php
 

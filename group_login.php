@@ -10,7 +10,11 @@
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
 
-    <div class = "topnav" tabindex = "1">
+        <div class = "topnav">
+            <img src = "logo_1.jpg">
+        </div>
+
+        <div class = "topnav" tabindex = "1">
             <i class = "db2" tabindex = "1"></i>
             <a class = "dropbtn">Account</a>
             <div class = "drop-content">
@@ -43,7 +47,7 @@
     ?>
 
         <h1>LOGIN TO A GROUP</h1>
-        <div class = "card">
+        <div class = "card bg-primary">
             <div class = "card-body">
                 Groups allow for the use of resources collectively; that is, each user who joins the group 
                 allows their items to be used by any member of the group.  

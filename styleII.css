@@ -44,6 +44,12 @@ a{
     color: #30fdf3;
 }
 
+img{
+    border-radius:50%;
+    height: 40px;
+    width: 40px;
+}
+
 /*Dropdown Info*/
 .topnav {
     /*overflow: hidden;*/
@@ -59,6 +65,7 @@ a{
     cursor: pointer;
     background-color: #85FFFF;
     color: black; /* Change text to black */
+    border-radius:30%;
 }
 
 .topnav .drop-content {
@@ -145,6 +152,10 @@ tr{
 
 tr:nth-child(even){
     background-color: #FFECD0;
+}
+
+tr:hover{
+    background-color:#b8edff;
 }
 
 td{

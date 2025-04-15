@@ -13,7 +13,10 @@
     <?php
     session_start();
     ?>
-        
+         <div class = "topnav">
+            <img src = "logo_1.jpg">
+        </div>
+
         <div class = "topnav" tabindex = "1">
             <i class = "db2" tabindex = "1"></i>
             <a class = "dropbtn">Account</a>
@@ -38,12 +41,14 @@
         
 
         <h1>Make a Counteroffer:</h1>
-
+        
+        <div class = "card bg-secondary">
         <div class = "card-header">
             Do you consider the current bargain not fair?  <br>
             Make your counteroffer and include a message to the other seller.
         </div>
 
+        
         <div class = "card-body">
                 <?php
 
@@ -116,6 +121,7 @@
                 </table>
 
             </div>
+        </div>
         </div>
 
        

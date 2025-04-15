@@ -19,6 +19,10 @@
         }
         ?>
 
+        <div class = "topnav">
+            <img src = "logo_1.jpg">
+        </div>
+
         <div class = "topnav" tabindex = "1">
             <i class = "db2" tabindex = "1"></i>
             <a class = "dropbtn">Account</a>
@@ -35,9 +39,8 @@
             <i class = "db2" tabindex = "1"></i>
             <a class = "dropbtn">Groups</a>
             <div class = "drop-content">
-                <a href = "group_create.html">Create Group</a>
-                <a href = "group_signup.html">Sign Up for A Group</a>
-                <a href = "group_login.php">Group Login</a>
+                <a href = "group_signup.html">Create Group</a>
+                <a href = "group_login.php">Enter Group</a>
                 <a href = "group_logout.php">Group Logout</a>
             </div>
         </div>
@@ -45,7 +48,7 @@
         <h1>MERCHANT PROFILE</h1>
 
         <div class = "card">
-            <div class = "card-header">
+            <div class = "card-header bg-warning">
                 Welcome, <?php echo $_SESSION["Username"] ?>!<br>
                 User ID is: <?php echo $_SESSION["UserID"] ?><br>
                 Email is: <?php echo $_SESSION["Email"] ?><br>
@@ -63,7 +66,7 @@
         </div>
 
             
-        <div class="card">
+        <div class="card bg-info">
             <div class = "card-body">
                 <h2>START A BARTER</h2><br>
 
@@ -224,7 +227,7 @@
 
             </div>
 
-            <div class = "card-footer">
+            <div class = "card-footer bg-warning">
                 <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
                     Create a Listing
                 </button>

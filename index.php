@@ -12,6 +12,10 @@
     
     <body>
     
+        <div class = "topnav">
+            <img src = "logo_1.jpg">
+        </div>
+
         <div class = "topnav" tabindex = "1">
             <i class = "db2" tabindex = "1"></i>
             <a class = "dropbtn">Account</a>
@@ -38,7 +42,7 @@
         <h1>CaravanSerai</h1>
         <h3>LANDING PAGE</h3>
 
-        <div class = "card">
+        <div class = "card bg-warning">
             <div class = "card-header">
                 Welcome to CaravanSerai!
             </div>

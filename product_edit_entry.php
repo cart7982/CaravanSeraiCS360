@@ -9,18 +9,22 @@
 
         <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
-
-    <div class = "topnav" tabindex = "1">
-        <i class = "db2" tabindex = "1"></i>
-        <a class = "dropbtn">Account</a>
-        <div class = "drop-content">
-            <a href = "signup.html">Sign Up</a>
-            <a href = "login.html">Login</a>
-            <a href = "logout.php">Logout</a>
-            <a href = "profile.php">Profile</a>
-            <a href = "index.php">Listings</a>
+    <body>
+        <div class = "topnav">
+            <img src = "logo_1.jpg">
         </div>
-    </div>
+
+        <div class = "topnav" tabindex = "1">
+            <i class = "db2" tabindex = "1"></i>
+            <a class = "dropbtn">Account</a>
+            <div class = "drop-content">
+                <a href = "signup.html">Sign Up</a>
+                <a href = "login.html">Login</a>
+                <a href = "logout.php">Logout</a>
+                <a href = "profile.php">Profile</a>
+                <a href = "index.php">Listings</a>
+            </div>
+        </div>
 
         <div class = "topnav" tabindex = "1">
             <i class = "db2" tabindex = "1"></i>
@@ -39,7 +43,7 @@
 
         <h1>EDIT YOUR PRODUCT</h1>
 
-        <div class = "card">
+        <div class = "card bg-info">
             <div class = "card-body">
                 To ensure accurate barters, you may need to update your product information. 
             </div>
