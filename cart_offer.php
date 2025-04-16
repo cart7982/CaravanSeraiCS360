@@ -13,9 +13,11 @@
     <?php
     session_start();
     ?>
-        
+    
         <div class = "topnav">
-            <img src = "logo_1.jpg">
+            <a href="index.php">
+                <img src = "logo_1.jpg">
+            </a>
         </div>
 
         <div class = "topnav" tabindex = "1">
