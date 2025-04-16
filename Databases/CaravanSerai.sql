@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2025 at 11:55 PM
+-- Generation Time: Apr 16, 2025 at 09:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -81,9 +81,9 @@ CREATE TABLE `messages` (
   `Amount2` int(11) NOT NULL,
   `ProductName1` text NOT NULL,
   `ProductName2` text NOT NULL,
-  `MessageUserID` int(11) NOT NULL,
-  `Product1UserID` int(11) NOT NULL,
-  `Product2UserID` int(11) NOT NULL
+  `MessageUserID` varchar(255) NOT NULL,
+  `Product1UserID` varchar(255) NOT NULL,
+  `Product2UserID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -91,29 +91,19 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`UserID1`, `UserID2`, `BarterMessage`, `TransactionID`, `Amount1`, `MessageID`, `Amount2`, `ProductName1`, `ProductName2`, `MessageUserID`, `Product1UserID`, `Product2UserID`) VALUES
-('D30F5AB0-551C-4125-A796-B285BED7742A', '0', 'Dearrer', 2, 75, 1, 50, 'Leather Scraps', 'Steel Ingots', 0, 0, 0);
+('D30F5AB0-551C-4125-A796-B285BED7742A', '90284C1B-D616-436F-B09D-AA5DE32D35C4', 'Changed my mind', 4, 75, 1, 30, 'Leather Scraps', 'Apples', 'D30F5AB0-551C-4125-A796-B285BED7742A', 'D30F5AB0-551C-4125-A796-B285BED7742A', '90284C1B-D616-436F-B09D-AA5DE32D35C4');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mmm`
+-- Table structure for table `migrations`
 --
 
-CREATE TABLE `mmm` (
-  `UserID` varchar(255) NOT NULL,
-  `Username` varchar(30) NOT NULL,
-  `FirstName` varchar(30) NOT NULL,
-  `LastName` varchar(30) NOT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `mmm`
---
-
-INSERT INTO `mmm` (`UserID`, `Username`, `FirstName`, `LastName`, `Email`, `reg_date`) VALUES
-('4C198BB6-4DE2-46E5-AE77-C7FB5FCA2DBB', 'mm', '', '', NULL, '2025-04-04 16:48:28');
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -135,8 +125,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductName`, `ProductID`, `UserID`, `Amount`, `Description`, `ImagePath`) VALUES
-('Steel Ingots', 1, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 5, 'Heavier, stronger, faster, better iron ingots', ''),
-('Leather Scraps', 2, 'D30F5AB0-551C-4125-A796-B285BED7742A', 400, 'Whatever', '');
+('Steel Ingots', 1, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 0, 'Heavier, stronger, faster, better iron ingots', ''),
+('Leather Scraps', 2, 'D30F5AB0-551C-4125-A796-B285BED7742A', 400, 'Whatever', ''),
+('Apples', 3, '90284C1B-D616-436F-B09D-AA5DE32D35C4', 200, 'Sweet', '');
 
 -- --------------------------------------------------------
 
@@ -161,7 +152,8 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`TransactionID`, `ProductID1`, `ProductID2`, `Quantity1`, `Quantity2`, `UserID1`, `UserID2`, `ProductName1`, `ProductName2`) VALUES
-(2, 1, 2, 24, 70, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'D30F5AB0-551C-4125-A796-B285BED7742A', 'Steel Ingots', 'Leather Scraps');
+(3, 2, 3, 50, 50, 'D30F5AB0-551C-4125-A796-B285BED7742A', '90284C1B-D616-436F-B09D-AA5DE32D35C4', 'Leather Scraps', 'Apples'),
+(4, 3, 2, 30, 75, '90284C1B-D616-436F-B09D-AA5DE32D35C4', 'D30F5AB0-551C-4125-A796-B285BED7742A', 'Apples', 'Leather Scraps');
 
 -- --------------------------------------------------------
 
@@ -196,7 +188,8 @@ INSERT INTO `users` (`Username`, `Email`, `Password`, `UserID`, `AdminID`) VALUE
 ('kk', 'kk@kk', '$2y$12$0w5mog9O7IzMJGKAoGR8xOsblMelSeoxICjLfuHNGWUQD3bqbnoVu', '1258590D-3C53-4E4F-BD52-8156E291A5AF', '0'),
 ('ll', 'll@ll', '$2y$12$fnOsDKY9kvndV70Rar1hiOi.3g5BnOw4cWH3hHQPBVLVPIOCn/DQa', '81E10699-CE5A-4765-93AD-B05CF6323212', '9'),
 ('nn', 'nn@nn', '$2y$12$ix9xyh5z6Yu4/XVKTl.Jfectzli8es5d8HSt2kDQKycUabNGDuGAO', 'D034EB65-8828-46E5-A9ED-5C36C71DDB4D', '407'),
-('oo', 'oo@oo', '$2y$12$enpKnFjMXnJDSmtwAKePl.tSsNeetwhVpoCL96hLO93vvEOnTdhmq', '25469C28-CD38-4F82-B8D7-837ED7DAC304', 'E2A4B479-8630-4154-ADCB-29F4D512F603');
+('oo', 'oo@oo', '$2y$12$enpKnFjMXnJDSmtwAKePl.tSsNeetwhVpoCL96hLO93vvEOnTdhmq', '25469C28-CD38-4F82-B8D7-837ED7DAC304', 'E2A4B479-8630-4154-ADCB-29F4D512F603'),
+('mm', 'mm@mm', '$2y$12$u1gZCK.TNPqtNgGUAapoUeSPopKnGiphewUrzk/X0tP1FU5GBEKA6', '90284C1B-D616-436F-B09D-AA5DE32D35C4', '3CE50B35-7ACB-456A-A7DF-652B039D466F');
 
 --
 -- Indexes for dumped tables
@@ -209,10 +202,20 @@ ALTER TABLE `bbb`
   ADD PRIMARY KEY (`UserID`);
 
 --
--- Indexes for table `mmm`
+-- Indexes for table `migrations`
 --
-ALTER TABLE `mmm`
-  ADD PRIMARY KEY (`UserID`);
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

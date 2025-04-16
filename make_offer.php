@@ -71,13 +71,15 @@ $_MessageID = intval($PrevID) + 1;
 $result = mysqli_query($conn, "SELECT UserID1 AS u1ID FROM transactions WHERE TransactionID='$_TransactionID'");
 $row = mysqli_fetch_array($result);
 $PrevID = $row['u1ID'];
-$_UserID1 = intval($PrevID);
+//$_UserID1 = intval($PrevID);
+$_UserID1 = $PrevID;
 
 //Get the second user ID from the transaction
 $result = mysqli_query($conn, "SELECT UserID2 AS u2ID FROM transactions WHERE TransactionID='$_TransactionID'");
 $row = mysqli_fetch_array($result);
 $PrevID = $row['u2ID'];
-$_UserID2 = intval($PrevID);
+//$_UserID2 = intval($PrevID);
+$_UserID2 = $PrevID;
 
 //Get the second amount from the transaction
 $result = mysqli_query($conn, "SELECT Quantity1 AS amount1 FROM transactions WHERE TransactionID='$_TransactionID'");
