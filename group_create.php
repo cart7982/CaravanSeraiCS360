@@ -40,7 +40,7 @@ else
     //If user group, result will have >0 rows
     if($result->num_rows!= 0){
         echo "Registration failed!";
-        header('Location:group_create.html');
+        //header('Location:group_create.html');
     }
     else
     {

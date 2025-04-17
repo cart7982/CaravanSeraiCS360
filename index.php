@@ -34,12 +34,12 @@
             <i class = "db2" tabindex = "1"></i>
             <a class = "dropbtn">Groups</a>
             <div class = "drop-content">
-                <a href = "group_signup.html">Create Group</a>
+                <a href = "group_create.html">Create Group</a>
+                <a href = "group_signup.html">Sign Up For A Group</a>
                 <a href = "group_login.php">Enter Group</a>
                 <a href = "group_logout.php">Group Logout</a>
             </div>
         </div>
-
 
         <h1>CaravanSerai</h1>
         <h3>LANDING PAGE</h3>
@@ -60,10 +60,42 @@
 
         
         <?php
-        //$_UserID = $_SESSION["UserID"];
-        $conn = mysqli_connect("localhost","root","","caravanserai");
-        $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
-        $data = $result->fetch_all(MYSQLI_ASSOC);
+        session_start();
+        
+        if(isset($_SESSION["UserID"]) && isset($_SESSION["GroupID"]))
+        {
+            $_GroupID = $_SESSION["GroupID"];
+            $_GroupName = $_SESSION["GroupName"];
+
+            //$GroupID = intval($_GroupID);
+            echo "Welcome, ".$_SESSION["Username"]."!<br>";
+            echo "User ID is: ".$_SESSION["UserID"]."!<br>";
+            echo "Signed into group: ".$_SESSION['GroupName'];
+            //echo"\nSigned into group: ".$_SESSION['GroupID'];
+
+            $conn = mysqli_connect("localhost","root","","caravanserai");
+            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID NOT IN (SELECT UserID FROM $_GroupName)");
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+
+        }
+        else if(isset($_SESSION["UserID"]) && !isset($_SESSION["GroupID"]))
+        {
+            echo "Welcome, ".$_SESSION["Username"]."!<br>";
+            echo "User ID is: ".$_SESSION["UserID"]."!<br>";
+            
+            $_UserID = $_SESSION["UserID"];
+            $conn = mysqli_connect("localhost","root","","caravanserai");
+            $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID!='$_UserID' LIMIT 50");
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+        }
+        else
+        {
+            session_destroy();
+            $conn = mysqli_connect("localhost","root","","caravanserai");
+            $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+        }
+
         ?>
 
         <h1>WHAT'S ON THE MARKET</h1>

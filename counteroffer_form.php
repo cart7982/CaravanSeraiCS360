@@ -32,15 +32,16 @@
             </div>
         </div>
 
-        <div class = "topnav" tabindex = "1">
-            <i class = "db2" tabindex = "1"></i>
-            <a class = "dropbtn">Groups</a>
-            <div class = "drop-content">
-                <a href = "group_signup.html">Create Group</a>
-                <a href = "group_login.php">Enter Group</a>
-                <a href = "group_logout.php">Group Logout</a>
-            </div>
-        </div>
+<div class = "topnav" tabindex = "1">
+    <i class = "db2" tabindex = "1"></i>
+    <a class = "dropbtn">Groups</a>
+    <div class = "drop-content">
+        <a href = "group_create.html">Create Group</a>
+        <a href = "group_signup.html">Sign Up For A Group</a>
+        <a href = "group_login.php">Enter Group</a>
+        <a href = "group_logout.php">Group Logout</a>
+    </div>
+</div>
         
 
         <h1>Make a Counteroffer:</h1>
