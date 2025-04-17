@@ -22,7 +22,7 @@
     
         <div class = "topnav">
             <a href="index.php">
-            <img class="img-logo" src = "logo_1.jpg">
+            <img class="img-logo" src = "Images/logo_1.jpg">
             </a>
         </div>
 
@@ -214,17 +214,19 @@
                         <th>Product Name</th>
                         <th>Amount</th>
                         <th>Description</th>
-                        <th>Action</th>
+                        <th>Product Picture</th>
+                        <th>Actions</th>
                     </tr>
                     <?php foreach($data as $row): ?>
                     <tr>
                         <td><?= htmlspecialchars($row['ProductName']) ?></td>
                         <td><?= htmlspecialchars($row['Amount']) ?></td>
                         <td><?= htmlspecialchars($row['Description']) ?></td>
+                        <td><img class="img-product" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
                         <td><form action="remove_product.php" method="post">
-                            <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
+                            <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
                         <td><form action="product_edit_entry.php" method="post">
-                            <button style="height:30px; width:70px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">EDIT</button></form></td>
+                            <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">EDIT</button></form></td>
                         </tr>
                     <?php endforeach ?>
                     </table>
