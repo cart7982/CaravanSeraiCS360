@@ -14,7 +14,7 @@
     
         <div class = "topnav">
             <a href="index.php">
-                <img class="img-logo" src = "logo_1.jpg">
+                <img class="img-logo" src = "Images/logo_1.jpg">
             </a>
         </div>
 
@@ -112,7 +112,7 @@
             <td><?= htmlspecialchars($row['ProductName']) ?></td>
             <td><?= htmlspecialchars($row['Amount']) ?></td>
             <td><?= htmlspecialchars($row['Description']) ?></td>
-            <td><img class="img-product" src="./images/<?php echo $row['ImagePath']; ?>"></td>
+            <td><img class="img-product" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
             <!-- <?php //$imagePath = !empty($row['ImagePath']) ? htmlspecialchars($row['ImagePath']) : 'images/placeholder.png'; ?>
         echo "
             <td><img src='$imagePath' alt='Product Image' style='width:100px;height:auto;'></td>"; -->
