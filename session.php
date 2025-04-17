@@ -47,6 +47,12 @@ if($result->num_rows === 1){
         $_SESSION["Username"] = $_Username;
         $_SESSION["UserID"] = $row['UserID'];
         $_SESSION["Email"] = $row['Email'];
+
+        if(isset($_SESSION["GroupID"]))
+        {
+            unset($_SESSION["GroupID"]);
+            unset($_SESSION["GroupName"]);
+        }
         
 
                 // Saved code from a different project 
