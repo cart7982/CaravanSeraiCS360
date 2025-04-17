@@ -44,7 +44,7 @@
     <div class = "drop-content">
         <a href = "group_create.html">Create Group</a>
         <a href = "group_signup.html">Sign Up For A Group</a>
-        <a href = "group_login.php">Enter Group</a>
+        <a href = "group_login.php">Group Login</a>
         <a href = "group_logout.php">Group Logout</a>
     </div>
 </div>
@@ -216,6 +216,7 @@
                         <th>Description</th>
                         <th>Product Picture</th>
                         <th>Actions</th>
+                        <th></th>
                     </tr>
                     <?php foreach($data as $row): ?>
                     <tr>
@@ -226,7 +227,7 @@
                         <td><form action="remove_product.php" method="post">
                             <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
                         <td><form action="product_edit_entry.php" method="post">
-                            <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">EDIT</button></form></td>
+                            <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Edit</button></form></td>
                         </tr>
                     <?php endforeach ?>
                     </table>

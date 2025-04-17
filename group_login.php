@@ -34,7 +34,7 @@
     <div class = "drop-content">
         <a href = "group_create.html">Create Group</a>
         <a href = "group_signup.html">Sign Up For A Group</a>
-        <a href = "group_login.php">Enter Group</a>
+        <a href = "group_login.php">Group Login</a>
         <a href = "group_logout.php">Group Logout</a>
     </div>
 </div>
