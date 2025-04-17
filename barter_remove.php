@@ -49,7 +49,7 @@ $_amount = $current_Amount - $_Quantity;
 echo '_amount '.$_amount;
 
 
-//Get the ProductID from the tranaction.
+//Get the ProductID from the transaction.
 $result = mysqli_query($conn, "SELECT ProductID1 as pID FROM transactions WHERE TransactionID='$_TransactionID'");
 $row = mysqli_fetch_array($result);
 $ID = $row['pID'];
@@ -60,7 +60,7 @@ $_ProductID = intval($ID);
 
 if(intval($_amount) <= 0)
 {
-    $sql = "DELETE FROM transactions WHERE TransactionID='$_TransactionID'";
+    $sql = "DELETE FROM transactions WHERE TransactionID='$_TransactionID' AND Completed='0'";
     $conn->query($sql);
     $conn->close();
 }

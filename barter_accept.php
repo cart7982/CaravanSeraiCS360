@@ -80,7 +80,7 @@ if($accept1 != null && $accept1 != $_UserID)
     $Amount2 = intval($_Amount2);
 
     //Finalize the transaction tuple with the agreed numbers
-    $sql = "UPDATE transactions SET ProductName1='$_ProductName1',ProductName2='$_ProductName2',ProductID1='$_ProductID1',ProductID2='$_ProductID2',Quantity1='$_Amount1',Quantity2='$_Amount2',UserID1='$_Product1UserID',UserID2='$_Product2UserID' WHERE TransactionID='$_TransactionID'";
+    $sql = "UPDATE transactions SET ProductName1='$_ProductName1',ProductName2='$_ProductName2',ProductID1='$_ProductID1',ProductID2='$_ProductID2',Quantity1='$_Amount1',Quantity2='$_Amount2',UserID1='$_Product1UserID',UserID2='$_Product2UserID',Completed='1' WHERE TransactionID='$_TransactionID'";
     $conn->query($sql);
 
 

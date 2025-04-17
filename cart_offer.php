@@ -73,6 +73,15 @@
                 }
 
                 $_TransactionID = $_POST['TransactionID'];
+
+                $result = mysqli_query($conn, "SELECT ProductName1 as prdname1, Quantity1 as quantity FROM transactions WHERE TransactionID='$_TransactionID'");
+                $row = mysqli_fetch_array($result);
+                $ProductName1 = $row['prdname1'];
+                $Quantity = $row['quantity'];
+                $_Quantity = intval($Quantity);
+
+                echo "<br>Make an offer using your available products for their: ".$_Quantity." ".$ProductName1."<br>";
+
                 ?>
 
                 <table border="1">

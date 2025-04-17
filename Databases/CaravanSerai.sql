@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2025 at 09:26 PM
+-- Generation Time: Apr 17, 2025 at 04:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `caravanserai`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `aaa`
+--
+
+CREATE TABLE `aaa` (
+  `UserID` varchar(255) NOT NULL,
+  `Username` varchar(30) NOT NULL,
+  `FirstName` varchar(30) NOT NULL,
+  `LastName` varchar(30) NOT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `aaa`
+--
+
+INSERT INTO `aaa` (`UserID`, `Username`, `FirstName`, `LastName`, `Email`, `reg_date`) VALUES
+('64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'aa', '', '', NULL, '2025-04-17 13:32:10'),
+('7394C80B-91BF-476A-B5F1-B9433F11068F', 'cc', '', '', NULL, '2025-04-17 13:32:54');
 
 -- --------------------------------------------------------
 
@@ -41,6 +64,7 @@ CREATE TABLE `bbb` (
 --
 
 INSERT INTO `bbb` (`UserID`, `Username`, `FirstName`, `LastName`, `Email`, `reg_date`) VALUES
+('91FD0C36-27A2-4A71-A681-379378EA9485', 'dd', '', '', NULL, '2025-04-17 13:33:45'),
 ('D30F5AB0-551C-4125-A796-B285BED7742A', 'bb', '', '', NULL, '2025-04-07 20:53:33');
 
 -- --------------------------------------------------------
@@ -63,7 +87,8 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`GroupID`, `GroupName`, `Documents`, `Password`, `Email`) VALUES
 ('C8033AED-DDA5-4E62-9859-EF9F2663FC8D', 'mmm', '', '$2y$12$3WSg3vzl3eBViJAjo8HGLOrcRCKuBbNBY5RxXZCkEd65c4R8phhVG', 'mmm@mm'),
-('B41EB4D3-DB15-46A4-9651-DC3A65F04348', 'bbb', '', '$2y$12$/0IEmJYP8nq6xd5FHbil1uQnTPAYDAR0ASG50sX1L4ySerFH0S6re', 'bbb@bb');
+('B41EB4D3-DB15-46A4-9651-DC3A65F04348', 'bbb', '', '$2y$12$/0IEmJYP8nq6xd5FHbil1uQnTPAYDAR0ASG50sX1L4ySerFH0S6re', 'bbb@bb'),
+('38FEFCE9-7909-4DFB-AB4E-0A74C3552A22', 'aaa', '', '$2y$12$8Eqj18EKkc8hYPYZOGlQgOvzgHGHsu/FGVESWAc3T564xoT/g5aUS', 'aaa@aa');
 
 -- --------------------------------------------------------
 
@@ -85,13 +110,6 @@ CREATE TABLE `messages` (
   `Product1UserID` varchar(255) NOT NULL,
   `Product2UserID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `messages`
---
-
-INSERT INTO `messages` (`UserID1`, `UserID2`, `BarterMessage`, `TransactionID`, `Amount1`, `MessageID`, `Amount2`, `ProductName1`, `ProductName2`, `MessageUserID`, `Product1UserID`, `Product2UserID`) VALUES
-('D30F5AB0-551C-4125-A796-B285BED7742A', '90284C1B-D616-436F-B09D-AA5DE32D35C4', 'Changed my mind', 4, 75, 1, 30, 'Leather Scraps', 'Apples', 'D30F5AB0-551C-4125-A796-B285BED7742A', 'D30F5AB0-551C-4125-A796-B285BED7742A', '90284C1B-D616-436F-B09D-AA5DE32D35C4');
 
 -- --------------------------------------------------------
 
@@ -125,9 +143,21 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductName`, `ProductID`, `UserID`, `Amount`, `Description`, `ImagePath`) VALUES
-('Steel Ingots', 1, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 0, 'Heavier, stronger, faster, better iron ingots', ''),
-('Leather Scraps', 2, 'D30F5AB0-551C-4125-A796-B285BED7742A', 400, 'Whatever', ''),
-('Apples', 3, '90284C1B-D616-436F-B09D-AA5DE32D35C4', 200, 'Sweet', '');
+('Leather Scraps', 2, 'D30F5AB0-551C-4125-A796-B285BED7742A', 301, 'Whatever', ''),
+('Apples', 3, '90284C1B-D616-436F-B09D-AA5DE32D35C4', 155, 'Sweet', ''),
+('Uncut carnelian', 6, '91FD0C36-27A2-4A71-A681-379378EA9485', 200, 'Red', ''),
+('Uncut topaz', 7, '91FD0C36-27A2-4A71-A681-379378EA9485', 300, 'Yellow', ''),
+('Uncut fluorite', 8, '91FD0C36-27A2-4A71-A681-379378EA9485', 150, 'Green', ''),
+('Iron Ingots', 9, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 433, 'Tough', ''),
+('Bronze Ingots', 10, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 290, 'Pretty tough', ''),
+('Copper Ingots', 11, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 689, 'Almost jewelry', ''),
+('Cotton', 12, 'D30F5AB0-551C-4125-A796-B285BED7742A', 500, 'Fluffy', ''),
+('Linen', 13, 'D30F5AB0-551C-4125-A796-B285BED7742A', 768, 'Sturdy', ''),
+('Pigs', 14, '7394C80B-91BF-476A-B5F1-B9433F11068F', 378, 'Porky', ''),
+('Cows', 15, '7394C80B-91BF-476A-B5F1-B9433F11068F', 567, 'Beefy', ''),
+('Chickens', 16, '7394C80B-91BF-476A-B5F1-B9433F11068F', 345, 'Feathery', ''),
+('Uncut topaz', 17, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 50, '', ''),
+('Bronze Ingots', 18, '91FD0C36-27A2-4A71-A681-379378EA9485', 66, '', '');
 
 -- --------------------------------------------------------
 
@@ -144,16 +174,17 @@ CREATE TABLE `transactions` (
   `UserID1` varchar(255) NOT NULL,
   `UserID2` varchar(255) NOT NULL,
   `ProductName1` text NOT NULL,
-  `ProductName2` text NOT NULL
+  `ProductName2` text NOT NULL,
+  `Completed` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`TransactionID`, `ProductID1`, `ProductID2`, `Quantity1`, `Quantity2`, `UserID1`, `UserID2`, `ProductName1`, `ProductName2`) VALUES
-(3, 2, 3, 50, 50, 'D30F5AB0-551C-4125-A796-B285BED7742A', '90284C1B-D616-436F-B09D-AA5DE32D35C4', 'Leather Scraps', 'Apples'),
-(4, 3, 2, 30, 75, '90284C1B-D616-436F-B09D-AA5DE32D35C4', 'D30F5AB0-551C-4125-A796-B285BED7742A', 'Apples', 'Leather Scraps');
+INSERT INTO `transactions` (`TransactionID`, `ProductID1`, `ProductID2`, `Quantity1`, `Quantity2`, `UserID1`, `UserID2`, `ProductName1`, `ProductName2`, `Completed`) VALUES
+(1, 10, 7, 66, 50, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '91FD0C36-27A2-4A71-A681-379378EA9485', 'Bronze Ingots', 'Uncut topaz', 1),
+(2, 13, 0, 68, 0, 'D30F5AB0-551C-4125-A796-B285BED7742A', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'Linen', '', 0);
 
 -- --------------------------------------------------------
 
@@ -174,26 +205,23 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`Username`, `Email`, `Password`, `UserID`, `AdminID`) VALUES
-('qq', 'qq@qq', '$2y$12$.u044wYk8hLPnHwvKmAO.uN0FFfTkIcE9ahRS5l4UIyAJ28r2EOaq', 'F59BE4DC-AFC2-401E-BF36-5CCF62BC40D6', '0'),
 ('aa', 'aa@aa', '$2y$12$3Kg7SkApC8SX2fpGDDZNQ.d5ZgYWpo7SBUXIUaf2r9O4q1GaA10Ti', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '0'),
 ('bb', 'bb@bb', '$2y$12$W9t.vnqyUrjLX589qYDFJOdPH.6aYdZcbrnYsjPtGYzfgss3TtXqC', 'D30F5AB0-551C-4125-A796-B285BED7742A', '0'),
 ('cc', 'cc@cc', '$2y$12$h/GTzCMoRIjC31CwCJVjvu.hlf5iAIYPLms4iaYx/8HKzj8iYmzJG', '7394C80B-91BF-476A-B5F1-B9433F11068F', '0'),
 ('dd', 'dd@dd', '$2y$12$Qd/FEIW7tzecPTWnCZzjI.E9/83vUWHhCK.AvNlILySwjIM03DAVK', '91FD0C36-27A2-4A71-A681-379378EA9485', '0'),
 ('ee', 'ee@ee', '$2y$12$0pD0D.AFfDyqXRBqoqcgguD6vgvPmWOlZVcUWoqyRqERUpTh1kmcu', '96CA0EDB-140A-4CE7-9E4D-84A28BC9C3BE', '0'),
-('ff', 'ff@ff', '$2y$12$0.DnFrN5uoPPJvBcyItc1epi5L/R.3fkKfbdAjU6QeW6EIot17GCe', 'A993E293-153C-421F-BFEA-E8F4176A2558', '0'),
-('gg', 'gg@gg', '$2y$12$c8mnAz2PrEvh4TftxGk6GOvMXdaT27b.Fz3FsaeE.YCUUdNT4Jf6.', 'EB2787A7-A30F-4426-A7E4-101A4DAC7E50', '0'),
-('hh', 'hh@hh', '$2y$12$7xGOxUkAXZT8lXME34aeEuwpJz4VskRSEgTr9F2pSG0wpEbxRX026', '2D9AD0D3-2C05-45F9-A4F8-97A6B8F3CFB5', '0'),
-('ii', 'ii@ii', '$2y$12$aTZGLQKiiF5Jf5JeO9qNHupZKMBIFyRDyDbaezyc.lvREfmSPzU9C', 'F3901C63-2954-4E9A-A853-17C22D811448', '0'),
-('jj', 'jj@jj', '$2y$12$knwvSBh/iab3lrliwMQePuPVcpU.S/8WN61s2kvmdwUWzwojutmeK', '929E09AF-DEF6-44C9-A5B2-5978D0700633', '0'),
 ('kk', 'kk@kk', '$2y$12$0w5mog9O7IzMJGKAoGR8xOsblMelSeoxICjLfuHNGWUQD3bqbnoVu', '1258590D-3C53-4E4F-BD52-8156E291A5AF', '0'),
-('ll', 'll@ll', '$2y$12$fnOsDKY9kvndV70Rar1hiOi.3g5BnOw4cWH3hHQPBVLVPIOCn/DQa', '81E10699-CE5A-4765-93AD-B05CF6323212', '9'),
-('nn', 'nn@nn', '$2y$12$ix9xyh5z6Yu4/XVKTl.Jfectzli8es5d8HSt2kDQKycUabNGDuGAO', 'D034EB65-8828-46E5-A9ED-5C36C71DDB4D', '407'),
-('oo', 'oo@oo', '$2y$12$enpKnFjMXnJDSmtwAKePl.tSsNeetwhVpoCL96hLO93vvEOnTdhmq', '25469C28-CD38-4F82-B8D7-837ED7DAC304', 'E2A4B479-8630-4154-ADCB-29F4D512F603'),
 ('mm', 'mm@mm', '$2y$12$u1gZCK.TNPqtNgGUAapoUeSPopKnGiphewUrzk/X0tP1FU5GBEKA6', '90284C1B-D616-436F-B09D-AA5DE32D35C4', '3CE50B35-7ACB-456A-A7DF-652B039D466F');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `aaa`
+--
+ALTER TABLE `aaa`
+  ADD PRIMARY KEY (`UserID`);
 
 --
 -- Indexes for table `bbb`

@@ -77,7 +77,7 @@
                 <?php
                 $_UserID = $_SESSION["UserID"];
                 $conn = mysqli_connect("localhost","root","","caravanserai");
-                $result = mysqli_query($conn,"SELECT * FROM transactions WHERE UserID2='$_UserID' LIMIT 50");
+                $result = mysqli_query($conn,"SELECT * FROM transactions WHERE UserID2='$_UserID' AND Completed='0' LIMIT 50");
                 $data = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
 
