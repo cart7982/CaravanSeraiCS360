@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2025 at 04:33 PM
+-- Generation Time: Apr 17, 2025 at 06:36 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -143,21 +143,17 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductName`, `ProductID`, `UserID`, `Amount`, `Description`, `ImagePath`) VALUES
-('Leather Scraps', 2, 'D30F5AB0-551C-4125-A796-B285BED7742A', 301, 'Whatever', ''),
-('Apples', 3, '90284C1B-D616-436F-B09D-AA5DE32D35C4', 155, 'Sweet', ''),
-('Uncut carnelian', 6, '91FD0C36-27A2-4A71-A681-379378EA9485', 200, 'Red', ''),
-('Uncut topaz', 7, '91FD0C36-27A2-4A71-A681-379378EA9485', 300, 'Yellow', ''),
-('Uncut fluorite', 8, '91FD0C36-27A2-4A71-A681-379378EA9485', 150, 'Green', ''),
-('Iron Ingots', 9, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 433, 'Tough', ''),
-('Bronze Ingots', 10, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 290, 'Pretty tough', ''),
-('Copper Ingots', 11, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 689, 'Almost jewelry', ''),
-('Cotton', 12, 'D30F5AB0-551C-4125-A796-B285BED7742A', 500, 'Fluffy', ''),
-('Linen', 13, 'D30F5AB0-551C-4125-A796-B285BED7742A', 768, 'Sturdy', ''),
-('Pigs', 14, '7394C80B-91BF-476A-B5F1-B9433F11068F', 378, 'Porky', ''),
-('Cows', 15, '7394C80B-91BF-476A-B5F1-B9433F11068F', 567, 'Beefy', ''),
-('Chickens', 16, '7394C80B-91BF-476A-B5F1-B9433F11068F', 345, 'Feathery', ''),
-('Uncut topaz', 17, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 50, '', ''),
-('Bronze Ingots', 18, '91FD0C36-27A2-4A71-A681-379378EA9485', 66, '', '');
+('Sheep', 19, '7394C80B-91BF-476A-B5F1-B9433F11068F', 456, 'Woolly', 'SheepPicture.png'),
+('Iron Ingots', 20, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 455, 'Tough', 'IronIngots.png'),
+('Bronze Ingots', 21, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 345, 'Pretty tough', 'BronzeIngots.png'),
+('Copper Ingots', 22, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 678, 'Sturdy', 'CopperIngots.png'),
+('Spices', 23, 'D30F5AB0-551C-4125-A796-B285BED7742A', 767, 'Tasty', 'Spices.png'),
+('Wine', 24, 'D30F5AB0-551C-4125-A796-B285BED7742A', 987, 'Boozy', 'Wine.png'),
+('Jewelry', 25, 'D30F5AB0-551C-4125-A796-B285BED7742A', 65, 'Shiny', 'Jewelry.png'),
+('Cows', 26, '7394C80B-91BF-476A-B5F1-B9433F11068F', 678, 'Beefy', 'Cows.png'),
+('Chickens', 27, '7394C80B-91BF-476A-B5F1-B9433F11068F', 2343, 'Feathery', 'Chickens.png'),
+('Uncut carnelian', 28, '91FD0C36-27A2-4A71-A681-379378EA9485', 356, 'Red', 'UncutCarnelian.png'),
+('Uncut topaz', 29, '91FD0C36-27A2-4A71-A681-379378EA9485', 432, 'Yellow', 'UncutTopaz.png');
 
 -- --------------------------------------------------------
 
@@ -183,8 +179,7 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`TransactionID`, `ProductID1`, `ProductID2`, `Quantity1`, `Quantity2`, `UserID1`, `UserID2`, `ProductName1`, `ProductName2`, `Completed`) VALUES
-(1, 10, 7, 66, 50, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '91FD0C36-27A2-4A71-A681-379378EA9485', 'Bronze Ingots', 'Uncut topaz', 1),
-(2, 13, 0, 68, 0, 'D30F5AB0-551C-4125-A796-B285BED7742A', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'Linen', '', 0);
+(1, 10, 7, 66, 50, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '91FD0C36-27A2-4A71-A681-379378EA9485', 'Bronze Ingots', 'Uncut topaz', 1);
 
 -- --------------------------------------------------------
 

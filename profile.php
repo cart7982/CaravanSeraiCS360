@@ -22,7 +22,7 @@
     
         <div class = "topnav">
             <a href="index.php">
-                <img src = "logo_1.jpg">
+            <img class="img-logo" src = "logo_1.jpg">
             </a>
         </div>
 
@@ -245,7 +245,7 @@
                             </div>
             
                             <div class = "modal-body">
-                                <form action="add_product.php" method="post">
+                                <form action="add_product.php" method="post" enctype="multipart/form-data">
                                     <div class = "mb-3 mt-3">
                                         <label for = "product-name" class = "form-label">Product to sell: </label>
                                         <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
@@ -257,6 +257,10 @@
                                     <div class = "mb-3">
                                         <label for = "description" class = "form-label">Product description:  </label>
                                         <input type = "text" class = "form-control" id = "description" placeholder = "Enter product description" name = "description">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for = "uploadfile" class = "form-label">Product picture:  </label>
+                                        <input class="form-control" type="file" id = "uploadfile" name="uploadfile" >
                                     </div>
                                     <button type = "submit" class = "btn btn-primary"> Submit</button>
                                 </form>

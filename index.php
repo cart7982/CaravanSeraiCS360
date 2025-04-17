@@ -14,7 +14,7 @@
     
         <div class = "topnav">
             <a href="index.php">
-                <img src = "logo_1.jpg">
+                <img class="img-logo" src = "logo_1.jpg">
             </a>
         </div>
 
@@ -69,7 +69,7 @@
 
             //$GroupID = intval($_GroupID);
             echo "Welcome, ".$_SESSION["Username"]."!<br>";
-            echo "User ID is: ".$_SESSION["UserID"]."!<br>";
+            echo "User ID is: ".$_SESSION["UserID"]."<br>";
             echo "Signed into group: ".$_SESSION['GroupName'];
             //echo"\nSigned into group: ".$_SESSION['GroupID'];
 
@@ -82,7 +82,7 @@
         {
             echo "Welcome, ".$_SESSION["Username"]."!<br>";
             echo "User ID is: ".$_SESSION["UserID"]."!<br>";
-            
+
             $_UserID = $_SESSION["UserID"];
             $conn = mysqli_connect("localhost","root","","caravanserai");
             $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID!='$_UserID' LIMIT 50");
@@ -104,6 +104,7 @@
             <th>Product Name</th>
             <th>Amount</th>
             <th>Description</th>
+            <th>Picture</th>
             <th>How Much You Want</th>
         </tr>
         <?php foreach($data as $row): ?>
@@ -111,6 +112,7 @@
             <td><?= htmlspecialchars($row['ProductName']) ?></td>
             <td><?= htmlspecialchars($row['Amount']) ?></td>
             <td><?= htmlspecialchars($row['Description']) ?></td>
+            <td><img class="img-product" src="./images/<?php echo $row['ImagePath']; ?>"></td>
             <!-- <?php //$imagePath = !empty($row['ImagePath']) ? htmlspecialchars($row['ImagePath']) : 'images/placeholder.png'; ?>
         echo "
             <td><img src='$imagePath' alt='Product Image' style='width:100px;height:auto;'></td>"; -->
