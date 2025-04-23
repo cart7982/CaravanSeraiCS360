@@ -1,51 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>Cart</title>
-        <meta charset = "utf-8">
-        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
-        <link href = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel = "stylesheet">
-        <link href = "styleII.css" rel = "stylesheet">
-
-        <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="./Images/logo_1.jpg" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="styles.css" rel="stylesheet" />
     </head>
     <body>
-    <?php
-    session_start();
-    ?>
-    
-        <div class = "topnav">
-            <a href="index.php">
-            <img class="img-logo" src = "Images/logo_1.jpg">
-            </a>
-        </div>
-
-        <div class = "topnav" tabindex = "1">
-            <i class = "db2" tabindex = "1"></i>
-            <a class = "dropbtn">Account</a>
-            <div class = "drop-content">
-                <a href = "signup.html">Sign Up</a>
-                <a href = "login.html">Login</a>
-                <a href = "logout.php">Logout</a>
-                <a href = "profile.php">Profile</a>
-                <a href = "index.php">Listings</a>
+        <?php
+        session_start();
+        ?>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.php">CaravanSerai</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <!--Home Page -->
+                        <li class="nav-item"><a class="nav-link active" href="index.php">Home Page</a></li>
+                        <!-- Account -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
+                                <li><a class="dropdown-item" href="login.html">Log In</a></li>
+                                <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
+                            </ul>
+                        </li>
+                        <!-- Group -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Groups</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+				                <li><a class="dropdown-item" href="group_create.html">Create Group</a></li>
+                                <li><a class="dropdown-item" href="group_signup.html">Sign Up</a></li>
+                                <li><a class="dropdown-item" href="group_login.html">Log In</a></li>
+                                <li><a class="dropdown-item" href="group_logout.php">Log Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Cart</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Your items for barter and barters in progress</p>
+                </div>
+            </div>
+        </header>
 
-<div class = "topnav" tabindex = "1">
-    <i class = "db2" tabindex = "1"></i>
-    <a class = "dropbtn">Groups</a>
-    <div class = "drop-content">
-        <a href = "group_create.html">Create Group</a>
-        <a href = "group_signup.html">Sign Up For A Group</a>
-        <a href = "group_login.php">Group Login</a>
-        <a href = "group_logout.php">Group Logout</a>
-    </div>
-</div>
-        
-
-        <h1>Your Products Available To Offer:</h1>
-        <div class = "card">
+        <!-- Section-->
+        <section class="py-5">
+                
+        <div class = "card bg-secondary">
         <div class = "card-body">
                 <?php
 
@@ -114,9 +131,13 @@
             </div>
         </div>
 
-       
-        
+        </section>
 
-
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; CaravanSerai 2025</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
