@@ -110,9 +110,49 @@
             </div>
         </div>
 
-        
-        
         <h1>WHAT'S ON THE MARKET</h1>
+
+        <?php
+
+        if(isset($_SESSION['UserID'])){
+            $_UserID = $_SESSION["UserID"];
+            $sql = "SELECT * FROM products WHERE UserID!='$_UserID'";
+            $result = $conn->query($sql);
+        }else{
+            $sql = "SELECT * FROM products";
+            $result = $conn->query($sql);
+        }
+
+        while ($row = $result->fetch_assoc()) { ?>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product Image -->
+                     <img class="card-img-top" src="<?php echo './Images/' .$row['ImagePath']; ?>" alt="Product Image" style="height:200px; width: 200px; object-fit: cover;" />
+
+                    <!-- Product Details-->
+                     <div class="card-body p-4">
+                        <div class="text-center">
+                            <h5 class="fw-bolder"><?php echo htmlspecialchars($row['ProductName']); ?></h5>
+                            <?php echo "Description: <br>".htmlspecialchars($row['Description']); ?><br>
+                            <?php echo "Avaliable: <br>".htmlspecialchars($row['Amount']); ?><br>
+                        </div>
+                     </div>
+
+                    <!--Product Actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                        <form action="barter_create.php" method="post">
+                            <label for="Quantity">Quantity></label>
+                            <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
+                            <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Request Barter</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+
+
         <table border="1">
         <tr>
             <th>Product Name</th>
