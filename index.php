@@ -20,12 +20,6 @@
             $_GroupID = $_SESSION["GroupID"];
             $_GroupName = $_SESSION["GroupName"];
 
-            //$GroupID = intval($_GroupID);
-            echo "Welcome, ".$_SESSION["Username"]."!<br>";
-            echo "User ID is: ".$_SESSION["UserID"]."<br>";
-            echo "Signed into group: ".$_SESSION['GroupName'];
-            //echo"\nSigned into group: ".$_SESSION['GroupID'];
-
             $conn = mysqli_connect("localhost","root","","caravanserai");
             $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID NOT IN (SELECT UserID FROM $_GroupName)");
             $data = $result->fetch_all(MYSQLI_ASSOC);
@@ -33,9 +27,6 @@
         }
         else if(isset($_SESSION["UserID"]) && !isset($_SESSION["GroupID"]))
         {
-            echo "Welcome, ".$_SESSION["Username"]."!<br>";
-            echo "User ID is: ".$_SESSION["UserID"]."!<br>";
-
             $_UserID = $_SESSION["UserID"];
             $conn = mysqli_connect("localhost","root","","caravanserai");
             $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID!='$_UserID' LIMIT 50");
@@ -85,6 +76,7 @@
                 </div>
             </div>
         </nav>
+
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -94,6 +86,7 @@
                 </div>
             </div>
         </header>
+
         <!-- Section-->
         <section class="py-5">
         <div class = "card bg-success">
@@ -111,23 +104,30 @@
         </div>
 
         <h1>WHAT'S ON THE MARKET</h1>
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
+           
         <?php
 
+        
         if(isset($_SESSION['UserID'])){
             $_UserID = $_SESSION["UserID"];
             $sql = "SELECT * FROM products WHERE UserID!='$_UserID'";
             $result = $conn->query($sql);
-        }else{
+        }
+        else{
             $sql = "SELECT * FROM products";
             $result = $conn->query($sql);
         }
+
+
 
         while ($row = $result->fetch_assoc()) { ?>
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product Image -->
-                     <img class="card-img-top" src="<?php echo './Images/' .$row['ImagePath']; ?>" alt="Product Image" style="height:200px; width: 200px; object-fit: cover;" />
+                     <img class="card-img-top" src="<?php echo './Images/' .$row['ImagePath']; ?>" alt="Product Image" style="height:300px; object-fit: cover;" />
 
                     <!-- Product Details-->
                      <div class="card-body p-4">
@@ -151,7 +151,8 @@
                 </div>
             </div>
         <?php } ?>
-
+        </div>
+        </div>
 
         <table border="1">
         <tr>
