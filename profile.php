@@ -89,7 +89,6 @@
         <div class="card bg-primary">
             <div class = "card-body">
                 <h2>START A BARTER</h2><br>
-
                 <?php
                 $_UserID = $_SESSION["UserID"];
                 $conn = mysqli_connect("localhost","root","","caravanserai");

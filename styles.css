@@ -611,6 +611,7 @@ progress {
   height: auto;
 }
 
+/*Modifications here for images in table- fixed size limit*/
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #fff;
