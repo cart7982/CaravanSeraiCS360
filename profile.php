@@ -65,9 +65,6 @@
             </div>
         </header>
 
-
-
-    
     
     <?php if(isset($_SESSION["AdminID"])) 
         { 
@@ -430,7 +427,7 @@
                         <td><?= htmlspecialchars($row['Product1UserID']) ?></td>
                         <td><?= htmlspecialchars($row['Product2UserID']) ?></td>
                         
-                        <td><form action="remove_offer.php" method="post">
+                        <td><form action="offer_delete.php" method="post">
                             <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Delete</button></form></td>
                         
                         <td><form action="offer_edit.php" method="post">
@@ -476,7 +473,7 @@
 
 
 
-        <!-- Section-->
+        <!-- Normal Merchant Section-->
         
         <section class="py-5">
         <div class = "card bg-success">
@@ -516,7 +513,7 @@
                     <th>Action</th>
                 </tr>
                 <?php foreach($data as $row): ?>
-                <td>
+                <tr>
                     <td><?= htmlspecialchars($row['ProductName1']) ?></td>
                     <td><?= htmlspecialchars($row['Quantity1']) ?></td>
                     <td><form action="barter_remove.php" method="post">
@@ -524,10 +521,14 @@
                             <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
                             <button style="height:30px; width:70px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Remove</button>
                         </form></td>
+                    <td><form action="barter_add.php" method="post">
+                            <label for="Quantity">Add></label>
+                            <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
+                            <button style="height:30px; width:70px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Add</button>
+                        </form></td>
                     <td><form action="cart_offer.php" method="post">
                             <button style="height:30px; width:100px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Make Offer</button>
                         </form></td>
-                </td>
                 </tr>
                 <?php endforeach ?>
                 </table> 
@@ -564,7 +565,7 @@
                         <td><?= htmlspecialchars($row['ProductName2']) ?></td>
                         <td><form action="barter_accept.php" method="post">
                             <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
-                        <td><form action="remove_offer.php" method="post">
+                        <td><form action="offer_delete.php" method="post">
                             <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
                         
                         <td><form action="counteroffer_form.php" method="post">
@@ -610,7 +611,7 @@
                         <td><?= htmlspecialchars($row['ProductName1']) ?></td>
                         <td><form action="barter_accept.php" method="post">
                             <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
-                        <td><form action="remove_offer.php" method="post">
+                        <td><form action="offer_delete.php" method="post">
                             <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
                         
                         <td><form action="counteroffer_form.php" method="post">
@@ -619,10 +620,9 @@
                             <input type="hidden" name="ProductName2" value="<?= htmlspecialchars($row['ProductName1']) ?>"></input>
                             <button style="height:30px; width:150px" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
                                                                         
-                        </tr>
+                    </tr>
                     <?php endforeach ?>
                     </table>
-
             </div>
         
 
