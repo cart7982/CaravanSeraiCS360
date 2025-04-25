@@ -66,8 +66,7 @@
                 Do you consider the current bargain not fair?  <br>
                 Make your counteroffer and include a message to the other seller.
             </div>
-
-        
+ 
             <div class = "card-body">
                     <?php
 

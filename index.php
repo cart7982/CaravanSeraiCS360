@@ -66,7 +66,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Groups</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-				<li><a class="dropdown-item" href="group_create.html">Create Group</a></li>
+				                <li><a class="dropdown-item" href="group_create.html">Create Group</a></li>
                                 <li><a class="dropdown-item" href="group_signup.html">Sign Up</a></li>
                                 <li><a class="dropdown-item" href="group_login.html">Log In</a></li>
                                 <li><a class="dropdown-item" href="group_logout.php">Log Out</a></li>
@@ -107,10 +107,8 @@
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-           
         <?php
 
-        
         if(isset($_SESSION['UserID'])){
             $_UserID = $_SESSION["UserID"];
             $sql = "SELECT * FROM products WHERE UserID!='$_UserID'";
@@ -120,8 +118,6 @@
             $sql = "SELECT * FROM products";
             $result = $conn->query($sql);
         }
-
-
 
         while ($row = $result->fetch_assoc()) { ?>
             <div class="col mb-5">

@@ -65,6 +65,7 @@
             </div>
         </header>
 
+        
     
     <?php if(isset($_SESSION["AdminID"])) 
         { 
@@ -157,7 +158,7 @@
                 $data = $result->fetch_all(MYSQLI_ASSOC);                
 
             ?>	
-                <table border="1">
+                <table border="1" class="table-success">
                 <tr>
                     <th>Product Name</th>
                     <th>ProductID</th>
@@ -347,7 +348,7 @@
                 $data = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
 
-                <table border="1">
+                <table border="1" class="table-secondary">
                 <tr>
                     <th>TransactionID</th>
                     <th>ProductID1</th>
@@ -395,7 +396,7 @@
                     $data2 = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
                     
-                    <table border="1">
+                    <table  class="table-primary" border="1">
                     <tr>
                         <th>UserID1</th>
                         <th>UserID2</th>
@@ -446,32 +447,12 @@
 
 
         </section>
-
-
-
-
-        
-        
+   
     <?php 
         }
         else
         {
     ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <!-- Normal Merchant Section-->
         
@@ -505,7 +486,7 @@
                 $data = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
 
-                <table border="1">
+                <table border="1" class="table-light">
                 <tr>
                     <th>Product Name</th>
                     <th>Quantity</th>
@@ -543,7 +524,7 @@
                     $data2 = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
-                    <table border="1">
+                    <table border="1" class="table-light">
                     <tr>
                         <th>Message</th>
                         <th></th>
@@ -589,7 +570,7 @@
                     $data2 = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
-                    <table border="1">
+                    <table border="1" class="table-light">
                     <tr>
                         <th>Message</th>
                         <th></th>
@@ -683,7 +664,7 @@
                     $data = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
-                    <table border="1">
+                    <table border="1" class="table-dark">
                     <tr>
                         <th>Product Name</th>
                         <th>Amount</th>
