@@ -115,7 +115,7 @@
                                 </div>
                 
                                 <div class = "modal-body">
-                                    <form action="add_product.php" method="post">
+                                    <form action="product_add.php" method="post">
                                         <div class = "mb-3 mt-3">
                                             <label for = "product-name" class = "form-label">Product to sell: </label>
                                             <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
@@ -179,7 +179,7 @@
                     <td><?= htmlspecialchars($row['Description']) ?></td>
                     <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
                     
-                    <td><form action="remove_product.php" method="post">
+                    <td><form action="product_remove.php" method="post">
                         <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Delete</button></form>
                         </td>
                     <td><form action="product_edit_entry.php" method="post">
@@ -644,7 +644,7 @@
                             </div>
             
                             <div class = "modal-body">
-                                <form action="add_product.php" method="post" enctype="multipart/form-data">
+                                <form action="product_add.php" method="post" enctype="multipart/form-data">
                                     <div class = "mb-3 mt-3">
                                         <label for = "product-name" class = "form-label">Product to sell: </label>
                                         <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
@@ -698,7 +698,7 @@
                         <td><?= htmlspecialchars($row['Amount']) ?></td>
                         <td><?= htmlspecialchars($row['Description']) ?></td>
                         <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
-                        <td><form action="remove_product.php" method="post">
+                        <td><form action="product_remove.php" method="post">
                             <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
                         <td><form action="product_edit_entry.php" method="post">
                             <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form></td>
