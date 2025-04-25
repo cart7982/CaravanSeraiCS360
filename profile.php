@@ -282,13 +282,13 @@
                 <div class = "card-body">
                     <h2>All Groups In The Database: </h2>
 
-                <!-- Modal button to create a user -->
+                <!-- Modal button to create a group -->
                 <div class = "card-footer bg-success">
-                    <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal2">
+                    <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal7">
                         Create a Group
                     </button>
                 
-                    <div class = "modal" id = "myModal2">
+                    <div class = "modal" id = "myModal7">
                         <div class = "modal-dialog">
                             <div class = "modal-content">
                 
