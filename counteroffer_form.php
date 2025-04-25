@@ -105,7 +105,7 @@
                     echo "_MessageID is: ".$_MessageID;
                     ?>
 
-                    <table border="1">
+                    <table class="table table-primary table-striped table-hover" border="1">
                     <tr>
                         <th>Product Name</th>
                         <th>Amount</th>
@@ -128,7 +128,7 @@
                                 <input type="hidden" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>"></input>
                                 <input type="hidden" name="ProductName2" value="<?= $_ProductName2 ?>"></input>
 
-                                <button style="height:30px; width:100px" input type="submit" name="MessageID" value="<?= htmlspecialchars($_MessageID) ?>">Make Offer</button>
+                                <button style="height:30px; width:100px" class="btn btn-secondary" input type="submit" name="MessageID" value="<?= htmlspecialchars($_MessageID) ?>">Make Offer</button>
                             </form></td>
 
 

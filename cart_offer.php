@@ -101,7 +101,7 @@
 
                 ?>
 
-                <table border="1">
+                <table border="1" class="table table-dark table-striped table-hover">
                 <tr>
                     <th>Product Name</th>
                     <th>Amount</th>
@@ -121,7 +121,7 @@
                             <input type="hidden" name="ProductName" value="<?= htmlspecialchars($row['ProductName']) ?>"></input>
                             <input type="hidden" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>"></input>
 
-                            <button style="height:30px; width:100px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($_TransactionID) ?>">Make Offer</button>
+                            <button style="height:30px; width:100px" class="btn btn-primary"input type="submit" name="TransactionID" value="<?= htmlspecialchars($_TransactionID) ?>">Make Offer</button>
                         </form></td>
                 
                 </tr>

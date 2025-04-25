@@ -140,7 +140,7 @@
                         <form action="barter_create.php" method="post">
                             <label for="Quantity">Quantity></label>
                             <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                            <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Request Barter</button>
+                            <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Request Barter</button>
                         </form>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
         </div>
         </div>
 
-        <table border="1">
+        <table border="1" class="table table-success table-striped table-hover">
         <tr>
             <th>Product Name</th>
             <th>Amount</th>
@@ -163,7 +163,7 @@
             <td><?= htmlspecialchars($row['ProductName']) ?></td>
             <td><?= htmlspecialchars($row['Amount']) ?></td>
             <td><?= htmlspecialchars($row['Description']) ?></td>
-            <td><img class="img-product" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
+            <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
             <!-- <?php //$imagePath = !empty($row['ImagePath']) ? htmlspecialchars($row['ImagePath']) : 'images/placeholder.png'; ?>
         echo "
             <td><img src='$imagePath' alt='Product Image' style='width:100px;height:auto;'></td>"; -->
@@ -171,7 +171,7 @@
             <td><form action="barter_create.php" method="post">
                 <label for="Quantity">Quantity></label>
                 <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Request Barter</button></form></td>
+                <button style="height:30px; width:150px" class="btn btn-dark" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Request Barter</button></form></td>
             </tr>
         <?php endforeach ?>
         </table>       

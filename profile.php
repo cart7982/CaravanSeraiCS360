@@ -88,13 +88,10 @@
                     $_UserID = $_SESSION["UserID"];
                     ?>
                 <form action="profile_edit.html" method="post">
-                        <button style="height:30px; width:120px" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Edit Profile</button></form><br>
+                        <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Edit Profile</button></form><br>
                     
             </div>
         </div>
-
-
-        
 
         <div class = "card-body">
                     <h2>All Products for Sale: </h2>
@@ -158,7 +155,7 @@
                 $data = $result->fetch_all(MYSQLI_ASSOC);                
 
             ?>	
-                <table border="1" class="table-success">
+                <table border="1" class="table table-success table-striped table-hover">
                 <tr>
                     <th>Product Name</th>
                     <th>ProductID</th>
@@ -178,11 +175,11 @@
                     <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
                     
                     <td><form action="product_remove.php" method="post">
-                        <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Delete</button></form>
+                        <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Delete</button></form>
                         </td>
                     <td><form action="product_edit_entry.php" method="post">
                         <input type="hidden" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>"></input>
-                        <button style="height:30px; width:100px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form>
+                        <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form>
                         </td>
                 </tr>
                 <?php endforeach ?>
@@ -268,9 +265,9 @@
                                             <?php echo htmlspecialchars($row['Email']); ?><br>
                                             <?php echo htmlspecialchars($row['UserID']); ?>
                                             <form action="user_remove.php" method="post">
-                                                <button style="height:30px; width:100px" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Delete</button></form>
+                                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Delete</button></form>
                                             <form action="profile_edit_entry.php" method="post">
-                                                <button style="height:30px; width:100px" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Update</button></form>
+                                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Update</button></form>
                                         </div>
                                     </div>
                                 </div>
@@ -280,11 +277,7 @@
                 </div>
             </div>
 
-
-
-
-
-            
+ 
             <div class="card bg-primary">
             <div class = "card-body">
                 <h2>ALL CURRENT TRANSACTIONS</h2><br>
@@ -348,7 +341,7 @@
                 $data = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
 
-                <table border="1" class="table-secondary">
+                <table border="1" class="table table-secondary table-striped table-hover">
                 <tr>
                     <th>TransactionID</th>
                     <th>ProductID1</th>
@@ -375,10 +368,10 @@
                     <td><?= htmlspecialchars($row['ProductName2']) ?></td>
                     <td><?= htmlspecialchars($row['Completed']) ?></td>
                     <td><form action="barter_delete.php" method="post">
-                            <button style="height:30px; width:70px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Delete</button>
+                            <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Delete</button>
                         </form></td>
                     <td><form action="barter_edit.php" method="post">
-                            <button style="height:30px; width:70px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Update</button>
+                            <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Update</button>
                         </form></td>
                 </tr>
                 <?php endforeach ?>
@@ -396,7 +389,7 @@
                     $data2 = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
                     
-                    <table  class="table-primary" border="1">
+                    <table  class="table table-primary table-striped table-hover" border="1">
                     <tr>
                         <th>UserID1</th>
                         <th>UserID2</th>
@@ -429,10 +422,10 @@
                         <td><?= htmlspecialchars($row['Product2UserID']) ?></td>
                         
                         <td><form action="offer_delete.php" method="post">
-                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Delete</button></form></td>
+                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Delete</button></form></td>
                         
                         <td><form action="offer_edit.php" method="post">
-                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Update</button></form></td>
+                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Update</button></form></td>
                     </tr>
                     <?php endforeach ?>
                     </table>
@@ -470,7 +463,7 @@
                     $_UserID = $_SESSION["UserID"];
                     ?>
                 <form action="profile_edit.html" method="post">
-                        <button style="height:30px; width:120px" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Update Profile</button></form><br>
+                        <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Update Profile</button></form><br>
                     
             </div>
         </div>
@@ -486,7 +479,7 @@
                 $data = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
 
-                <table border="1" class="table-light">
+                <table border="1" class="table table-light table-striped table-hover">
                 <tr>
                     <th>Product Name</th>
                     <th>Quantity</th>
@@ -500,15 +493,15 @@
                     <td><form action="barter_remove.php" method="post">
                             <label for="Quantity">Remove></label>
                             <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                            <button style="height:30px; width:70px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Remove</button>
+                            <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Remove</button>
                         </form></td>
                     <td><form action="barter_add.php" method="post">
                             <label for="Quantity">Add></label>
                             <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                            <button style="height:30px; width:70px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Add</button>
+                            <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Add</button>
                         </form></td>
                     <td><form action="cart_offer.php" method="post">
-                            <button style="height:30px; width:100px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Make Offer</button>
+                            <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Make Offer</button>
                         </form></td>
                 </tr>
                 <?php endforeach ?>
@@ -524,7 +517,7 @@
                     $data2 = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
-                    <table border="1" class="table-light">
+                    <table border="1" class="table table-light table-striped table-hover">
                     <tr>
                         <th>Message</th>
                         <th></th>
@@ -545,15 +538,15 @@
                         <td><?= htmlspecialchars($row['Amount2']) ?></td>
                         <td><?= htmlspecialchars($row['ProductName2']) ?></td>
                         <td><form action="barter_accept.php" method="post">
-                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
+                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
                         <td><form action="offer_delete.php" method="post">
-                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
+                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
                         
                         <td><form action="counteroffer_form.php" method="post">
                             <input type="hidden" name="message" value="<?= htmlspecialchars($row['BarterMessage']) ?>"></input>
                             <input type="hidden" name="amount2" value="<?= htmlspecialchars($row['Amount2']) ?>"></input>
                             <input type="hidden" name="ProductName2" value="<?= htmlspecialchars($row['ProductName2']) ?>"></input>
-                            <button style="height:30px; width:150px" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
+                            <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
                         </tr>
                     <?php endforeach ?>
                     </table>
@@ -570,7 +563,7 @@
                     $data2 = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
-                    <table border="1" class="table-light">
+                    <table border="1" class="table table-light table-striped table-hover">
                     <tr>
                         <th>Message</th>
                         <th></th>
@@ -591,15 +584,15 @@
                         <td><?= htmlspecialchars($row['Amount1']) ?></td>
                         <td><?= htmlspecialchars($row['ProductName1']) ?></td>
                         <td><form action="barter_accept.php" method="post">
-                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
+                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
                         <td><form action="offer_delete.php" method="post">
-                            <button style="height:30px; width:120px" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
+                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
                         
                         <td><form action="counteroffer_form.php" method="post">
                             <input type="hidden" name="message" value="<?= htmlspecialchars($row['BarterMessage']) ?>"></input>
                             <input type="hidden" name="amount2" value="<?= htmlspecialchars($row['Amount1']) ?>"></input>
                             <input type="hidden" name="ProductName2" value="<?= htmlspecialchars($row['ProductName1']) ?>"></input>
-                            <button style="height:30px; width:150px" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
+                            <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
                                                                         
                     </tr>
                     <?php endforeach ?>
@@ -664,7 +657,7 @@
                     $data = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
-                    <table border="1" class="table-dark">
+                    <table border="1" class="table table-dark table-striped table-hover">
                     <tr>
                         <th>Product Name</th>
                         <th>Amount</th>
@@ -680,9 +673,9 @@
                         <td><?= htmlspecialchars($row['Description']) ?></td>
                         <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
                         <td><form action="product_remove.php" method="post">
-                            <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
+                            <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
                         <td><form action="product_edit_entry.php" method="post">
-                            <button style="height:30px; width:150px" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form></td>
+                            <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form></td>
                         </tr>
                     <?php endforeach ?>
                     </table>
