@@ -277,7 +277,90 @@
                 </div>
             </div>
 
- 
+             <!-- Admin Groups Table -->
+             <div class = "card bg-primary">
+                <div class = "card-body">
+                    <h2>All Groups In The Database: </h2>
+
+                <!-- Modal button to create a user -->
+                <div class = "card-footer bg-success">
+                    <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal2">
+                        Create a Group
+                    </button>
+                
+                    <div class = "modal" id = "myModal2">
+                        <div class = "modal-dialog">
+                            <div class = "modal-content">
+                
+                                <div class = "modal-header">
+                                    <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
+                                </div>
+                
+                                <div class = "modal-body">                                   
+
+                                    <form action="group_create.php" method="post">
+                                        <div class = "mb-3 mt-3">
+                                            <label for = "groupname" class = "form-label">Group Name: </label>
+                                            <input type = "text" class = "form-control" id = "groupname" placeholder = "Enter group name" name = "groupname">
+                                        </div>
+                                        <div class = "mb-3 mt-3">
+                                            <label for = "email" class = "form-label">Group Email: </label>
+                                            <input type = "email" class = "form-control" id = "email" placeholder = "Enter email" name = "email">
+                                        <div class = "mb-3">
+                                            <label for = "pwd" class = "form-label"> Group Password: </label>
+                                            <input type = "password" class = "form-control" id = "pwd" placeholder = "Enter password" name = "pwd">
+                                        </div>
+                                        <button type = "submit" class = "btn btn-primary"> Submit</button>
+                                    </form>
+                                </div>
+                
+                                <div class = "modal-footer">
+                                    <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start of admin groups list -->
+                    <?php
+                    $_UserID = $_SESSION["UserID"];
+                    $conn = mysqli_connect("localhost","root","","caravanserai");
+                    $result = mysqli_query($conn,"SELECT * FROM groups LIMIT 50");
+                    $data = $result->fetch_all(MYSQLI_ASSOC);
+                    ?>
+
+                    <div class="container px-4 px-lg-5 mt-5">
+                        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                            <?php 
+                            //Select all users:
+                            $sql = "SELECT * FROM groups";
+                            $result = $conn->query($sql);
+
+                            //Go through list to display dynamically:
+                            while ($row = $result->fetch_assoc()) { ?>
+                                <div class="card h-100 bg-light">
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <h5 class="fw-bolder"><?php echo htmlspecialchars($row['Groupname']); ?></h5>
+                                            <?php echo htmlspecialchars($row['Email']); ?><br>
+                                            <?php echo htmlspecialchars($row['GroupID']); ?>
+                                            <form action="group_delete.php" method="post">
+                                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Delete</button></form>
+                                            <form action="group_edit.php" method="post">
+                                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Update</button></form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php }?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
             <div class="card bg-primary">
             <div class = "card-body">
                 <h2>ALL CURRENT TRANSACTIONS</h2><br>
@@ -368,10 +451,10 @@
                     <td><?= htmlspecialchars($row['ProductName2']) ?></td>
                     <td><?= htmlspecialchars($row['Completed']) ?></td>
                     <td><form action="barter_delete.php" method="post">
-                            <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Delete</button>
+                            <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Delete</button>
                         </form></td>
                     <td><form action="barter_edit_entry.php" method="post">
-                            <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Update</button>
+                            <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Update</button>
                         </form></td>
                 </tr>
                 <?php endforeach ?>
