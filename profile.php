@@ -376,7 +376,7 @@
                     <td><form action="barter_delete.php" method="post">
                             <button style="height:30px; width:70px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Delete</button>
                         </form></td>
-                    <td><form action="barter_edit.php" method="post">
+                    <td><form action="barter_edit_entry.php" method="post">
                             <button style="height:30px; width:70px" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Update</button>
                         </form></td>
                 </tr>

@@ -30,14 +30,14 @@ if(isset($_POST["UserID"]) && $_SESSION["AdminID"] != null && $_SESSION["AdminID
 {
     $_UserID = $_POST["UserID"];
     $_NewUserID = $_POST["NewUserID"];
-    $stmt = $conn->prepare("UPDATE Users SET UserID=? WHERE UserID=?");
+    $stmt = $conn->prepare("UPDATE users SET UserID=? WHERE UserID=?");
     $stmt->bind_param("ss", $_NewUserID, $_UserID);
     $stmt->execute();
     $stmt->close();
 
     //Update username
     if (isset($_POST['username'])) {
-        $stmt = $conn->prepare("UPDATE Users SET Username=? WHERE UserID=?");
+        $stmt = $conn->prepare("UPDATE users SET Username=? WHERE UserID=?");
         $stmt->bind_param("ss", $_Username, $_UserID);
         $stmt->execute();
         $stmt->close();
@@ -46,7 +46,7 @@ if(isset($_POST["UserID"]) && $_SESSION["AdminID"] != null && $_SESSION["AdminID
     //Update password
     if (isset($_POST['pwd'])) {
         $_HashedPassword = password_hash($_Password, PASSWORD_DEFAULT);
-        $stmt = $conn->prepare("UPDATE Users SET Password=? WHERE UserID=?");
+        $stmt = $conn->prepare("UPDATE users SET Password=? WHERE UserID=?");
         $stmt->bind_param("ss", $_HashedPassword, $_UserID);
         $stmt->execute();
         $stmt->close();
@@ -54,7 +54,7 @@ if(isset($_POST["UserID"]) && $_SESSION["AdminID"] != null && $_SESSION["AdminID
 
     //Update email
     if (isset($_POST['email'])) {
-        $stmt = $conn->prepare("UPDATE Users SET Email=? WHERE UserID=?");
+        $stmt = $conn->prepare("UPDATE users SET Email=? WHERE UserID=?");
         $stmt->bind_param("ss", $_Email, $_UserID);
         $stmt->execute();
         $stmt->close();
