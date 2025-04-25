@@ -15,7 +15,12 @@
         <?php
             $conn = mysqli_connect("localhost","root","","caravanserai");
             session_start();
-            $_ProductID = $_POST['ProductID'];
+            if (!isset($_SESSION["UserID"]))
+            {
+                echo "Login failed!  No user ID found!";
+                header("Location:login.html");
+                exit();
+            }
         ?>
 
         <!-- Navigation-->
@@ -57,7 +62,7 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Product Listing Edit</h1>
+                    <h1 class="display-4 fw-bolder">Admin Transaction Edit</h1>
                     <p class="lead fw-normal text-white-50 mb-0">Keep your listings up-to-date and accurate for optimal bartering</p>
                 </div>
             </div>
@@ -66,77 +71,79 @@
         <!-- Section-->
         <section class="py-5">
 
+                
+        <div class = "card bg-secondary">
+            <div class = "card-body">
+                Admin Use Only
+            </div>
+            <div class = "card-body">
+                This is the page for an admin to change information in a transaction.<br>
+                All information must be updated, or it will be deleted.<br> 
+            </div>
+        </div>
+
         <?php
             if(isset($_POST["TransactionID"]))
             {
-                $_ProductID = $_POST["ProductID"];
+                $_TransactionID = $_POST["TransactionID"];
             }
             $_UserID = $_SESSION["UserID"];
             $conn = mysqli_connect("localhost","root","","caravanserai");
-            $result = mysqli_query($conn,"SELECT * FROM products WHERE ProductID='$_ProductID' LIMIT 50");
+            $result = mysqli_query($conn,"SELECT * FROM transactions WHERE TransactionID='$_TransactionID' LIMIT 50");
             //$data = $result->fetch_all(MYSQLI_ASSOC);
             $row = $result->fetch_assoc();
 
         ?>
-
-        
-                
-        <div class = "card bg-secondary">
-            <div class = "card-body">
-                To ensure accurate barters, you may need to update your product information. 
-            </div>
-            <div class = "card-body">
-                Please ensure that you have accurate, up-to-date information. 
-            </div>
-        </div>
-
         <!--This form starts the user session.  This allows for the usage of
             global variables as described in session.php.-->
-        <form action="product_edit.php" method="post" enctype="multipart/form-data">
+        <form action="product_edit.php" method="post">
             <div class = "mb-3 mt-3">
-                <?php echo "Current ProductName is: ".$row['ProductName']; ?><br>
-                <label for = "productname" class = "form-label">New Product Name: </label>
-                <input type = "text" class = "form-control" id = "productname" placeholder = "Enter New Produt Name" name = "productname">
+                <?php echo "Current TransactionID is: ".$row['TransactionID']."<br>"; ?>
+                <label for = "NewTransactionID" class = "form-label">New TransactionID: </label>
+                <input type = "text" class = "form-control" id = "NewTransactionID" placeholder = "Enter NewTransactionID" name = "NewTransactionID">
             </div>
             <div class = "mb-3">
-                <?php echo "Current amount is: ".$row['Amount']; ?><br>
-                <label for = "amount" class = "form-label"> New Amount in Stock: </label>
-                <input type = "text" class = "form-control" id = "amount" placeholder = "Enter amount" name = "amount">
+                <?php echo "Current ProductID1 is: ".$row['ProductID1']."<br>"; ?>
+                <label for = "ProductID1" class = "form-label"> New ProductID1: </label>
+                <input type = "text" class = "form-control" id = "ProductID1" placeholder = "Enter ProductID1" name = "ProductID1">
             </div>
             <div class = "mb-3">
-                <?php echo "Current Description is: ".$row['Description']; ?><br>
-                <label for = "description" class = "form-label"> New Description: </label>
-                <input type = "text" class = "form-control" id = "description" placeholder = "Enter description" name = "description">
+                <?php echo "Current ProductID2 is: ".$row['ProductID2']."<br>"; ?>
+                <label for = "ProductID2" class = "form-label"> New ProductID2: </label>
+                <input type = "text" class = "form-control" id = "ProductID2" placeholder = "Enter ProductID2" name = "ProductID2">
             </div>
-            <div class="form-group">
-                <?php echo "Current Product image is: "; ?><br>
-                <img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"><br>
-                <label for = "uploadfile" class = "form-label">Product picture:  </label>
-                <input class="form-control" type="file" id = "uploadfile" name="uploadfile" >
+            <div class = "mb-3">
+                <?php echo "Current Quantity1 is: ".$row['Quantity1']."<br>"; ?>
+                <label for = "Quantity1" class = "form-label"> New Quantity1: </label>
+                <input type = "text" class = "form-control" id = "Quantity1" placeholder = "Enter Quantity1" name = "Quantity1">
             </div>
-            
+            <div class = "mb-3">
+                <?php echo "Current Quantity2 is: ".$row['Quantity2']."<br>"; ?>
+                <label for = "Quantity2" class = "form-label"> New Quantity2: </label>
+                <input type = "text" class = "form-control" id = "Quantity2" placeholder = "Enter Quantity2" name = "Quantity2">
+            </div>
+            <div class = "mb-3">
+                <?php echo "Current UserID1 is: ".$row['UserID1']."<br>"; ?>
+                <label for = "UserID1" class = "form-label"> New UserID1: </label>
+                <input type = "text" class = "form-control" id = "UserID1" placeholder = "Enter UserID1" name = "UserID1">
+            </div>
+            <div class = "mb-3">
+                <?php echo "Current UserID2 is: ".$row['UserID2']."<br>"; ?>
+                <label for = "UserID2" class = "form-label"> New UserID2: </label>
+                <input type = "text" class = "form-control" id = "UserID2" placeholder = "Enter UserID2" name = "UserID2">
+            </div>
+            <div class = "mb-3">
+                <?php echo "Current ProductName1 is: ".$row['ProductName1']."<br>"; ?>
+                <label for = "ProductName1" class = "form-label"> New ProductName1: </label>
+                <input type = "text" class = "form-control" id = "ProductName1" placeholder = "Enter ProductName1" name = "ProductName1">
+            </div>
+            <div class = "mb-3">
+                <?php echo "Current ProductName2 is: ".$row['ProductName2']."<br>"; ?>
+                <label for = "ProductName2" class = "form-label"> New ProductName2: </label>
+                <input type = "text" class = "form-control" id = "ProductName2" placeholder = "Enter ProductName2" name = "ProductName2">
+            </div>
 
-            <?php 
-            if(isset($_SESSION["AdminID"]) && $_SESSION["AdminID"] != null && $_SESSION["AdminID"] != "0")
-            { ?>
-                <input type="hidden" name="ProductID" value="<?= htmlspecialchars($_ProductID) ?>"></input>
-                <div class="form-group">
-                    <label for = "NewProductID" class = "form-label">New Product ID:  </label>
-                    <input class="form-control" type="text" id = "NewProductID" name="NewProductID" >
-                </div>
-                <div class="form-group">
-                    <label for = "UserID" class = "form-label">New User ID:  </label>
-                    <input class="form-control" type="text" id = "UserID" name="UserID" >
-                </div>
-            <?php
-            }
-            else
-            {
-            ?>
-                <input type="hidden" name="ProductID" value="<?= htmlspecialchars($_ProductID) ?>"></input>
-            <?php
-            }
-            ?>
+            <input type="hidden" name="TransactionID" value="<?= htmlspecialchars($_TransactionID) ?>"></input>
             <button type = "submit" class = "btn btn-primary" name="ProductID" value="<?= $_ProductID ?>"> Submit</button>
         </form>
         </section>
