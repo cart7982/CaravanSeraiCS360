@@ -621,6 +621,15 @@ progress {
   height: auto;
 }
 
+.img-productthumb {
+  width: 100px;           /*Thumbnail width*/
+  height: 100px;          /*Thumbnail height*/
+  object-fit: cover;      /*Crops the image to fit without distortion*/
+  border: 1px solid #ccc; /*Optional border*/
+  border-radius: 8px;     /*Optional rounded corners*/
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /*Optional subtle shadow*/
+}
+
 .figure {
   display: inline-block;
 }

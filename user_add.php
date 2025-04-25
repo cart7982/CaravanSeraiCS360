@@ -15,25 +15,30 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully";
 
-
+//Get username, email, and password from the signup page.
 $_Username = $_POST['username'];
 $_Email = $_POST['email'];
 $_Password = $_POST['pwd'];
 
-if(isset($_POST['admin']))
-{
-    $_isAdmin = GUID();
-    echo "_isAdmin is: ".$_isAdmin;
-}
-else
-{
-    $_isAdmin = '0';
-}
+//Get the user's type from signup page:
+$_UserType = $_POST['usertype'];
+
+echo "_UserType is: ".$_UserType;
+
 
 //Generate a new GUID for the user.
 $NewID = GUID();
 
-//echo "GUID is: ".$NewID;
+echo "GUID is: ".$NewID;
+
+if($_UserType == 'admin')
+{
+    $AdminID = GUID();
+}
+else
+{
+    $AdminID = '0';
+}
 
 //Create hashed password
 $_HashedPassword = password_hash($_Password, PASSWORD_DEFAULT);
@@ -62,10 +67,10 @@ else
     }
     $stmt->close();
 
-
-    // Insert new user into the database
+    //Insert new user into the database
     $stmt = $conn->prepare("INSERT INTO users (Username, Password, Email, UserID, AdminID) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $_Username, $_HashedPassword, $_Email, $NewID, $_isAdmin);
+    $stmt->bind_param("sssss", $_Username, $_HashedPassword, $_Email, $NewID, $AdminID);
+
     if ($stmt->execute()) {
         echo "Registration successful!";
     } else {
@@ -89,5 +94,7 @@ function GUID()
 
     return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
 }
+
+
 
 ?>

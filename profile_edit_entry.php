@@ -11,6 +11,15 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="styles.css" rel="stylesheet" />
     </head>
+        <?php
+            session_start();
+            if (!isset($_SESSION["UserID"]))
+            {
+                echo "Login failed!  No user ID found!";
+                header("Location:login.html");
+                exit();
+            }
+        ?>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -47,6 +56,7 @@
             </div>
         </nav>
 
+
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -59,6 +69,26 @@
 
         <!-- Section-->
         <section class="py-5">
+        
+
+        <?php
+        if(isset($_SESSION["UserID"]))
+        {
+            $_UserID = $_SESSION["UserID"];
+        }
+        else
+        {
+            session_unset();
+            session_destroy();
+            header('Location:login.html');
+            exit();
+        }
+        if(isset($_POST["UserID"]))
+        {
+            $_UserID = $_POST["UserID"];
+        }
+
+        ?>
             <form action="profile_edit.php" method="post">
                 <div class = "mb-3 mt-3">
                     <label for = "username" class = "form-label">Username: </label>
@@ -72,6 +102,18 @@
                     <label for = "email" class = "form-label"> Email: </label>
                     <input type = "email" class = "form-control" id = "email" placeholder = "Enter email" name = "email">
                 </div>
+
+                <?php 
+                if(isset($_SESSION["AdminID"]) && $_SESSION["AdminID"] != null && $_SESSION["AdminID"] != "")
+                { ?>
+                    <input type="hidden" name="UserID" value="<?= htmlspecialchars($_UserID) ?>"></input>
+                    <div class="form-group">
+                        <label for = "NewUserID" class = "form-label">New User ID:  </label>
+                        <input class="form-control" type="text" id = "NewUserID" name="NewUserID" >
+                    </div>
+                <?php
+                }
+                ?>
                 <button type = "submit" class = "btn btn-primary"> Submit</button>
             </form> 
         </section>

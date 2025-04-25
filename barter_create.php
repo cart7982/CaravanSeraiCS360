@@ -58,9 +58,16 @@ if($_TotalAmount < 0)
 {
     echo ("Insufficient amount of product in database.");
     header('Location:profile.php');
+    exit();
 }
-else
+
+if(isset($_SESSION["AdminID"]) && $_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != null)
 {
+    $_UserID = $_POST['userid1'];
+    $_UserID2 = $_POST['userid2'];
+    $_ProductName = $_POST['ProductName1'];
+}
+
 
 //Grab the highest ID in the transaction column, then increment it by one for the new ProductID to be assigned.
 $result = mysqli_query($conn, "SELECT MAX(TransactionID) AS max FROM transactions");
@@ -106,6 +113,6 @@ else
 }
 
 }
-}
+
 
 ?>

@@ -22,7 +22,7 @@ echo $_Password;
 
 
 //Prepare statement to check for user by username
-$stmt = $conn->prepare("SELECT Password, UserID, Email FROM users WHERE Username = ?");
+$stmt = $conn->prepare("SELECT Password, UserID, Email, AdminID FROM users WHERE Username = ?");
 $stmt->bind_param("s", $_Username);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -48,21 +48,14 @@ if($result->num_rows === 1){
         $_SESSION["UserID"] = $row['UserID'];
         $_SESSION["Email"] = $row['Email'];
 
-        if(isset($_SESSION["GroupID"]))
-        {
-            unset($_SESSION["GroupID"]);
-            unset($_SESSION["GroupName"]);
+        if($row['AdminID'] != '0')
+        {            
+            $_SESSION["AdminID"] = $row['AdminID'];
         }
-        
-
-                // Saved code from a different project 
-                //Get the age of the pet from the pets table.
-                //  $stmt_age = $conn->prepare("SELECT Age as age FROM pets WHERE PetID=?");
-                //  $stmt_age->bind_param("s", $petID);
-                //  $stmt_age->execute();
-                //  $result_age = $stmt_age->get_result();
-                //  $row = mysqli_fetch_array($result_age);
-                //  $ageatownership = $row['age'];
+        else
+        {
+            unset($_SESSION["AdminID"]);
+        }
                  
         $stmt->close();
         $conn->close();

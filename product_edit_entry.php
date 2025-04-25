@@ -77,15 +77,46 @@
 
         <!--This form starts the user session.  This allows for the usage of
             global variables as described in session.php.-->
-        <form action="product_edit.php" method="post">
+        <form action="product_edit.php" method="post" enctype="multipart/form-data">
             <div class = "mb-3 mt-3">
                 <label for = "productname" class = "form-label">New Product Name: </label>
-                <input type = "productname" class = "form-control" id = "productname" placeholder = "Enter New Produt Name" name = "productname">
+                <input type = "text" class = "form-control" id = "productname" placeholder = "Enter New Produt Name" name = "productname">
+            </div>
+            <div class = "mb-3">
+                <label for = "amount" class = "form-label"> New Amount in Stock: </label>
+                <input type = "text" class = "form-control" id = "amount" placeholder = "Enter amount" name = "amount">
             </div>
             <div class = "mb-3">
                 <label for = "description" class = "form-label"> New Description: </label>
-                <input type = "description" class = "form-control" id = "description" placeholder = "Enter description" name = "description">
+                <input type = "text" class = "form-control" id = "description" placeholder = "Enter description" name = "description">
             </div>
+            <div class="form-group">
+                <label for = "uploadfile" class = "form-label">Product picture:  </label>
+                <input class="form-control" type="file" id = "uploadfile" name="uploadfile" >
+            </div>
+            
+
+            <?php 
+            if(isset($_SESSION["AdminID"]) && $_SESSION["AdminID"] != null && $_SESSION["AdminID"] != "0")
+            { ?>
+                <input type="hidden" name="ProductID" value="<?= htmlspecialchars($_ProductID) ?>"></input>
+                <div class="form-group">
+                    <label for = "NewProductID" class = "form-label">New Product ID:  </label>
+                    <input class="form-control" type="text" id = "NewProductID" name="NewProductID" >
+                </div>
+                <div class="form-group">
+                    <label for = "UserID" class = "form-label">New User ID:  </label>
+                    <input class="form-control" type="text" id = "UserID" name="UserID" >
+                </div>
+            <?php
+            }
+            else
+            {
+            ?>
+                <input type="hidden" name="ProductID" value="<?= htmlspecialchars($_ProductID) ?>"></input>
+            <?php
+            }
+            ?>
             <button type = "submit" class = "btn btn-primary" name="ProductID" value="<?= $_ProductID ?>"> Submit</button>
         </form>
         </section>
