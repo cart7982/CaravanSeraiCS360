@@ -45,9 +45,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Groups</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="group_create.html">Create Group</a></li>
+                                <li><a class="dropdown-item" href="group_create.php">Create Group</a></li>
                                 <li><a class="dropdown-item" href="group_signup.html">Sign Up</a></li>
-                                <li><a class="dropdown-item" aria-current = "page" href="group_login.html">Log In</a></li>
+                                <li><a class="dropdown-item" aria-current = "page" href="group_login.php">Log In</a></li>
                                 <li><a class="dropdown-item" href="group_logout.php">Log Out</a></li>
                             </ul>
                         </li>

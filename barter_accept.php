@@ -18,6 +18,7 @@ else
 {
 //UserID from the session global
 $_UserID = $_SESSION["UserID"];
+$default = "logo_1.jpg";
 
 //This accept process uses ONLY internal database information.
 //This means it does not need to be extensively hardened,
@@ -172,12 +173,13 @@ if($accept1 != null && $accept1 != $_UserID)
         $PrevID = $row['max'];
         $_newProductID1 = intval($PrevID) + 1;
 
-        $sql = "INSERT INTO products (ProductName, ProductID, UserID, Amount) VALUES ('$_ProductName2', '$_newProductID1', '$_UserID1', '$Amount2')";
+        $sql = "INSERT INTO products (ProductName, ProductID, UserID, Amount, ImagePath) VALUES ('$_ProductName2', '$_newProductID1', '$_UserID1', '$Amount2', '$default')";
         //Commit the query to the database connection.
         $conn->query($sql);
     }
 
 
+    //Do the same, but for the other user
     $result = mysqli_query($conn, "SELECT ProductID as pID FROM products WHERE UserID='$_UserID2' AND ProductName='$_ProductName1'");
     $row = mysqli_fetch_array($result);
 
@@ -204,7 +206,7 @@ if($accept1 != null && $accept1 != $_UserID)
         $PrevID = $row['max'];
         $_newProductID2 = intval($PrevID) + 1;
 
-        $sql = "INSERT INTO products (ProductName, ProductID, UserID, Amount) VALUES ('$_ProductName1', '$_newProductID2', '$_UserID2', '$Amount1')";
+        $sql = "INSERT INTO products (ProductName, ProductID, UserID, Amount, ImagePath) VALUES ('$_ProductName1', '$_newProductID2', '$_UserID2', '$Amount1', '$default')";
 
         //Commit the query to the database connection.
         $conn->query($sql);
