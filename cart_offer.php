@@ -111,7 +111,7 @@
                 <tr>
                     <td><?= htmlspecialchars($row['ProductName']) ?></td>
                     <td><?= htmlspecialchars($row['Amount']) ?></td>
-                    <td><form action="make_offer.php" method="post">
+                    <td><form action="offer_create.php" method="post">
                             <label for="amount">Quantity></label>
                             <input style="height:30px; width:100px" id="amount" name="amount"></input>
                             <label for="message">Message to Send to Seller></label>
