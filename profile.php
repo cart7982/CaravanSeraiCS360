@@ -343,7 +343,7 @@
                                 <div class="card h-100 bg-light">
                                     <div class="card-body p-4">
                                         <div class="text-center">
-                                            <h5 class="fw-bolder"><?php echo htmlspecialchars($row['Groupname']); ?></h5>
+                                            <h5 class="fw-bolder"><?php echo htmlspecialchars($row['GroupName']); ?></h5>
                                             <?php echo htmlspecialchars($row['Email']); ?><br>
                                             <?php echo htmlspecialchars($row['GroupID']); ?>
                                             <form action="group_delete.php" method="post">
