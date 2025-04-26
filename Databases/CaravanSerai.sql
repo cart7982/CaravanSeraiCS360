@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2025 at 06:36 PM
+-- Generation Time: Apr 26, 2025 at 03:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -86,7 +86,6 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`GroupID`, `GroupName`, `Documents`, `Password`, `Email`) VALUES
-('C8033AED-DDA5-4E62-9859-EF9F2663FC8D', 'mmm', '', '$2y$12$3WSg3vzl3eBViJAjo8HGLOrcRCKuBbNBY5RxXZCkEd65c4R8phhVG', 'mmm@mm'),
 ('B41EB4D3-DB15-46A4-9651-DC3A65F04348', 'bbb', '', '$2y$12$/0IEmJYP8nq6xd5FHbil1uQnTPAYDAR0ASG50sX1L4ySerFH0S6re', 'bbb@bb'),
 ('38FEFCE9-7909-4DFB-AB4E-0A74C3552A22', 'aaa', '', '$2y$12$8Eqj18EKkc8hYPYZOGlQgOvzgHGHsu/FGVESWAc3T564xoT/g5aUS', 'aaa@aa');
 
@@ -143,17 +142,19 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductName`, `ProductID`, `UserID`, `Amount`, `Description`, `ImagePath`) VALUES
-('Sheep', 19, '7394C80B-91BF-476A-B5F1-B9433F11068F', 456, 'Woolly', 'SheepPicture.png'),
+('Sheep', 19, '7394C80B-91BF-476A-B5F1-B9433F11068F', 411, 'Woolly', 'SheepPicture.png'),
 ('Iron Ingots', 20, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 455, 'Tough', 'IronIngots.png'),
-('Bronze Ingots', 21, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 345, 'Pretty tough', 'BronzeIngots.png'),
+('Bronze Ingots', 21, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 222, 'Pretty tough', 'BronzeIngots.png'),
 ('Copper Ingots', 22, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 678, 'Sturdy', 'CopperIngots.png'),
-('Spices', 23, 'D30F5AB0-551C-4125-A796-B285BED7742A', 767, 'Tasty', 'Spices.png'),
-('Wine', 24, 'D30F5AB0-551C-4125-A796-B285BED7742A', 987, 'Boozy', 'Wine.png'),
+('Spices', 23, 'D30F5AB0-551C-4125-A796-B285BED7742A', 13, 'Tasty', 'Spices.png'),
 ('Jewelry', 25, 'D30F5AB0-551C-4125-A796-B285BED7742A', 65, 'Shiny', 'Jewelry.png'),
 ('Cows', 26, '7394C80B-91BF-476A-B5F1-B9433F11068F', 678, 'Beefy', 'Cows.png'),
-('Chickens', 27, '7394C80B-91BF-476A-B5F1-B9433F11068F', 2343, 'Feathery', 'Chickens.png'),
-('Uncut carnelian', 28, '91FD0C36-27A2-4A71-A681-379378EA9485', 356, 'Red', 'UncutCarnelian.png'),
-('Uncut topaz', 29, '91FD0C36-27A2-4A71-A681-379378EA9485', 432, 'Yellow', 'UncutTopaz.png');
+('Chickens', 27, '7394C80B-91BF-476A-B5F1-B9433F11068F', 2133, 'Feathery', 'Chickens.png'),
+('Uncut Carnelians', 28, '91FD0C36-27A2-4A71-A681-379378EA9485', 456, 'Red', 'logo_1.jpg'),
+('Uncut topaz', 29, '91FD0C36-27A2-4A71-A681-379378EA9485', 432, 'Yellow', 'UncutTopaz.png'),
+('Sheep', 31, '91FD0C36-27A2-4A71-A681-379378EA9485', 45, 'Woolly', 'SheepPicture.png'),
+('Uncut fluorite', 32, '91FD0C36-27A2-4A71-A681-379378EA9485', 456, 'Green', 'UncutFluorite.png'),
+('Chickens', 35, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 210, 'Feathery yet tasty', 'Chickens.png');
 
 -- --------------------------------------------------------
 
@@ -179,7 +180,13 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`TransactionID`, `ProductID1`, `ProductID2`, `Quantity1`, `Quantity2`, `UserID1`, `UserID2`, `ProductName1`, `ProductName2`, `Completed`) VALUES
-(1, 10, 7, 66, 50, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '91FD0C36-27A2-4A71-A681-379378EA9485', 'Bronze Ingots', 'Uncut topaz', 1);
+(1, 10, 7, 66, 50, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '91FD0C36-27A2-4A71-A681-379378EA9485', 'Bronze Ingots', 'Uncut topaz', 1),
+(2, 19, 28, 45, 56, '7394C80B-91BF-476A-B5F1-B9433F11068F', '91FD0C36-27A2-4A71-A681-379378EA9485', 'Sheep', 'Uncut carnelian', 1),
+(4, 20, 0, 55, 0, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '', 'Iron Ingots', '', 0),
+(5, 21, 24, 45, 80, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'D30F5AB0-551C-4125-A796-B285BED7742A', 'Bronze Ingots', 'Wine', 1),
+(6, 21, 27, 78, 210, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '7394C80B-91BF-476A-B5F1-B9433F11068F', 'Bronze Ingots', 'Chickens', 1),
+(7, 21, 0, 22, 0, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '7394C80B-91BF-476A-B5F1-B9433F11068F', 'Bronze Ingots', '', 0),
+(8, 22, 0, 78, 0, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '7394C80B-91BF-476A-B5F1-B9433F11068F', 'Copper Ingots', '', 0);
 
 -- --------------------------------------------------------
 
