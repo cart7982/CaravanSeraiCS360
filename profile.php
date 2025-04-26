@@ -158,8 +158,8 @@
                 <table border="1" class="table table-success table-striped table-hover">
                     <tr>
                         <th>Product Name</th>
-                        <th>ProductID</th>
-                        <th>UserID</th>
+                        <th>Product ID</th>
+                        <th>User ID</th>
                         <th>Amount</th>
                         <th>Description</th>
                         <th>Image</th>
@@ -175,11 +175,11 @@
                         <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
                         
                         <td><form action="product_remove.php" method="post">
-                            <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Delete</button></form>
+                            <button style="height:30px; width:100px" class="btn btn-dark" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Delete</button></form>
                             </td>
                         <td><form action="product_edit_entry.php" method="post">
                             <input type="hidden" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>"></input>
-                            <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form>
+                            <button style="height:30px; width:100px" class="btn btn-dark" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form>
                             </td>
                     </tr>
                     <?php endforeach ?>
@@ -280,44 +280,44 @@
                     <h2>All Groups In The Database: </h2>
 
                 <!-- Modal button to create a group -->
-                <div class = "card-footer bg-success">
-                    <button type = "button" class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal7">
-                        Create a Group
-                    </button>
-                
-                    <div class = "modal" id = "myModal7">
-                        <div class = "modal-dialog">
-                            <div class = "modal-content">
-                
-                                <div class = "modal-header">
-                                    <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
-                                </div>
-                
-                                <div class = "modal-body">                                   
+                    <div class = "card-footer bg-success">
+                        <button type = "button" class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal7">
+                            Create a Group
+                        </button>
+                    
+                        <div class = "modal" id = "myModal7">
+                            <div class = "modal-dialog">
+                                <div class = "modal-content">
+                    
+                                    <div class = "modal-header">
+                                        <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
+                                    </div>
+                    
+                                    <div class = "modal-body">                                   
 
-                                    <form action="group_create.php" method="post">
-                                        <div class = "mb-3 mt-3">
-                                            <label for = "groupname" class = "form-label">Group Name: </label>
-                                            <input type = "text" class = "form-control" id = "groupname" placeholder = "Enter group name" name = "groupname">
-                                        </div>
-                                        <div class = "mb-3 mt-3">
-                                            <label for = "email" class = "form-label">Group Email: </label>
-                                            <input type = "email" class = "form-control" id = "email" placeholder = "Enter email" name = "email">
-                                        <div class = "mb-3">
-                                            <label for = "pwd" class = "form-label"> Group Password: </label>
-                                            <input type = "password" class = "form-control" id = "pwd" placeholder = "Enter password" name = "pwd">
-                                        </div>
-                                        <button type = "submit" class = "btn btn-secondary"> Submit</button>
-                                    </form>
-                                </div>
-                
-                                <div class = "modal-footer">
-                                    <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                        <form action="group_create.php" method="post">
+                                            <div class = "mb-3 mt-3">
+                                                <label for = "groupname" class = "form-label">Group Name: </label>
+                                                <input type = "text" class = "form-control" id = "groupname" placeholder = "Enter group name" name = "groupname">
+                                            </div>
+                                            <div class = "mb-3 mt-3">
+                                                <label for = "email" class = "form-label">Group Email: </label>
+                                                <input type = "email" class = "form-control" id = "email" placeholder = "Enter email" name = "email">
+                                            <div class = "mb-3">
+                                                <label for = "pwd" class = "form-label"> Group Password: </label>
+                                                <input type = "password" class = "form-control" id = "pwd" placeholder = "Enter password" name = "pwd">
+                                            </div>
+                                            <button type = "submit" class = "btn btn-secondary"> Submit</button>
+                                        </form>
+                                    </div>
+                    
+                                    <div class = "modal-footer">
+                                        <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <!-- Start of admin groups list -->
                     <?php
@@ -356,6 +356,8 @@
                 </div>
             </div>
 
+
+            <!-- All Transactions-->
             <div class="card bg-primary">
             
                 <h2>ALL CURRENT TRANSACTIONS</h2><br>
@@ -446,17 +448,16 @@
                         <td><?= htmlspecialchars($row['ProductName2']) ?></td>
                         <td><?= htmlspecialchars($row['Completed']) ?></td>
                         <td><form action="barter_delete.php" method="post">
-                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Delete</button>
+                                <button style="height:30px; width:100px" class="btn btn-primary" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Delete</button>
                             </form></td>
                         <td><form action="barter_edit_entry.php" method="post">
-                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Update</button>
+                                <button style="height:30px; width:100px" class="btn btn-primary" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Update</button>
                             </form></td>
                     </tr>
                     <?php endforeach ?>
                 </table> 
             </div>    
             
-
             <!-- Admin Table of All Messages -->
             <div class = "card-body">
                 <h2>ALL OFFERS ON THE MARKET:</h2> 
@@ -467,7 +468,7 @@
                     $data2 = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
                     
-                    <table  class="table table-primary table-striped table-hover" border="1">
+                    <table  class="table table-secondary table-striped table-hover" border="1">
                     <tr>
                         <th>User ID 1</th>
                         <th>User ID 2</th>
@@ -500,10 +501,10 @@
                         <td><?= htmlspecialchars($row['Product2UserID']) ?></td>
                         
                         <td><form action="offer_delete.php" method="post">
-                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Delete</button></form></td>
+                            <button style="height:30px; width:120px" class="btn btn-primary" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Delete</button></form></td>
                         
                         <td><form action="offer_edit.php" method="post">
-                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Update</button></form></td>
+                            <button style="height:30px; width:120px" class="btn btn-primary" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Update</button></form></td>
                     </tr>
                     <?php endforeach ?>
                     </table>
@@ -551,7 +552,7 @@
                     $data = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
-                    <table border="1" class="table table-light table-striped table-hover">
+                    <table border="1" class="table table-success table-striped table-hover">
                     <tr>
                         <th>Product Name</th>
                         <th>Quantity</th>
@@ -589,7 +590,7 @@
                         $data2 = $result->fetch_all(MYSQLI_ASSOC);
                         ?>
 
-                        <table border="1" class="table table-light table-striped table-hover">
+                        <table border="1" class="table table-success table-striped table-hover">
                         <tr>
                             <th>Message</th>
                             <th></th>
@@ -635,7 +636,7 @@
                         $data2 = $result->fetch_all(MYSQLI_ASSOC);
                         ?>
 
-                        <table border="1" class="table table-light table-striped table-hover">
+                        <table border="1" class="table table-success table-striped table-hover">
                         <tr>
                             <th>Message</th>
                             <th></th>
@@ -675,48 +676,47 @@
                 <div class = "card-body">
                     <h2>Your Products for Sale: </h2>
 
-
                     <div class = "card-footer">
-                    <button type = "button" class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal1">
-                        Create a Listing
-                    </button>
-                
-                    <div class = "modal" id = "myModal1">
-                        <div class = "modal-dialog">
-                            <div class = "modal-content">
-                
-                                <div class = "modal-header">
-                                    <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
-                                </div>
-                
-                                <div class = "modal-body">
-                                    <form action="product_add.php" method="post" enctype="multipart/form-data">
-                                        <div class = "mb-3 mt-3">
-                                            <label for = "product-name" class = "form-label">Product to sell: </label>
-                                            <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
-                                        </div>
-                                        <div class = "mb-3 mt-3">
-                                            <label for = "amount" class = "form-label">Amount: </label>
-                                            <input type = "text" class = "form-control" id = "amount" placeholder = "Enter amount" name = "amount">
-                                        </div>
-                                        <div class = "mb-3">
-                                            <label for = "description" class = "form-label">Product description:  </label>
-                                            <input type = "text" class = "form-control" id = "description" placeholder = "Enter product description" name = "description">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for = "uploadfile" class = "form-label">Product picture:  </label>
-                                            <input class="form-control" type="file" id = "uploadfile" name="uploadfile" >
-                                        </div>
-                                        <button type = "submit" class = "btn btn-secondary"> Submit</button>
-                                    </form>
-                                </div>
-                
-                                <div class = "modal-footer">
-                                    <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type = "button" class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal1">
+                            Create a Listing
+                        </button>
+                    
+                        <div class = "modal" id = "myModal1">
+                            <div class = "modal-dialog">
+                                <div class = "modal-content">
+                    
+                                    <div class = "modal-header">
+                                        <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
+                                    </div>
+                    
+                                    <div class = "modal-body">
+                                        <form action="product_add.php" method="post" enctype="multipart/form-data">
+                                            <div class = "mb-3 mt-3">
+                                                <label for = "product-name" class = "form-label">Product to sell: </label>
+                                                <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
+                                            </div>
+                                            <div class = "mb-3 mt-3">
+                                                <label for = "amount" class = "form-label">Amount: </label>
+                                                <input type = "text" class = "form-control" id = "amount" placeholder = "Enter amount" name = "amount">
+                                            </div>
+                                            <div class = "mb-3">
+                                                <label for = "description" class = "form-label">Product description:  </label>
+                                                <input type = "text" class = "form-control" id = "description" placeholder = "Enter product description" name = "description">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for = "uploadfile" class = "form-label">Product picture:  </label>
+                                                <input class="form-control" type="file" id = "uploadfile" name="uploadfile" >
+                                            </div>
+                                            <button type = "submit" class = "btn btn-secondary"> Submit</button>
+                                        </form>
+                                    </div>
+                    
+                                    <div class = "modal-footer">
+                                        <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 
 
                         <?php
@@ -726,7 +726,7 @@
                             $data = $result->fetch_all(MYSQLI_ASSOC);
                         ?>
 
-                        <table border="1" class="table table-dark table-striped table-hover">
+                        <table border="1" class="table table-secondary table-striped table-hover">
                             <tr>
                                 <th>Product Name</th>
                                 <th>Amount</th>
@@ -749,9 +749,9 @@
                             <?php endforeach ?>
                         </table>
 
-                </div>
+                    </div>
 
-                
+                </div>
             </div>
 
         </section>

@@ -11,6 +11,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="styles.css" rel="stylesheet" />
     </head>
+    <body>
         <?php
             session_start();
             if (!isset($_SESSION["UserID"]))
@@ -20,7 +21,6 @@
                 exit();
             }
         ?>
-    <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
