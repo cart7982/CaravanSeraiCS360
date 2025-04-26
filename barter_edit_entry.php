@@ -144,7 +144,7 @@
             </div>
 
             <input type="hidden" name="TransactionID" value="<?= htmlspecialchars($_TransactionID) ?>"></input>
-            <button type = "submit" class = "btn btn-primary" name="ProductID" value="<?= $_ProductID ?>"> Submit</button>
+            <button type = "submit" class = "btn btn-secondary" name="ProductID" value="<?= $_ProductID ?>"> Submit</button>
         </form>
         </section>
 

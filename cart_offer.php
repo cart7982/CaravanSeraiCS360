@@ -62,74 +62,74 @@
         <!-- Section-->
         <section class="py-5">
                 
-        <div class = "card bg-secondary">
-        <div class = "card-body">
-                <?php
-
-                if(isset($_SESSION["GroupID"]))
-                {
-                    $_GroupID = $_SESSION["GroupID"];
-                    $_GroupName = $_SESSION["GroupName"];
-
-                    //$GroupID = intval($_GroupID);
-                    echo"Signed into group: ".$_SESSION['GroupName'];
-                    //echo"\nSigned into group: ".$_SESSION['GroupID'];
-
-                    $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID IN (SELECT UserID FROM $_GroupName)");
-                    $data = $result->fetch_all(MYSQLI_ASSOC);
-
-                }
-                else
-                {
-                    $_UserID = $_SESSION["UserID"];
-                    $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID='$_UserID' LIMIT 50");
-                    $data = $result->fetch_all(MYSQLI_ASSOC);
-
-                }
-
-                $_TransactionID = $_POST['TransactionID'];
-
-                $result = mysqli_query($conn, "SELECT ProductName1 as prdname1, Quantity1 as quantity FROM transactions WHERE TransactionID='$_TransactionID'");
-                $row = mysqli_fetch_array($result);
-                $ProductName1 = $row['prdname1'];
-                $Quantity = $row['quantity'];
-                $_Quantity = intval($Quantity);
-
-                echo "<br>Make an offer using your available products for their: ".$_Quantity." ".$ProductName1."<br>";
-
-                ?>
-
-                <table border="1" class="table table-dark table-striped table-hover">
-                <tr>
-                    <th>Product Name</th>
-                    <th>Amount</th>
-                    <th>Action</th>
-                </tr>
-                <?php foreach($data as $row): ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['ProductName']) ?></td>
-                    <td><?= htmlspecialchars($row['Amount']) ?></td>
-                    <td><form action="offer_create.php" method="post">
-                            <label for="amount">Quantity></label>
-                            <input style="height:30px; width:100px" id="amount" name="amount"></input>
-                            <label for="message">Message to Send to Seller></label>
-                            <input style="height:30px; width:100px" id="message" name="message"></input>
-                            <!-- Hidden Input for ProductName -->
-                            <input type="hidden" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>"></input>
-                            <input type="hidden" name="ProductName" value="<?= htmlspecialchars($row['ProductName']) ?>"></input>
-                            <input type="hidden" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>"></input>
-
-                            <button style="height:30px; width:100px" class="btn btn-primary"input type="submit" name="TransactionID" value="<?= htmlspecialchars($_TransactionID) ?>">Make Offer</button>
-                        </form></td>
+            <div class = "card bg-secondary">
                 
-                </tr>
-                <?php endforeach ?>
-                </table>
+                    <?php
 
+                    if(isset($_SESSION["GroupID"]))
+                    {
+                        $_GroupID = $_SESSION["GroupID"];
+                        $_GroupName = $_SESSION["GroupName"];
+
+                        //$GroupID = intval($_GroupID);
+                        echo"Signed into group: ".$_SESSION['GroupName'];
+                        //echo"\nSigned into group: ".$_SESSION['GroupID'];
+
+                        $conn = mysqli_connect("localhost","root","","caravanserai");
+                        $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID IN (SELECT UserID FROM $_GroupName)");
+                        $data = $result->fetch_all(MYSQLI_ASSOC);
+
+                    }
+                    else
+                    {
+                        $_UserID = $_SESSION["UserID"];
+                        $conn = mysqli_connect("localhost","root","","caravanserai");
+                        $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID='$_UserID' LIMIT 50");
+                        $data = $result->fetch_all(MYSQLI_ASSOC);
+
+                    }
+
+                    $_TransactionID = $_POST['TransactionID'];
+
+                    $result = mysqli_query($conn, "SELECT ProductName1 as prdname1, Quantity1 as quantity FROM transactions WHERE TransactionID='$_TransactionID'");
+                    $row = mysqli_fetch_array($result);
+                    $ProductName1 = $row['prdname1'];
+                    $Quantity = $row['quantity'];
+                    $_Quantity = intval($Quantity);
+
+                    echo "<br>Make an offer using your available products for their: ".$_Quantity." ".$ProductName1."<br>";
+
+                    ?>
+
+                    <table border="1" class="table table-dark table-striped table-hover">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php foreach($data as $row): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['ProductName']) ?></td>
+                        <td><?= htmlspecialchars($row['Amount']) ?></td>
+                        <td><form action="offer_create.php" method="post">
+                                <label for="amount">Quantity></label>
+                                <input style="height:30px; width:100px" id="amount" name="amount"></input>
+                                <label for="message">Message to Send to Seller></label>
+                                <input style="height:30px; width:100px" id="message" name="message"></input>
+                                <!-- Hidden Input for ProductName -->
+                                <input type="hidden" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>"></input>
+                                <input type="hidden" name="ProductName" value="<?= htmlspecialchars($row['ProductName']) ?>"></input>
+                                <input type="hidden" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>"></input>
+
+                                <button style="height:30px; width:100px" class="btn btn-secondary"input type="submit" name="TransactionID" value="<?= htmlspecialchars($_TransactionID) ?>">Make Offer</button>
+                            </form></td>
+                    
+                    </tr>
+                    <?php endforeach ?>
+                    </table>
+
+                </div>
             </div>
-        </div>
 
         </section>
 

@@ -69,25 +69,24 @@
         <!-- Section-->
         <section class="py-5">
         
+            <?php
+                if(isset($_SESSION["UserID"]))
+                {
+                    $_UserID = $_SESSION["UserID"];
+                }
+                else
+                {
+                    session_unset();
+                    session_destroy();
+                    header('Location:login.html');
+                    exit();
+                }
+                if(isset($_POST["UserID"]))
+                {
+                    $_UserID = $_POST["UserID"];
+                }
 
-        <?php
-        if(isset($_SESSION["UserID"]))
-        {
-            $_UserID = $_SESSION["UserID"];
-        }
-        else
-        {
-            session_unset();
-            session_destroy();
-            header('Location:login.html');
-            exit();
-        }
-        if(isset($_POST["UserID"]))
-        {
-            $_UserID = $_POST["UserID"];
-        }
-
-        ?>
+            ?>
             <form action="profile_edit.php" method="post">
                 <div class = "mb-3 mt-3">
                     <label for = "username" class = "form-label">Username: </label>
@@ -113,7 +112,7 @@
                 <?php
                 }
                 ?>
-                <button type = "submit" class = "btn btn-primary"> Submit</button>
+                <button type = "submit" class = "btn btn-secondary"> Submit</button>
             </form> 
         </section>
 

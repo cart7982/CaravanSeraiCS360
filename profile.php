@@ -13,12 +13,12 @@
     </head>
     <body>
         <?php
-        session_start();
-        if(!isset($_SESSION["UserID"]))
-        {
-            echo "User not detected!  Please log in to proceed!";
-            header('Location:login.html');
-        }
+            session_start();
+            if(!isset($_SESSION["UserID"]))
+            {
+                echo "User not detected!  Please log in to proceed!";
+                header('Location:login.html');
+            }
         ?>
 
         <!-- Navigation-->
@@ -67,37 +67,37 @@
 
         
     
-    <?php if(isset($_SESSION["AdminID"])) 
-        { 
-    ?>
+        <?php if(isset($_SESSION["AdminID"])) 
+            { 
+        ?>
 
 
         <!-- Admin Panels Section-->
         <section class="py-5">
-        <div class = "card bg-success">
-            <div class = "card-header">
-                Welcome, <?php echo $_SESSION["Username"] ?>!<br>
-                User ID is: <?php echo $_SESSION["UserID"] ?><br>
-                Admin ID is: <?php echo $_SESSION["AdminID"] ?><br>
-                Email is: <?php echo $_SESSION["Email"] ?><br>
-                <?php 
-                    if(isset($_SESSION["GroupID"]))
-                    {
-                        echo "Logged into group: ".$_SESSION["GroupName"]."";
-                    }
-                    $_UserID = $_SESSION["UserID"];
-                    ?>
-                <form action="profile_edit.html" method="post">
-                        <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Edit Profile</button></form><br>
-                    
+            <div class = "card bg-success">
+                <div class = "card-header">
+                    Welcome, <?php echo $_SESSION["Username"] ?>!<br>
+                    User ID is: <?php echo $_SESSION["UserID"] ?><br>
+                    Admin ID is: <?php echo $_SESSION["AdminID"] ?><br>
+                    Email is: <?php echo $_SESSION["Email"] ?><br>
+                    <?php 
+                        if(isset($_SESSION["GroupID"]))
+                        {
+                            echo "Logged into group: ".$_SESSION["GroupName"]."";
+                        }
+                        $_UserID = $_SESSION["UserID"];
+                        ?>
+                    <form action="profile_edit.html" method="post">
+                            <button style="height:30px; width:240px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Edit Profile</button></form><br>
+                        
+                </div>
             </div>
-        </div>
 
-        <div class = "card-body">
+            <div class = "card-body">
                     <h2>All Products for Sale: </h2>
-            <!-- Modal button to create product listing -->
+                <!-- Modal button to create product listing -->
                 <div class = "card-footer bg-success">
-                    <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
+                    <button type = "button" class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal1">
                         Create a Listing
                     </button>
                 
@@ -135,7 +135,7 @@
                                             <label for = "UserID" class = "form-label">User ID:  </label>
                                             <input class="form-control" type="text" id = "UserID" name="UserID" >
                                         </div>
-                                        <button type = "submit" class = "btn btn-primary"> Submit</button>
+                                        <button type = "submit" class = "btn btn-secondary"> Submit</button>
                                     </form>
                                 </div>
                 
@@ -146,8 +146,8 @@
                         </div>
                     </div>
                 </div>
-
-            <!-- Start of admin product list -->
+            </div>
+                <!-- Start of admin product list -->
             <?php
 
                 $conn = mysqli_connect("localhost","root","","caravanserai");
@@ -156,38 +156,35 @@
 
             ?>	
                 <table border="1" class="table table-success table-striped table-hover">
-                <tr>
-                    <th>Product Name</th>
-                    <th>ProductID</th>
-                    <th>UserID</th>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Actions</th>
-                </tr>
-                <?php foreach($data as $row): ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['ProductName']) ?></td>
-                    <td><?= htmlspecialchars($row['ProductID']) ?></td>
-                    <td><?= htmlspecialchars($row['UserID']) ?></td>
-                    <td><?= htmlspecialchars($row['Amount']) ?></td>
-                    <td><?= htmlspecialchars($row['Description']) ?></td>
-                    <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
-                    
-                    <td><form action="product_remove.php" method="post">
-                        <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Delete</button></form>
-                        </td>
-                    <td><form action="product_edit_entry.php" method="post">
-                        <input type="hidden" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>"></input>
-                        <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form>
-                        </td>
-                </tr>
-                <?php endforeach ?>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>ProductID</th>
+                        <th>UserID</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                    <?php foreach($data as $row): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['ProductName']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductID']) ?></td>
+                        <td><?= htmlspecialchars($row['UserID']) ?></td>
+                        <td><?= htmlspecialchars($row['Amount']) ?></td>
+                        <td><?= htmlspecialchars($row['Description']) ?></td>
+                        <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
+                        
+                        <td><form action="product_remove.php" method="post">
+                            <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Delete</button></form>
+                            </td>
+                        <td><form action="product_edit_entry.php" method="post">
+                            <input type="hidden" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>"></input>
+                            <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form>
+                            </td>
+                    </tr>
+                    <?php endforeach ?>
                 </table>       
         
-
-
-           
             <!-- Admin Users Table -->
             <div class = "card bg-primary">
                 <div class = "card-body">
@@ -195,7 +192,7 @@
 
                 <!-- Modal button to create a user -->
                 <div class = "card-footer bg-success">
-                    <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal2">
+                    <button type = "button" class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal2">
                         Create a User
                     </button>
                 
@@ -228,7 +225,7 @@
                                             <input type="radio" id="admin" name="usertype" value="admin">
                                             <label for="admin">Admin</label><br>
                                         </div>
-                                        <button type = "submit" class = "btn btn-primary"> Submit</button>
+                                        <button type = "submit" class = "btn btn-secondary"> Submit</button>
                                     </form>
                                 </div>
                 
@@ -265,9 +262,9 @@
                                             <?php echo htmlspecialchars($row['Email']); ?><br>
                                             <?php echo htmlspecialchars($row['UserID']); ?>
                                             <form action="user_remove.php" method="post">
-                                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Delete</button></form>
+                                                <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Delete</button></form>
                                             <form action="profile_edit_entry.php" method="post">
-                                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Update</button></form>
+                                                <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Update</button></form>
                                         </div>
                                     </div>
                                 </div>
@@ -284,7 +281,7 @@
 
                 <!-- Modal button to create a group -->
                 <div class = "card-footer bg-success">
-                    <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal7">
+                    <button type = "button" class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal7">
                         Create a Group
                     </button>
                 
@@ -310,7 +307,7 @@
                                             <label for = "pwd" class = "form-label"> Group Password: </label>
                                             <input type = "password" class = "form-control" id = "pwd" placeholder = "Enter password" name = "pwd">
                                         </div>
-                                        <button type = "submit" class = "btn btn-primary"> Submit</button>
+                                        <button type = "submit" class = "btn btn-secondary"> Submit</button>
                                     </form>
                                 </div>
                 
@@ -347,9 +344,9 @@
                                             <?php echo htmlspecialchars($row['Email']); ?><br>
                                             <?php echo htmlspecialchars($row['GroupID']); ?>
                                             <form action="group_delete.php" method="post">
-                                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Delete</button></form>
+                                                <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Delete</button></form>
                                             <form action="group_edit.php" method="post">
-                                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Update</button></form>
+                                                <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Update</button></form>
                                         </div>
                                     </div>
                                 </div>
@@ -359,15 +356,13 @@
                 </div>
             </div>
 
-
-
             <div class="card bg-primary">
-            <div class = "card-body">
+            
                 <h2>ALL CURRENT TRANSACTIONS</h2><br>
 
                 <!-- Modal button to create new transaction -->
                 <div class = "card-footer bg-success">
-                    <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal6">
+                    <button type = "button" class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal6">
                         Create a Transaction
                     </button>
                 
@@ -404,7 +399,7 @@
                                             <label for = "ProductName1" class = "form-label">ProductName1:  </label>
                                             <input type = "text" class = "form-control" id = "ProductName1" placeholder = "Enter product ProductName1" name = "ProductName1">
                                         </div>
-                                        <button type = "submit" class = "btn btn-primary"> Submit</button>
+                                        <button type = "submit" class = "btn btn-secondary"> Submit</button>
                                     </form>
                                 </div>
                 
@@ -418,46 +413,46 @@
 
 
                 <?php
-                $_UserID = $_SESSION["UserID"];
-                $conn = mysqli_connect("localhost","root","","caravanserai");
-                $result = mysqli_query($conn,"SELECT * FROM transactions LIMIT 50");
-                $data = $result->fetch_all(MYSQLI_ASSOC);
+                    $_UserID = $_SESSION["UserID"];
+                    $conn = mysqli_connect("localhost","root","","caravanserai");
+                    $result = mysqli_query($conn,"SELECT * FROM transactions LIMIT 50");
+                    $data = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
 
                 <table border="1" class="table table-secondary table-striped table-hover">
-                <tr>
-                    <th>TransactionID</th>
-                    <th>ProductID1</th>
-                    <th>ProductID2</th>
-                    <th>Quantity1</th>
-                    <th>Quantity2</th>
-                    <th>UserID1</th>
-                    <th>UserID2</th>
-                    <th>ProductName1</th>
-                    <th>ProductName2</th>
-                    <th>Completed</th>
-                    <th>Action</th>
-                </tr>
-                <?php foreach($data as $row): ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['TransactionID']) ?></td>
-                    <td><?= htmlspecialchars($row['ProductID1']) ?></td>
-                    <td><?= htmlspecialchars($row['ProductID2']) ?></td>
-                    <td><?= htmlspecialchars($row['Quantity1']) ?></td>
-                    <td><?= htmlspecialchars($row['Quantity2']) ?></td>
-                    <td><?= htmlspecialchars($row['UserID1']) ?></td>
-                    <td><?= htmlspecialchars($row['UserID2']) ?></td>
-                    <td><?= htmlspecialchars($row['ProductName1']) ?></td>
-                    <td><?= htmlspecialchars($row['ProductName2']) ?></td>
-                    <td><?= htmlspecialchars($row['Completed']) ?></td>
-                    <td><form action="barter_delete.php" method="post">
-                            <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Delete</button>
-                        </form></td>
-                    <td><form action="barter_edit_entry.php" method="post">
-                            <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Update</button>
-                        </form></td>
-                </tr>
-                <?php endforeach ?>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Product ID 1</th>
+                        <th>Product ID 2</th>
+                        <th>Quantity 1</th>
+                        <th>Quantity 2</th>
+                        <th>User ID 1</th>
+                        <th>User ID 2</th>
+                        <th>Product Name 1</th>
+                        <th>Product Name 2</th>
+                        <th>Completed</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php foreach($data as $row): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['TransactionID']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductID1']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductID2']) ?></td>
+                        <td><?= htmlspecialchars($row['Quantity1']) ?></td>
+                        <td><?= htmlspecialchars($row['Quantity2']) ?></td>
+                        <td><?= htmlspecialchars($row['UserID1']) ?></td>
+                        <td><?= htmlspecialchars($row['UserID2']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductName1']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductName2']) ?></td>
+                        <td><?= htmlspecialchars($row['Completed']) ?></td>
+                        <td><form action="barter_delete.php" method="post">
+                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Delete</button>
+                            </form></td>
+                        <td><form action="barter_edit_entry.php" method="post">
+                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Update</button>
+                            </form></td>
+                    </tr>
+                    <?php endforeach ?>
                 </table> 
             </div>    
             
@@ -474,18 +469,18 @@
                     
                     <table  class="table table-primary table-striped table-hover" border="1">
                     <tr>
-                        <th>UserID1</th>
-                        <th>UserID2</th>
-                        <th>BarterMessage</th>
-                        <th>TransactionID</th>
-                        <th>Amount1</th>
-                        <th>MessageID</th>
-                        <th>Amount2</th>
-                        <th>ProductName1</th>
-                        <th>ProductName2</th>
-                        <th>MessageUserID</th>
-                        <th>Product1UserID</th>
-                        <th>Product2UserID</th>
+                        <th>User ID 1</th>
+                        <th>User ID 2</th>
+                        <th>Barter Message</th>
+                        <th>Transaction ID</th>
+                        <th>Amount 1</th>
+                        <th>Message ID</th>
+                        <th>Amount 2</th>
+                        <th>Product Name 1</th>
+                        <th>Product Name 2</th>
+                        <th>MessageUser ID</th>
+                        <th>Product 1 User ID</th>
+                        <th>Product 2 User ID</th>
                         <th>Action</th>
                     </tr>
                     <?php foreach($data2 as $row): ?>
@@ -516,263 +511,254 @@
             </div>
 
 
-
-
-
-
-
-
         </section>
    
-    <?php 
-        }
-        else
-        {
-    ?>
+        <?php 
+            }
+            else
+            {
+        ?>
 
         <!-- Normal Merchant Section-->
         
         <section class="py-5">
-        <div class = "card bg-success">
-            <div class = "card-header">
-                Welcome, <?php echo $_SESSION["Username"] ?>!<br>
-                User ID is: <?php echo $_SESSION["UserID"] ?><br>
-                Email is: <?php echo $_SESSION["Email"] ?><br>
-                <?php 
-                    if(isset($_SESSION["GroupID"]))
-                    {
-                        echo "Logged into group: ".$_SESSION["GroupName"]."";
-                    }
-                    $_UserID = $_SESSION["UserID"];
-                    ?>
-                <form action="profile_edit.html" method="post">
-                        <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Update Profile</button></form><br>
-                    
-            </div>
-        </div>
-
-            
-        <div class="card bg-primary">
-            <div class = "card-body">
-                <h2>START A BARTER</h2><br>
-                <?php
-                $_UserID = $_SESSION["UserID"];
-                $conn = mysqli_connect("localhost","root","","caravanserai");
-                $result = mysqli_query($conn,"SELECT * FROM transactions WHERE UserID2='$_UserID' AND Completed='0' LIMIT 50");
-                $data = $result->fetch_all(MYSQLI_ASSOC);
-                ?>
-
-                <table border="1" class="table table-light table-striped table-hover">
-                <tr>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
-                    <th>Action</th>
-                </tr>
-                <?php foreach($data as $row): ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['ProductName1']) ?></td>
-                    <td><?= htmlspecialchars($row['Quantity1']) ?></td>
-                    <td><form action="barter_remove.php" method="post">
-                            <label for="Quantity">Remove></label>
-                            <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                            <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Remove</button>
-                        </form></td>
-                    <td><form action="barter_add.php" method="post">
-                            <label for="Quantity">Add></label>
-                            <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                            <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Add</button>
-                        </form></td>
-                    <td><form action="cart_offer.php" method="post">
-                            <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Make Offer</button>
-                        </form></td>
-                </tr>
-                <?php endforeach ?>
-                </table> 
-            </div>    
-            
-            <div class = "card-body">
-                <h2>OFFERS YOU HAVE MADE:</h2> 
-                <?php
-                    $_UserID = $_SESSION["UserID"];
-                    $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID1='$_UserID' LIMIT 50");
-                    $data2 = $result->fetch_all(MYSQLI_ASSOC);
-                    ?>
-
-                    <table border="1" class="table table-light table-striped table-hover">
-                    <tr>
-                        <th>Message</th>
-                        <th></th>
-                        <th>Your Product</th>
-                        <th></th>
-                        <th></th>
-                        <th>Their Product</th>
-                        <th>Accept</th>
-                        <th>Reject</th>
-                        <th>Counteroffer</th>
-                    </tr>
-                    <?php foreach($data2 as $row): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($row['BarterMessage']) ?></td>
-                        <td><?= htmlspecialchars($row['Amount1']) ?></td>
-                        <td><?= htmlspecialchars($row['ProductName1']) ?></td>
-                        <td>in exchange for</td>
-                        <td><?= htmlspecialchars($row['Amount2']) ?></td>
-                        <td><?= htmlspecialchars($row['ProductName2']) ?></td>
-                        <td><form action="barter_accept.php" method="post">
-                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
-                        <td><form action="offer_delete.php" method="post">
-                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
+            <div class = "card bg-success">
+                <div class = "card-header">
+                    Welcome, <?php echo $_SESSION["Username"] ?>!<br>
+                    User ID is: <?php echo $_SESSION["UserID"] ?><br>
+                    Email is: <?php echo $_SESSION["Email"] ?><br>
+                    <?php 
+                        if(isset($_SESSION["GroupID"]))
+                        {
+                            echo "Logged into group: ".$_SESSION["GroupName"]."";
+                        }
+                        $_UserID = $_SESSION["UserID"];
+                        ?>
+                    <form action="profile_edit.html" method="post">
+                            <button style="height:30px; width:180px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Update Profile</button></form><br>
                         
-                        <td><form action="counteroffer_form.php" method="post">
-                            <input type="hidden" name="message" value="<?= htmlspecialchars($row['BarterMessage']) ?>"></input>
-                            <input type="hidden" name="amount2" value="<?= htmlspecialchars($row['Amount2']) ?>"></input>
-                            <input type="hidden" name="ProductName2" value="<?= htmlspecialchars($row['ProductName2']) ?>"></input>
-                            <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
-                        </tr>
-                    <?php endforeach ?>
-                    </table>
-
-            </div>
-
-
-            <div class = "card-body">
-                <h2>OFFERS MADE TO YOU:</h2> 
-                    <?php
-                    $_UserID = $_SESSION["UserID"];
-                    $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID2='$_UserID' LIMIT 50");
-                    $data2 = $result->fetch_all(MYSQLI_ASSOC);
-                    ?>
-
-                    <table border="1" class="table table-light table-striped table-hover">
-                    <tr>
-                        <th>Message</th>
-                        <th></th>
-                        <th>Your Product</th>
-                        <th></th>
-                        <th></th>
-                        <th>Their Product</th>
-                        <th>Accept</th>
-                        <th>Reject</th>
-                        <th>Counteroffer</th>
-                    </tr>
-                    <?php foreach($data2 as $row): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($row['BarterMessage']) ?></td>
-                        <td><?= htmlspecialchars($row['Amount2']) ?></td>
-                        <td><?= htmlspecialchars($row['ProductName2']) ?></td>
-                        <td>in exchange for</td>
-                        <td><?= htmlspecialchars($row['Amount1']) ?></td>
-                        <td><?= htmlspecialchars($row['ProductName1']) ?></td>
-                        <td><form action="barter_accept.php" method="post">
-                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
-                        <td><form action="offer_delete.php" method="post">
-                            <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
-                        
-                        <td><form action="counteroffer_form.php" method="post">
-                            <input type="hidden" name="message" value="<?= htmlspecialchars($row['BarterMessage']) ?>"></input>
-                            <input type="hidden" name="amount2" value="<?= htmlspecialchars($row['Amount1']) ?>"></input>
-                            <input type="hidden" name="ProductName2" value="<?= htmlspecialchars($row['ProductName1']) ?>"></input>
-                            <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
-                                                                        
-                    </tr>
-                    <?php endforeach ?>
-                    </table>
-            </div>
-        
-
-            <div class = "card-body">
-                <h2>Your Products for Sale: </h2>
-
-
-                <div class = "card-footer">
-                <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
-                    Create a Listing
-                </button>
-            
-                <div class = "modal" id = "myModal1">
-                    <div class = "modal-dialog">
-                        <div class = "modal-content">
-            
-                            <div class = "modal-header">
-                                <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
-                            </div>
-            
-                            <div class = "modal-body">
-                                <form action="product_add.php" method="post" enctype="multipart/form-data">
-                                    <div class = "mb-3 mt-3">
-                                        <label for = "product-name" class = "form-label">Product to sell: </label>
-                                        <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
-                                    </div>
-                                    <div class = "mb-3 mt-3">
-                                        <label for = "amount" class = "form-label">Amount: </label>
-                                        <input type = "text" class = "form-control" id = "amount" placeholder = "Enter amount" name = "amount">
-                                    </div>
-                                    <div class = "mb-3">
-                                        <label for = "description" class = "form-label">Product description:  </label>
-                                        <input type = "text" class = "form-control" id = "description" placeholder = "Enter product description" name = "description">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for = "uploadfile" class = "form-label">Product picture:  </label>
-                                        <input class="form-control" type="file" id = "uploadfile" name="uploadfile" >
-                                    </div>
-                                    <button type = "submit" class = "btn btn-primary"> Submit</button>
-                                </form>
-                            </div>
-            
-                            <div class = "modal-footer">
-                                <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-
-
-
+            
+            <div class="card bg-primary">
+                <div class = "card-body">
+                    <h2>START A BARTER</h2><br>
                     <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID='$_UserID' LIMIT 50");
+                    $result = mysqli_query($conn,"SELECT * FROM transactions WHERE UserID2='$_UserID' AND Completed='0' LIMIT 50");
                     $data = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
-                    <table border="1" class="table table-dark table-striped table-hover">
+                    <table border="1" class="table table-light table-striped table-hover">
                     <tr>
                         <th>Product Name</th>
-                        <th>Amount</th>
-                        <th>Description</th>
-                        <th>Product Picture</th>
-                        <th>Actions</th>
-                        <th></th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                        <th>Action</th>
                     </tr>
                     <?php foreach($data as $row): ?>
                     <tr>
-                        <td><?= htmlspecialchars($row['ProductName']) ?></td>
-                        <td><?= htmlspecialchars($row['Amount']) ?></td>
-                        <td><?= htmlspecialchars($row['Description']) ?></td>
-                        <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
-                        <td><form action="product_remove.php" method="post">
-                            <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
-                        <td><form action="product_edit_entry.php" method="post">
-                            <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form></td>
-                        </tr>
+                        <td><?= htmlspecialchars($row['ProductName1']) ?></td>
+                        <td><?= htmlspecialchars($row['Quantity1']) ?></td>
+                        <td><form action="barter_remove.php" method="post">
+                                <label for="Quantity">Remove></label>
+                                <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
+                                <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Remove</button>
+                            </form></td>
+                        <td><form action="barter_add.php" method="post">
+                                <label for="Quantity">Add></label>
+                                <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
+                                <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Add</button>
+                            </form></td>
+                        <td><form action="cart_offer.php" method="post">
+                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Make Offer</button>
+                            </form></td>
+                    </tr>
                     <?php endforeach ?>
-                    </table>
+                    </table> 
+                </div>    
+                
+                <div class = "card-body">
+                    <h2>OFFERS YOU HAVE MADE:</h2> 
+                    <?php
+                        $_UserID = $_SESSION["UserID"];
+                        $conn = mysqli_connect("localhost","root","","caravanserai");
+                        $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID1='$_UserID' LIMIT 50");
+                        $data2 = $result->fetch_all(MYSQLI_ASSOC);
+                        ?>
 
-            </div>
+                        <table border="1" class="table table-light table-striped table-hover">
+                        <tr>
+                            <th>Message</th>
+                            <th></th>
+                            <th>Your Product</th>
+                            <th></th>
+                            <th></th>
+                            <th>Their Product</th>
+                            <th>Accept</th>
+                            <th>Reject</th>
+                            <th>Counteroffer</th>
+                        </tr>
+                        <?php foreach($data2 as $row): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($row['BarterMessage']) ?></td>
+                            <td><?= htmlspecialchars($row['Amount1']) ?></td>
+                            <td><?= htmlspecialchars($row['ProductName1']) ?></td>
+                            <td>in exchange for</td>
+                            <td><?= htmlspecialchars($row['Amount2']) ?></td>
+                            <td><?= htmlspecialchars($row['ProductName2']) ?></td>
+                            <td><form action="barter_accept.php" method="post">
+                                <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
+                            <td><form action="offer_delete.php" method="post">
+                                <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
+                            
+                            <td><form action="counteroffer_form.php" method="post">
+                                <input type="hidden" name="message" value="<?= htmlspecialchars($row['BarterMessage']) ?>"></input>
+                                <input type="hidden" name="amount2" value="<?= htmlspecialchars($row['Amount2']) ?>"></input>
+                                <input type="hidden" name="ProductName2" value="<?= htmlspecialchars($row['ProductName2']) ?>"></input>
+                                <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
+                            </tr>
+                        <?php endforeach ?>
+                        </table>
 
+                </div>
+
+
+                <div class = "card-body">
+                    <h2>OFFERS MADE TO YOU:</h2> 
+                        <?php
+                        $_UserID = $_SESSION["UserID"];
+                        $conn = mysqli_connect("localhost","root","","caravanserai");
+                        $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID2='$_UserID' LIMIT 50");
+                        $data2 = $result->fetch_all(MYSQLI_ASSOC);
+                        ?>
+
+                        <table border="1" class="table table-light table-striped table-hover">
+                        <tr>
+                            <th>Message</th>
+                            <th></th>
+                            <th>Your Product</th>
+                            <th></th>
+                            <th></th>
+                            <th>Their Product</th>
+                            <th>Accept</th>
+                            <th>Reject</th>
+                            <th>Counteroffer</th>
+                        </tr>
+                        <?php foreach($data2 as $row): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($row['BarterMessage']) ?></td>
+                            <td><?= htmlspecialchars($row['Amount2']) ?></td>
+                            <td><?= htmlspecialchars($row['ProductName2']) ?></td>
+                            <td>in exchange for</td>
+                            <td><?= htmlspecialchars($row['Amount1']) ?></td>
+                            <td><?= htmlspecialchars($row['ProductName1']) ?></td>
+                            <td><form action="barter_accept.php" method="post">
+                                <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
+                            <td><form action="offer_delete.php" method="post">
+                                <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
+                            
+                            <td><form action="counteroffer_form.php" method="post">
+                                <input type="hidden" name="message" value="<?= htmlspecialchars($row['BarterMessage']) ?>"></input>
+                                <input type="hidden" name="amount2" value="<?= htmlspecialchars($row['Amount1']) ?>"></input>
+                                <input type="hidden" name="ProductName2" value="<?= htmlspecialchars($row['ProductName1']) ?>"></input>
+                                <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
+                                                                            
+                        </tr>
+                        <?php endforeach ?>
+                        </table>
+                </div>
             
-        </div>
+
+                <div class = "card-body">
+                    <h2>Your Products for Sale: </h2>
+
+
+                    <div class = "card-footer">
+                    <button type = "button" class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal1">
+                        Create a Listing
+                    </button>
+                
+                    <div class = "modal" id = "myModal1">
+                        <div class = "modal-dialog">
+                            <div class = "modal-content">
+                
+                                <div class = "modal-header">
+                                    <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
+                                </div>
+                
+                                <div class = "modal-body">
+                                    <form action="product_add.php" method="post" enctype="multipart/form-data">
+                                        <div class = "mb-3 mt-3">
+                                            <label for = "product-name" class = "form-label">Product to sell: </label>
+                                            <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
+                                        </div>
+                                        <div class = "mb-3 mt-3">
+                                            <label for = "amount" class = "form-label">Amount: </label>
+                                            <input type = "text" class = "form-control" id = "amount" placeholder = "Enter amount" name = "amount">
+                                        </div>
+                                        <div class = "mb-3">
+                                            <label for = "description" class = "form-label">Product description:  </label>
+                                            <input type = "text" class = "form-control" id = "description" placeholder = "Enter product description" name = "description">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for = "uploadfile" class = "form-label">Product picture:  </label>
+                                            <input class="form-control" type="file" id = "uploadfile" name="uploadfile" >
+                                        </div>
+                                        <button type = "submit" class = "btn btn-secondary"> Submit</button>
+                                    </form>
+                                </div>
+                
+                                <div class = "modal-footer">
+                                    <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+
+                        <?php
+                            $_UserID = $_SESSION["UserID"];
+                            $conn = mysqli_connect("localhost","root","","caravanserai");
+                            $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID='$_UserID' LIMIT 50");
+                            $data = $result->fetch_all(MYSQLI_ASSOC);
+                        ?>
+
+                        <table border="1" class="table table-dark table-striped table-hover">
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                                <th>Product Picture</th>
+                                <th>Actions</th>
+                                <th></th>
+                            </tr>
+                            <?php foreach($data as $row): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($row['ProductName']) ?></td>
+                                <td><?= htmlspecialchars($row['Amount']) ?></td>
+                                <td><?= htmlspecialchars($row['Description']) ?></td>
+                                <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
+                                <td><form action="product_remove.php" method="post">
+                                    <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Remove</button></form></td>
+                                <td><form action="product_edit_entry.php" method="post">
+                                    <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form></td>
+                                </tr>
+                            <?php endforeach ?>
+                        </table>
+
+                </div>
+
+                
+            </div>
 
         </section>
 
-    <?php 
-        }
-    ?>
+        <?php 
+            }
+        ?>
 
         <!-- Footer-->
         <footer class="py-5 bg-dark">

@@ -2811,7 +2811,7 @@ textarea.form-control-lg {
   color: var(--bs-btn-color);
   text-align: center;
   text-decoration: none;
-  vertical-align: middle;
+  vertical-align: text-top;
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
