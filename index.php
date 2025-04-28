@@ -22,8 +22,8 @@
             $_GroupID = $_SESSION["GroupID"];
             $_GroupName = $_SESSION["GroupName"];
 
-            echo "Username is: ".$_Username."<br>";
-            echo "Group Name is: ".$_GroupName."<br>";
+            //echo "Username is: ".$_Username."<br>";
+            //echo "Group Name is: ".$_GroupName."<br>";
 
             $conn = mysqli_connect("localhost","root","","caravanserai");
             $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID NOT IN (SELECT UserID FROM $_GroupName)");
