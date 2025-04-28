@@ -45,7 +45,7 @@ else
     else
     {
         //Register the new group.  This assigns them a unique GroupID.
-        $sql = "INSERT INTO groups (GroupName, Password, Email, GroupID) VALUES ('$_Groupname', '$_HashedPassword', '$_Email', '$NewID')";
+        $sql = "INSERT INTO groups (GroupName, Password, Documents, Email, GroupID) VALUES ('$_Groupname', '$_HashedPassword', '', '$_Email', '$NewID')";
         //$sql = "INSERT INTO users (FirstName, LastName, Passwrd, Email) VALUES ('Saruman', 'TheWhite', 'mine', 'neutral@sauron.com')";
 
         //Commit the query to the database connection.
