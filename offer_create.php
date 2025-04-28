@@ -132,7 +132,7 @@ $stmt = $conn->prepare("UPDATE messages SET
 );
 $stmt->bind_param(
     "ssssssssssss", 
-    $_ProdUserID,      // string
+    $_UserID,      // string
     $_UserID1,         // string
     $_ProductName,     // string
     $_ProductName2,    // string
