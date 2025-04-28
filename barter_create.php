@@ -86,7 +86,7 @@ $row = mysqli_fetch_array($result);
 $_UserID2 = $row['u2ID'];
 
 //Create new transaction from new ID
-$sql = "INSERT INTO transactions (TransactionID) VALUES ('$_TransactionID','0','0','0','0','0')";
+$sql = "INSERT INTO transactions (TransactionID, UserID1, UserID2, Quantity1, ProductID1, ProductName1) VALUES ('$_TransactionID','0','0','0','0','0')";
 $conn->query($sql);
 
 //Update purchase information on transaction table
