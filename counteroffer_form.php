@@ -64,7 +64,9 @@
             <div class = "card bg-secondary">
                 <div class = "card-header">
                     Do you consider the current bargain not fair?  <br>
-                    Make your counteroffer and include a message to the other seller.
+                    Make your counteroffer and include a message to the other seller. <br>
+                    If you're logged into a group, you can barter with your group's products.  <br>
+                    Also, you can choose someone from your group to send the products that you have bartered! <br>
                 </div>
  
                 <div class = "card-body">
@@ -74,9 +76,10 @@
                         {
                             $_GroupID = $_SESSION["GroupID"];
                             $_GroupName = $_SESSION["GroupName"];
+                            $_UserID = $_SESSION["UserID"];
 
                             //$GroupID = intval($_GroupID);
-                            echo"Signed into group: ".$_SESSION['GroupName'];
+                            echo"Signed into group: ".$_SESSION['GroupName']."<br>";
                             //echo"\nSigned into group: ".$_SESSION['GroupID'];
 
                             $conn = mysqli_connect("localhost","root","","caravanserai");
@@ -99,10 +102,10 @@
                         $_ProductName2 = $_POST['ProductName2']; //Their productname
                         $_MessageID = $_POST['MessageID'];
 
-                        echo "_ProductName2 is: ".$_ProductName2;
-                        echo "_Message is: ".$_Message;
-                        echo "_Amount2 is: ".$_Amount2;
-                        echo "_MessageID is: ".$_MessageID;
+                        echo "The product they are offering: ".$_ProductName2."<br>";
+                        echo "They are offering an amount of: ".$_Amount2."<br>";
+                        echo "Their message to you is: ".$_Message."<br>";
+                        echo "(DEBUG)The message id is: ".$_MessageID."<br>";
                         ?>
 
                         <table class="table table-primary table-striped table-hover" border="1">
@@ -122,18 +125,42 @@
                                     <input style="height:30px; width:100px" id="message" name="message"></input>
                                     <label for="message">How Much You Want></label>
                                     <input style="height:30px; width:100px" id="amount2" name="amount2"></input>
+                                    <td>
+                                    <?php
+                                    if(isset($_SESSION["GroupID"]))
+                                    { 
+                                            $conn = mysqli_connect("localhost","root","","caravanserai");
+                                            $result = mysqli_query($conn,"SELECT Username FROM $_GroupName");
+                                            ?>
+                                    <!-- Start form here -->
+                                    <label for="SelectedUserID">Who gets their product:</label>
+                                    <!-- Produce the list of possible users to send the bartered product -->
+                                    <select name="SelectedUserID" id="SelectedUserID" class="form-select" style="width: 150px;">
+                                        <option value="">Select User</option>
+                                        <?php
+                                        
+                                        $users_result = mysqli_query($conn, "SELECT UserID, Username FROM $_GroupName ORDER BY Username ASC");
+                                        while($user = mysqli_fetch_assoc($users_result)):
+                                        ?>
+                                            <option value="<?= htmlspecialchars($user['UserID']) ?>">
+                                                <?= htmlspecialchars($user['Username']) ?>
+                                            </option>
+                                        <?php endwhile; ?>
+                                    </select>
+
+
+                                    <?php } ?>
+                                    </td>
                                     <!-- Hidden Input for ProductName -->
                                     <input type="hidden" name="ProductID1" value="<?= htmlspecialchars($row['ProductID']) ?>"></input>
                                     <input type="hidden" name="ProductName1" value="<?= htmlspecialchars($row['ProductName']) ?>"></input>
                                     <input type="hidden" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>"></input>
                                     <input type="hidden" name="ProductName2" value="<?= $_ProductName2 ?>"></input>
-
-                                    <button style="height:30px; width:100px" class="btn btn-secondary" input type="submit" name="MessageID" value="<?= htmlspecialchars($_MessageID) ?>">Make Offer</button>
-                                </form></td>
-
-
-
-                        
+                                    <td>
+                                    <button style="height:30px; width:120px" class="btn btn-secondary" input type="submit" name="MessageID" value="<?= htmlspecialchars($_MessageID) ?>">Counteroffer</button>
+                                    </td>
+                                </form>
+                            </td>
                         </tr>
                         <?php endforeach ?>
                         </table>

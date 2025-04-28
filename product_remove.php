@@ -25,7 +25,7 @@ if ($row = $result->fetch_assoc()) {
     $imagePath = './Images/' . $row['ImagePath'];
 
     //Delete the image from the file system
-    if (file_exists($imagePath)) {
+    if (file_exists($imagePath) && $row['ImagePath'] != 'logo_1.jpg') {
         if (unlink($imagePath)) {
             echo "Image deleted successfully.<br>";
         } else {

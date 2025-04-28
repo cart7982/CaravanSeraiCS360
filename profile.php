@@ -11,6 +11,21 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="styles.css" rel="stylesheet" />
     </head>
+    <script>
+        let selectedForm = null;
+
+        function openConfirmModal(button) {
+            selectedForm = button.closest('form'); // save the form that needs to be submitted
+            var myModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+            myModal.show();
+        }
+
+        document.getElementById('confirmSubmitBtn').addEventListener('click', function() {
+            if (selectedForm) {
+                selectedForm.submit(); // submit the form if confirmed
+            }
+        });
+    </script>
     <body>
         <?php
             session_start();
@@ -610,7 +625,7 @@
                             <td>in exchange for</td>
                             <td><?= htmlspecialchars($row['Amount2']) ?></td>
                             <td><?= htmlspecialchars($row['ProductName2']) ?></td>
-                            <td><form action="barter_accept.php" method="post">
+                            <td><form action="barter_accept.php" method="post" >
                                 <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
                             <td><form action="offer_delete.php" method="post">
                                 <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Cancel Offer</button></form></td>
@@ -787,4 +802,21 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirm Action</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Would you like to send the product to another user in your group?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmSubmitBtn">Yes, Accept Offer</button>
+            </div>
+            </div>
+        </div>
+        </div>
 </html>

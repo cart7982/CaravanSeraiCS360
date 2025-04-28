@@ -131,9 +131,6 @@
                 $_UserID = $_SESSION["UserID"];
                 $_Username = $_SESSION["Username"];
 
-                echo "_UserID is: ".$_UserID;
-                echo "Username is: ".$_Username;
-
                 $conn = mysqli_connect("localhost","root","","caravanserai");
                 $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID!='$_UserID' LIMIT 50");
             }

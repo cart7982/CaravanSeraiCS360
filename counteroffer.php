@@ -23,6 +23,12 @@ $_ProductID1 = $_POST['ProductID1'];
 $_ProductName1 = $_POST['ProductName1'];
 $_UserID = $_POST['UserID'];
 
+if(isset($_POST["SelectedUserID"]))
+{
+    //Get the product destiation's ID:
+    $_PartnerUserID = $_POST['SelectedUserID'];
+}
+
 //Account for escape characters such as '
 $_Message = mysqli_real_escape_string($conn, $_POST['message']);
 
@@ -43,9 +49,8 @@ if(!isset($_SESSION["UserID"]))
 {
     echo "User not detected!  Please log in to proceed!";
     //header('Location:login.html');
+    exit();
 }
-else
-{
 
 //UserID from the session global
 $_GUserID = $_SESSION["UserID"];
@@ -78,9 +83,8 @@ if($Amount1 > $pAmount1)
 {
     echo "First Not enough product!";
     //header('Location:profile.php');
+    exit();
 }
-else
-{
 
 
 //Get the amount of product currently in the database
@@ -95,9 +99,8 @@ if($Amount2 > $pAmount2)
 {
     echo "Second Not enough product!";
     //header('Location:profile.php');
+    exit();
 }
-else
-{
 
 //Get the first user ID from the transaction
 $result = mysqli_query($conn, "SELECT UserID1 AS u1ID FROM messages WHERE MessageID='$_MessageID'");
@@ -110,9 +113,18 @@ $row = mysqli_fetch_array($result);
 $UserID2 = $row['u2ID'];
 
 //Update the message with the new information.
-
+//Which user is which is important, as their numbers switch during the transaction process.
+//This is determined by who is currently logged in using GUserID, global user id, from the session.
+//This differentiates between Offers Made To You and Offers Made By You.
 if($_GUserID == $UserID1)
 {
+    //Check of the counterofferer has selected a new destination for the product.
+    //If so, then override their own userID as the destination.
+    if(isset($_POST["SelectedUserID"]))
+    {
+        //Get the product destiation's ID:
+        $_UserID = $_POST['SelectedUserID'];
+    }
     //Here we harden for SQL, since this is no longer internal data only
     $stmt = $conn->prepare("UPDATE messages SET Amount1=?,Amount2=?,ProductName1=?,BarterMessage=?,MessageUserID=?,Product1UserID=? WHERE MessageID=?");
     $stmt->bind_param("iisssss", $_Amount1, $_Amount2, $_ProductName1, $_Message, $_GUserID, $_UserID, $_MessageID);
@@ -124,6 +136,13 @@ if($_GUserID == $UserID1)
 }
 else
 {
+    //Check of the counterofferer has selected a new destination for the product.
+    //If so, then override their own userID as the destination.
+    if(isset($_POST["SelectedUserID"]))
+    {
+        //Get the product destiation's ID:
+        $_UserID = $_POST['SelectedUserID'];
+    }
     $stmt = $conn->prepare("UPDATE messages SET Amount1=?,Amount2=?,ProductName2=?,BarterMessage=?,MessageUserID=?,Product2UserID=? WHERE MessageID=?");
     $stmt->bind_param("iisssss", $_Amount2, $_Amount1, $_ProductName1, $_Message, $_GUserID, $_UserID, $_MessageID);
     $stmt->execute();
@@ -135,12 +154,8 @@ else
 
 
 $conn->close();
-
 header('Location:profile.php');
+exit();
 
-
-} //These brackets are the ugly solution to using header:
-} //Each one closes out an if-else statement.
-} //Without them, the rest of the page plays out even after the header change.
 
 ?>
