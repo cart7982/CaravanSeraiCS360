@@ -38,10 +38,9 @@ echo("_TransactionID is ".$_TransactionID);
 if(!isset($_SESSION["UserID"]))
 {
     echo "User not detected!  Please log in to proceed!";
-    //header('Location:login.html');
+    header('Location:login.html');
+    exit();
 }
-else
-{
 
 //UserID from the session global
 $_UserID = $_SESSION["UserID"];
@@ -56,9 +55,8 @@ $_UserID = $_SESSION["UserID"];
  {
     echo "Not enough product!";
     header('Location:make_offer.php');
+    exit();
  }
- else
- {
 
 
 //Grab the highest ID in the messages column, then increment it by one for the new MessageID to be assigned.
@@ -132,26 +130,23 @@ $stmt = $conn->prepare("UPDATE messages SET
 );
 $stmt->bind_param(
     "ssssssssssss", 
-    $_UserID,      // string
-    $_UserID1,         // string
-    $_ProductName,     // string
-    $_ProductName2,    // string
-    $_TransactionID,   // string
-    $_Amount1,         // string
-    $_Amount2,         // string
-    $_UserID,          // string
-    $_UserID1,         // string
-    $_Message,         // string
-    $_UserID,          // string
-    $_MessageID        // string
+    $_UserID,
+    $_UserID1,
+    $_ProductName,
+    $_ProductName2,
+    $_TransactionID,
+    $_Amount1,
+    $_Amount2,
+    $_UserID,
+    $_UserID1,
+    $_Message,
+    $_UserID,
+    $_MessageID
 );
 $stmt->execute();
 $stmt->close();
 header('Location:profile.php');
-
-
-}
-}
+exit();
 
 
 ?>
