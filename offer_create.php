@@ -110,7 +110,7 @@ $stmt->execute();
 $stmt->close();
 
 //Create the initial message
-$stmt = $conn->prepare("INSERT INTO messages (MessageID, UserID1, UserID2, BarterMessage, TransactionID, Amount1, Amount2, ProductName1, ProductName2, MessageUserID ) VALUES (?, '0', '0', '0', '0', '0', '0', '0', '0', '0')");
+$stmt = $conn->prepare("INSERT INTO messages (MessageID, UserID1, UserID2, BarterMessage, TransactionID, Amount1, Amount2, ProductName1, ProductName2, MessageUserID, Product1UserID, Product2UserID  ) VALUES (?, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')");
 $stmt->bind_param("s", $_MessageID);
 $stmt->execute();
 $stmt->close();
