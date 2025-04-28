@@ -136,7 +136,6 @@
             }
             else
             {
-                session_destroy();
                 $conn = mysqli_connect("localhost","root","","caravanserai");
                 $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
             }
