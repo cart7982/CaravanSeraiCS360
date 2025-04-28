@@ -173,7 +173,7 @@ if($accept1 != null && $accept1 != $_UserID)
         $PrevID = $row['max'];
         $_newProductID1 = intval($PrevID) + 1;
 
-        $sql = "INSERT INTO products (ProductName, ProductID, UserID, Amount, ImagePath) VALUES ('$_ProductName2', '$_newProductID1', '$_UserID1', '$Amount2', '$default')";
+        $sql = "INSERT INTO products (ProductName, ProductID, UserID, Amount, Description, ImagePath) VALUES ('$_ProductName2', '$_newProductID1', '$_UserID1', '$Amount2', '', '$default')";
         //Commit the query to the database connection.
         $conn->query($sql);
     }
