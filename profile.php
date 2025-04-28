@@ -566,15 +566,15 @@
                         <td><form action="barter_remove.php" method="post">
                                 <label for="Quantity">Remove></label>
                                 <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                                <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Remove</button>
+                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Remove</button>
                             </form></td>
                         <td><form action="barter_add.php" method="post">
                                 <label for="Quantity">Add></label>
                                 <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                                <button style="height:30px; width:70px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Add</button>
+                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Add</button>
                             </form></td>
                         <td><form action="cart_offer.php" method="post">
-                                <button style="height:30px; width:100px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Make Offer</button>
+                                <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Make Offer</button>
                             </form></td>
                     </tr>
                     <?php endforeach ?>
@@ -720,15 +720,34 @@
                 
 
                         <?php
+                        if(isset($_SESSION["UserID"]) && isset($_SESSION["GroupID"]))
+                        {
+                            $_UserID = $_SESSION["UserID"];
+                            $_Username = $_SESSION["Username"];
+                            $_GroupID = $_SESSION["GroupID"];
+                            $_GroupName = $_SESSION["GroupName"];
+
+                            //echo "Username is: ".$_Username."<br>";
+                            //echo "Group Name is: ".$_GroupName."<br>";
+
+                            $conn = mysqli_connect("localhost","root","","caravanserai");
+                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID IN (SELECT UserID FROM $_GroupName)");
+                            $data = $result->fetch_all(MYSQLI_ASSOC);
+
+                        }
+                        else if(isset($_SESSION["UserID"]) && !isset($_SESSION["GroupID"]))
+                        {
                             $_UserID = $_SESSION["UserID"];
                             $conn = mysqli_connect("localhost","root","","caravanserai");
-                            $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID='$_UserID' LIMIT 50");
+                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID='$_UserID' LIMIT 50");
                             $data = $result->fetch_all(MYSQLI_ASSOC);
+                        }
                         ?>
 
                         <table border="1" class="table table-secondary table-striped table-hover">
                             <tr>
                                 <th>Product Name</th>
+                                <th>Product Owner</th>
                                 <th>Amount</th>
                                 <th>Description</th>
                                 <th>Product Picture</th>
@@ -738,6 +757,7 @@
                             <?php foreach($data as $row): ?>
                             <tr>
                                 <td><?= htmlspecialchars($row['ProductName']) ?></td>
+                                <td><?= htmlspecialchars($row['Username']) ?></td>
                                 <td><?= htmlspecialchars($row['Amount']) ?></td>
                                 <td><?= htmlspecialchars($row['Description']) ?></td>
                                 <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>

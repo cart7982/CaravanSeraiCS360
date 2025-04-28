@@ -56,6 +56,13 @@ if($result->num_rows === 1){
         {
             unset($_SESSION["AdminID"]);
         }
+
+        //Unset from any groups that were logged in
+        if (isset($_SESSION["GroupID"]))
+        {
+            unset($_SESSION["GroupName"]);
+            unset($_SESSION["GroupID"]);
+        }
                  
         $stmt->close();
         $conn->close();
