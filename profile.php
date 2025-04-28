@@ -555,11 +555,14 @@
                         
                 </div>
             </div>
-
-            
+       
             <div class="card bg-primary">
                 <div class = "card-body">
-                    <h2>START A BARTER</h2><br>
+                    <h2>START A BARTER</h2>
+                    <h6>Once you have selected the item(s) you wish to trade for, start the barter to make an offer on what you are willing 
+                        to exchange for it. <br>
+                        You will need to barter for each item individually.
+                    </h6>
                     <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
@@ -598,6 +601,10 @@
                 
                 <div class = "card-body">
                     <h2>OFFERS YOU HAVE MADE:</h2> 
+                    <h6>Once you make an offer on an item, the transaction will appear here.  <br>
+                    Keep an eye on it to remain aware of counteroffers!  <br>
+                    Once you've accepted the terms, hit the 'Accept' button. <br>
+                    The transaction will go through once both parties have accepted the terms.</h6>
                     <?php
                         $_UserID = $_SESSION["UserID"];
                         $conn = mysqli_connect("localhost","root","","caravanserai");
@@ -644,6 +651,9 @@
 
                 <div class = "card-body">
                     <h2>OFFERS MADE TO YOU:</h2> 
+                    <h6>If somebody wants some of your goods, the transaction will appear here. <br>
+                    Make counteroffers to satisfy yourself with the deal, then hit 'Accept' once you're satisfied. <br>
+                    The transaction will only go through once both sides have accepted the terms.</h6>
                         <?php
                         $_UserID = $_SESSION["UserID"];
                         $conn = mysqli_connect("localhost","root","","caravanserai");
@@ -789,6 +799,24 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmModalLabel">Confirm Action</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Would you like to send the product to another user in your group?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="confirmSubmitBtn">Yes, Accept Offer</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <?php 
@@ -802,21 +830,5 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
-    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="confirmModalLabel">Confirm Action</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Would you like to send the product to another user in your group?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="confirmSubmitBtn">Yes, Accept Offer</button>
-            </div>
-            </div>
-        </div>
-        </div>
+    
 </html>

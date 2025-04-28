@@ -63,10 +63,8 @@
         <section class="py-5">
             <div class = "card bg-secondary">
                 <div class = "card-header">
-                    Do you consider the current bargain not fair?  <br>
-                    Make your counteroffer and include a message to the other seller. <br>
-                    If you're logged into a group, you can barter with your group's products.  <br>
-                    Also, you can choose someone from your group to send the products that you have bartered! <br>
+                    If you are unsatisfied with the current bargain, make a counteroffer. <br>
+                    You can make as many counteroffers as you wish until you're satisfied.
                 </div>
  
                 <div class = "card-body">

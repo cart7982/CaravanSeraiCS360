@@ -170,33 +170,7 @@
                 </div>
             <?php } ?>
             </div>
-            </div>
-
-            <table border="1" class="table table-success table-striped table-hover">
-            <tr>
-                <th>Product Name</th>
-                <th>Amount</th>
-                <th>Description</th>
-                <th>Picture</th>
-                <th>How Much You Want</th>
-            </tr>
-            <?php foreach($data as $row): ?>
-            <tr>
-                <td><?= htmlspecialchars($row['ProductName']) ?></td>
-                <td><?= htmlspecialchars($row['Amount']) ?></td>
-                <td><?= htmlspecialchars($row['Description']) ?></td>
-                <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
-                <!-- <?php //$imagePath = !empty($row['ImagePath']) ? htmlspecialchars($row['ImagePath']) : 'images/placeholder.png'; ?>
-            echo "
-                <td><img src='$imagePath' alt='Product Image' style='width:100px;height:auto;'></td>"; -->
-
-                <td><form action="barter_create.php" method="post">
-                    <label for="Quantity">Quantity></label>
-                    <input style="height:30px; width:100px" id="Quantity" name="Quantity"></input>
-                    <button style="height:30px; width:150px" class="btn btn-dark" input type="submit" name="ProductID" value="<?= $row['ProductID'] ?>">Request Barter</button></form></td>
-                </tr>
-            <?php endforeach ?>
-            </table>       
+            </div>       
         
         </section>
 

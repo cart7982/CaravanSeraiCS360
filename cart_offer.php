@@ -101,7 +101,7 @@
 
                     ?>
 
-                    <table border="1" class="table table-dark table-striped table-hover">
+                    <table border="1" class="table table-light table-striped table-hover">
                     <tr>
                         <th>Product Name</th>
                         <th>Amount</th>

@@ -61,7 +61,10 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">Group Log In</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Join a group! Connect with others to expand your trade range</p>
+                    <p class="lead fw-normal text-white-50 mb-0">Join a group! Connect with others to expand your trade range
+                        <br>Logging in lets you select which group you are actively trading within.
+                        <br>You can be on the lists of multiple groups; you can only be logged in for one at a time.
+                    </p>
                 </div>
             </div>
         </header>
