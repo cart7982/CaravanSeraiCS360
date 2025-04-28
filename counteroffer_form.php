@@ -98,12 +98,16 @@
                         $_Message = $_POST['message'];
                         $_Amount2 = $_POST['amount2']; //Their amount
                         $_ProductName2 = $_POST['ProductName2']; //Their productname
+                        $_Amount1 = $_POST['amount1']; //The requested amount
+                        $_ProductName1 = $_POST['ProductName1']; //The requested productname
                         $_MessageID = $_POST['MessageID'];
 
                         echo "The product they are offering: ".$_ProductName2."<br>";
                         echo "They are offering an amount of: ".$_Amount2."<br>";
+                        echo "And they want: ".$_ProductName1."<br>";
+                        echo "In the amount of: ".$_Amount1."<br>";
                         echo "Their message to you is: ".$_Message."<br>";
-                        echo "(DEBUG)The message id is: ".$_MessageID."<br>";
+                        //echo "(DEBUG)The message id is: ".$_MessageID."<br>";
                         ?>
 
                         <table class="table table-primary table-striped table-hover" border="1">

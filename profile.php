@@ -631,7 +631,7 @@
                             <td><?= htmlspecialchars($row['ProductName1']) ?></td>
                             <td>in exchange for</td>
                             <td><?= htmlspecialchars($row['Amount2']) ?></td>
-                            <td><?= htmlspecialchars($row['ProductName2']) ?></td>
+                            <td><?= htmlspecialchars($row['ProductName2']) ?></td>                            
                             <td><form action="barter_accept.php" method="post" >
                                 <button style="height:30px; width:120px" class="btn btn-light" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Accept Offer</button></form></td>
                             <td><form action="offer_delete.php" method="post">
@@ -639,11 +639,13 @@
                             
                             <td><form action="counteroffer_form.php" method="post">
                                 <input type="hidden" name="message" value="<?= htmlspecialchars($row['BarterMessage']) ?>"></input>
+                                <input type="hidden" name="amount1" value="<?= htmlspecialchars($row['Amount1']) ?>"></input>
                                 <input type="hidden" name="amount2" value="<?= htmlspecialchars($row['Amount2']) ?>"></input>
+                                <input type="hidden" name="ProductName1" value="<?= htmlspecialchars($row['ProductName1']) ?>"></input>
                                 <input type="hidden" name="ProductName2" value="<?= htmlspecialchars($row['ProductName2']) ?>"></input>
                                 <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
                             </tr>
-                        <?php endforeach ?>
+                        <?php endforeach; ?>
                         </table>
 
                 </div>
@@ -688,8 +690,10 @@
                             
                             <td><form action="counteroffer_form.php" method="post">
                                 <input type="hidden" name="message" value="<?= htmlspecialchars($row['BarterMessage']) ?>"></input>
-                                <input type="hidden" name="amount2" value="<?= htmlspecialchars($row['Amount1']) ?>"></input>
-                                <input type="hidden" name="ProductName2" value="<?= htmlspecialchars($row['ProductName1']) ?>"></input>
+                                <input type="hidden" name="amount1" value="<?= htmlspecialchars($row['Amount1']) ?>"></input>
+                                <input type="hidden" name="amount2" value="<?= htmlspecialchars($row['Amount2']) ?>"></input>
+                                <input type="hidden" name="ProductName1" value="<?= htmlspecialchars($row['ProductName1']) ?>"></input>
+                                <input type="hidden" name="ProductName2" value="<?= htmlspecialchars($row['ProductName2']) ?>"></input>
                                 <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="MessageID" value="<?= $row['MessageID'] ?>">Counteroffer</button></form></td>
                                                                             
                         </tr>
