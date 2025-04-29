@@ -34,6 +34,7 @@ else
 $_ProductName = $_POST['productname'];
 $_Description = $_POST['description'];
 $_Amount = $_POST['amount'];
+$_NewProductID = $_POST['NewProductID'];
 $_ProductID = $_POST['ProductID'];
 
 //Get the image file names:
@@ -44,9 +45,12 @@ $targetFile = $targetDir . $_Filename;
 
 echo "_Filename is: ".$_Filename;
 echo "_TempFilename is: ".$_TempFilename;
+echo "_ProductName is: ".$_ProductName;
+echo "_Description is: ".$_Description;
+echo "_NewProductID is: ".$_NewProductID;
 
 //Check if a new product image is set
-if(isset($_FILES['uploadfile']['tmp_name']))
+if(isset($_FILES['uploadfile']['tmp_name']) && $_FILES['uploadfile']['tmp_name'] != null && $_FILES['uploadfile']['tmp_name'] != '')
 {
     //Get the image filename/path from the database
     $stmt = $conn->prepare("SELECT ImagePath FROM products WHERE ProductID = ?");
@@ -84,17 +88,24 @@ if(isset($_FILES['uploadfile']['tmp_name']))
     $stmt->execute();
     $stmt->close();
 }
-else
-{
-    $default = "logo_1.jpg";
-    //If no new product image, then only update other parameters
-    $stmt = $conn->prepare("UPDATE products SET ProductName=?,Description=?, Amount=?, ImagePath=? WHERE ProductID=?");
-    $stmt->bind_param("sssss", $_ProductName, $_Description, $_Amount, $default, $_ProductID);
+
+if(isset($_POST['description']) && $_Description != null && $_Description != '')
+{    
+    $stmt = $conn->prepare("UPDATE products SET Description=? WHERE ProductID='$_ProductID'");
+    $stmt->bind_param("s", $_Description);
     $stmt->execute();
     $stmt->close();
 }
 
-if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION["AdminID"]))
+if(isset($_POST['productname']) && $_ProductName != null && $_ProductName != '')
+{    
+    $stmt = $conn->prepare("UPDATE products SET ProductName=? WHERE ProductID='$_ProductID'");
+    $stmt->bind_param("s", $_ProductName);
+    $stmt->execute();
+    $stmt->close();
+}
+
+if($_SESSION["AdminID"] != '0' && isset($_SESSION["AdminID"]))
 {
     if(isset($_POST['UserID']) && $_UserID != null && $_UserID != '')
     {    
@@ -104,7 +115,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
         $stmt->close();
     }
 
-    if(isset($_POST['price']) && $_Price != null && $_Price != '')
+    if(isset($_POST['_NewProductID']) && $_NewProductID != null && $_NewProductID != '')
     {    
         $stmt = $conn->prepare("UPDATE products SET ProductID=? WHERE ProductID='$_ProductID'");
         $stmt->bind_param("s", $_NewProductID);
@@ -118,7 +129,7 @@ else
 }
 
 
-header('Location:profile.php');
+//header('Location:profile.php');
 exit();
 }
 ?>

@@ -67,11 +67,16 @@
         <section class="py-5">
 
             <?php
-                if(isset($_POST["TransactionID"]))
+                $_UserID = $_SESSION["UserID"];
+
+                if(isset($_POST["ProductID"]))
                 {
                     $_ProductID = $_POST["ProductID"];
                 }
-                $_UserID = $_SESSION["UserID"];
+                if(isset($_POST["ProductID"]))
+                {
+                    $_UserID = $_POST["UserID"];
+                }
                 $conn = mysqli_connect("localhost","root","","caravanserai");
                 $result = mysqli_query($conn,"SELECT * FROM products WHERE ProductID='$_ProductID' LIMIT 50");
                 //$data = $result->fetch_all(MYSQLI_ASSOC);
@@ -121,10 +126,12 @@
                 { ?>
                     <input type="hidden" name="ProductID" value="<?= htmlspecialchars($_ProductID) ?>"></input>
                     <div class="form-group">
+                        <?php echo "Current ProductID is: ".$row['ProductID']; ?><br>
                         <label for = "NewProductID" class = "form-label">New Product ID:  </label>
                         <input class="form-control" type="text" id = "NewProductID" name="NewProductID" >
                     </div>
                     <div class="form-group">
+                        <?php echo "Current UserID is: ".$row['UserID']; ?><br>
                         <label for = "UserID" class = "form-label">New User ID:  </label>
                         <input class="form-control" type="text" id = "UserID" name="UserID" >
                     </div>
