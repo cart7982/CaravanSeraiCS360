@@ -28,7 +28,7 @@ $_Email = $_POST['email'];
 $_HashedPassword = password_hash($_Password, PASSWORD_DEFAULT);
 
 //Get the data from users to check the old information against the new
-$result = mysqli_query($conn,"SELECT * FROM users WHERE MessageID='$_MessageID'");
+$result = mysqli_query($conn,"SELECT * FROM users WHERE UserID='$_UserID'");
 $row = $result->fetch_assoc();
 
 //Check if an admin is logged in
