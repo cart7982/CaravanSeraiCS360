@@ -102,7 +102,7 @@
                         }
                         $_UserID = $_SESSION["UserID"];
                         ?>
-                    <form action="profile_edit.html" method="post">
+                    <form action="profile_edit_entry.php" method="post">
                             <button style="height:30px; width:240px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Edit Profile</button></form><br>
                         
                 </div>
@@ -551,7 +551,7 @@
                         }
                         $_UserID = $_SESSION["UserID"];
                         ?>
-                    <form action="profile_edit.html" method="post">
+                    <form action="profile_edit_entry.php" method="post">
                             <button style="height:30px; width:180px" class="btn btn-light" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Update Profile</button></form><br>
                         
                 </div>

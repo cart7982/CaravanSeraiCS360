@@ -81,28 +81,37 @@
                     header('Location:login.html');
                     exit();
                 }
+                //UserID is posted when an admin is making an edit
+                //Otherwise it is the logged in user
                 if(isset($_POST["UserID"]))
                 {
                     $_UserID = $_POST["UserID"];
                 }
+                $conn = mysqli_connect("localhost","root","","caravanserai");
+                $result = mysqli_query($conn,"SELECT * FROM users WHERE UserID='$_UserID'");
+                //$data = $result->fetch_all(MYSQLI_ASSOC);
+                $row = $result->fetch_assoc();
 
             ?>
             <form action="profile_edit.php" method="post">
                 <div class = "mb-3 mt-3">
+                    <?php echo "Current Username is: ".$row['Username']; ?><br>
                     <label for = "username" class = "form-label">Username: </label>
                     <input type = "username" class = "form-control" id = "username" placeholder = "Enter username" name = "username">
                 </div>
                 <div class = "mb-3">
+                    <?php echo "Current Password (hashed) is: ".$row['Password']; ?><br>
                     <label for = "pwd" class = "form-label"> Password: </label>
                     <input type = "password" class = "form-control" id = "pwd" placeholder = "Enter password" name = "pwd">
                 </div>
                 <div class = "mb-3">
+                    <?php echo "Current email is: ".$row['Email']; ?><br>
                     <label for = "email" class = "form-label"> Email: </label>
                     <input type = "email" class = "form-control" id = "email" placeholder = "Enter email" name = "email">
                 </div>
 
                 <?php 
-                if(isset($_SESSION["AdminID"]) && $_SESSION["AdminID"] != null && $_SESSION["AdminID"] != "")
+                if(isset($_SESSION["AdminID"]) && $_SESSION["AdminID"] != null && $_SESSION["AdminID"] != "" && isset($_POST["UserID"]))
                 { ?>
                     <input type="hidden" name="UserID" value="<?= htmlspecialchars($_UserID) ?>"></input>
                     <div class="form-group">

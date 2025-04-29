@@ -92,7 +92,7 @@ if (isset($_POST["Completed"])) {
 
 }
 
-if(isset($_POST["NewTransactionID"]))
+if(isset($_POST["NewTransactionID"]) && $_NewTransactionID != '' && $_NewTransactionID != null)
 {
     $stmt = $conn->prepare("UPDATE transactions SET TransactionID = ? WHERE TransactionID = ?");
     $stmt->bind_param("ss", $_NewTransactionID, $_TransactionID);

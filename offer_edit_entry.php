@@ -78,8 +78,6 @@
             </div>
             <div class = "card-body">
                 This is the page for an admin to change information about a current tuple in the messages table.<br>
-                All information must be updated, or it will be deleted.<br> 
-                Copy-paste the information that already exists if it's not being updated! <br>
             </div>
         </div>
 

@@ -78,7 +78,6 @@
             </div>
             <div class = "card-body">
                 This is the page for an admin to change information in a transaction.<br>
-                All information must be updated, or it will be deleted.<br> 
             </div>
         </div>
 
