@@ -360,7 +360,7 @@
                                             <?php echo htmlspecialchars($row['GroupID']); ?><br>
                                             <form action="group_delete.php" method="post">
                                                 <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Delete</button></form>
-                                            <form action="group_edit_form.php" method="post">
+                                            <form action="group_edit_entry.php" method="post">
                                                 <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Update</button></form>
                                         </div>
                                     </div>
@@ -518,7 +518,7 @@
                         <td><form action="offer_delete.php" method="post">
                             <button style="height:30px; width:120px" class="btn btn-primary" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Delete</button></form></td>
                         
-                        <td><form action="offer_edit.php" method="post">
+                        <td><form action="offer_edit_entry.php" method="post">
                             <button style="height:30px; width:120px" class="btn btn-primary" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Update</button></form></td>
                     </tr>
                     <?php endforeach ?>
