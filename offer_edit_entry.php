@@ -93,38 +93,72 @@
             $result = mysqli_query($conn,"SELECT * FROM groups WHERE MessageID='$_MessageID'");
             //$data = $result->fetch_all(MYSQLI_ASSOC);
             $row = $result->fetch_assoc();
-
         ?>
         <!--This form starts the user session.  This allows for the usage of
-            global variables as described in session.php.-->
-        <form action="group_edit.php" method="post">
+            global variables as described in session.php.-->	
+        <form action="offer_edit.php" method="post">
             <div class = "mb-3 mt-3">
-                <?php echo "Current GroupID is: ".$row['GroupID']."<br>"; ?>
-                <label for = "NewGroupID" class = "form-label">New GroupID: </label>
-                <input type = "text" class = "form-control" id = "NewGroupID" placeholder = "Enter NewGroupID" name = "NewGroupID">
+                <?php echo "Current MessageID is: ".$row['MessageID']."<br>"; ?>
+                <label for = "NewMessageID" class = "form-label">New MessageID: </label>
+                <input type = "text" class = "form-control" id = "NewMessageID" placeholder = "Enter NewMessageID" name = "NewMessageID">
             </div>
             <div class = "mb-3">
-                <?php echo "Current Documentation is: ".$row['Documents']."<br>"; ?>
-                <label for = "Documents" class = "form-label"> New Documents: </label>
-                <input type = "text" class = "form-control" id = "Documents" placeholder = "Enter Documents" name = "Documents">
+                <?php echo "Current UserID1 is: ".$row['UserID1']."<br>"; ?>
+                <label for = "UserID1" class = "form-label"> New UserID1: </label>
+                <input type = "text" class = "form-control" id = "UserID1" placeholder = "Enter UserID1" name = "UserID1">
             </div>
             <div class = "mb-3">
-                <?php echo "Current Group Name is: ".$row['GroupName']."<br>"; ?>
-                <label for = "GroupName" class = "form-label"> New GroupName: </label>
-                <input type = "text" class = "form-control" id = "GroupName" placeholder = "Enter GroupName" name = "GroupName">
+                <?php echo "Current UserID2 is: ".$row['UserID2']."<br>"; ?>
+                <label for = "UserID2" class = "form-label"> New UserID2: </label>
+                <input type = "text" class = "form-control" id = "UserID2" placeholder = "Enter UserID2" name = "UserID2">
             </div>
             <div class = "mb-3">
-                <?php echo "Current Password (hashed) is: ".$row['Password']."<br>"; ?>
-                <label for = "NewPassword" class = "form-label"> New Password: </label>
-                <input type = "text" class = "form-control" id = "NewPassword" placeholder = "Enter NewPassword" name = "NewPassword">
+                <?php echo "Current BarterMessage is: ".$row['BarterMessage']."<br>"; ?>
+                <label for = "BarterMessage" class = "form-label"> New BarterMessage: </label>
+                <input type = "text" class = "form-control" id = "BarterMessage" placeholder = "Enter BarterMessage" name = "BarterMessage">
             </div>
             <div class = "mb-3">
-                <?php echo "Current Email is: ".$row['Email']."<br>"; ?>
-                <label for = "Email" class = "form-label"> New Email: </label>
-                <input type = "email" class = "form-control" id = "Email" placeholder = "Enter Email" name = "Email">
+                <?php echo "Current TransactionID is: ".$row['TransactionID']."<br>"; ?>
+                <label for = "TransactionID" class = "form-label"> New TransactionID: </label>
+                <input type = "text" class = "form-control" id = "TransactionID" placeholder = "Enter TransactionID" name = "TransactionID">
+            </div>
+            <div class = "mb-3">
+                <?php echo "Current Amount1 is: ".$row['Amount1']."<br>"; ?>
+                <label for = "Amount1" class = "form-label"> New Amount1: </label>
+                <input type = "text" class = "form-control" id = "Amount1" placeholder = "Enter Amount1" name = "Amount1">
+            </div>
+            <div class = "mb-3">
+                <?php echo "Current Amount2 is: ".$row['Amount2']."<br>"; ?>
+                <label for = "Amount2" class = "form-label"> New Amount2: </label>
+                <input type = "text" class = "form-control" id = "Amount2" placeholder = "Enter Amount2" name = "Amount2">
+            </div>
+            <div class = "mb-3">
+                <?php echo "Current ProductName1 is: ".$row['ProductName1']."<br>"; ?>
+                <label for = "ProductName1" class = "form-label"> New ProductName1: </label>
+                <input type = "text" class = "form-control" id = "ProductName1" placeholder = "Enter ProductName1" name = "ProductName1">
+            </div>
+            <div class = "mb-3">
+                <?php echo "Current ProductName2 is: ".$row['ProductName2']."<br>"; ?>
+                <label for = "ProductName2" class = "form-label"> New ProductName2: </label>
+                <input type = "text" class = "form-control" id = "ProductName2" placeholder = "Enter ProductName2" name = "ProductName2">
+            </div>
+            <div class = "mb-3">
+                <?php echo "Current MessageUserID is: ".$row['MessageUserID']."<br>"; ?>
+                <label for = "MessageUserID" class = "form-label"> New MessageUserID: </label>
+                <input type = "text" class = "form-control" id = "MessageUserID" placeholder = "Enter MessageUserID" name = "MessageUserID">
+            </div>
+            <div class = "mb-3">
+                <?php echo "Current Product1UserID is: ".$row['Product1UserID']."<br>"; ?>
+                <label for = "Product1UserID" class = "form-label"> New Product1UserID: </label>
+                <input type = "text" class = "form-control" id = "Product1UserID" placeholder = "Enter Product1UserID" name = "Product1UserID">
+            </div>
+            <div class = "mb-3">
+                <?php echo "Current Product2UserID is: ".$row['Product2UserID']."<br>"; ?>
+                <label for = "Product2UserID" class = "form-label"> New Product2UserID: </label>
+                <input type = "text" class = "form-control" id = "Product2UserID" placeholder = "Enter Product2UserID" name = "Product2UserID">
             </div>
 
-            <button type = "submit" class = "btn btn-secondary" name="GroupID" value="<?= $_GroupID ?>"> Submit</button>
+            <button type = "submit" class = "btn btn-secondary" name="MessageID" value="<?= $_MessageID ?>"> Submit</button>
         </form>
         </section>
 
