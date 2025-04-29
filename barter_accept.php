@@ -49,31 +49,45 @@ $_accept1 = $row['accept1'];
 
 if($_accept1 != null && $_accept1 != $_UserID)
 {
-    $result = mysqli_query($conn, "SELECT Amount1 AS amt1, Amount2 AS amt2, TransactionID as trnID, Product1UserID as prd1, Product2UserID as prd2, ProductName1 as prdName1, ProductName2 as prdName2 FROM messages WHERE MessageID='$_MessageID'");
+    //UserID1 	UserID2 	BarterMessage 	TransactionID 	Amount1 	
+    //MessageID 	Amount2 	ProductName1 	ProductName2 	MessageUserID 	Product1UserID 	Product2UserID 	
+    $result = mysqli_query($conn, "SELECT UserID1 AS user1, UserID2 AS user2, Amount1 AS amt1, Amount2 AS amt2, TransactionID as trnID, Product1UserID as prd1, ProductID1 as prdid1, Product2UserID as prd2, ProductID2 as prdid2, ProductName1 as prdName1, ProductName2 as prdName2 FROM messages WHERE MessageID='$_MessageID'");
     $row = mysqli_fetch_array($result);
     $_Amount1 = $row['amt1'];
     $_Amount2 = $row['amt2'];
     $_TransactionID = $row['trnID'];
     $_Product1UserID = $row['prd1'];
     $_Product2UserID = $row['prd2'];
+    $_ProductID1 = $row['prdid1'];
+    $_ProductID2 = $row['prdid2'];
     $_ProductName1 = $row['prdName1'];
     $_ProductName2 = $row['prdName2'];
+    $_UserID1 = $row['user1'];
+    $_UserID2 = $row['user2'];
 
     echo "_Amount1 is: ".$_Amount1;
     echo "_Amount2 is: ".$_Amount2;
     echo "_TransactionID is: ".$_TransactionID;
     echo "_ProductName1 is: ".$_ProductName1;
     echo "_ProductName2 is: ".$_ProductName2;
+    echo "_ProductName2 is: ".$_ProductName2;
+    echo "_ProductName2 is: ".$_ProductName2;
     echo "_Product1UserID is: ".$_Product1UserID;
     echo "_Product2UserID is: ".$_Product2UserID;
+    echo "_ProductID1 is: ".$_ProductID1;
+    echo "_ProductID2 is: ".$_ProductID2;
+    echo "_UserID1 is: ".$_UserID1;
+    echo "_UserID2 is: ".$_UserID2;
+
+    
 
     //Get the productID for the first product
-    $result = mysqli_query($conn, "SELECT ProductID AS prdID1 FROM products WHERE UserID='$_Product1UserID' AND ProductName='$_ProductName1'");
+    $result = mysqli_query($conn, "SELECT ProductID AS prdID1 FROM products WHERE ProductID = '$_ProductID1'");
     $row = mysqli_fetch_array($result);
     $_ProductID1 = $row['prdID1'];
 
     //Get the productID for the second product
-    $result = mysqli_query($conn, "SELECT ProductID AS prdID2 FROM products WHERE UserID='$_Product2UserID' AND ProductName='$_ProductName2'");
+    $result = mysqli_query($conn, "SELECT ProductID AS prdID2 FROM products WHERE ProductID = '$_ProductID2'");
     $row = mysqli_fetch_array($result);
     $_ProductID2 = $row['prdID2'];
 

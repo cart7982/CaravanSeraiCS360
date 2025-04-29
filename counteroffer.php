@@ -126,8 +126,8 @@ if($_GUserID == $UserID1)
         $_UserID = $_POST['SelectedUserID'];
     }
     //Here we harden for SQL, since this is no longer internal data only
-    $stmt = $conn->prepare("UPDATE messages SET Amount1=?,Amount2=?,ProductName1=?,BarterMessage=?,MessageUserID=?,Product1UserID=? WHERE MessageID=?");
-    $stmt->bind_param("iisssss", $_Amount1, $_Amount2, $_ProductName1, $_Message, $_GUserID, $_UserID, $_MessageID);
+    $stmt = $conn->prepare("UPDATE messages SET Amount1=?,Amount2=?,ProductName1=?,ProductID1=?,BarterMessage=?,MessageUserID=?,Product1UserID=? WHERE MessageID=?");
+    $stmt->bind_param("iissssss", $_Amount1, $_Amount2, $_ProductName1, $_ProductID1, $_Message, $_GUserID, $_UserID, $_MessageID);
     $stmt->execute();
     $stmt->close();
 
@@ -143,8 +143,8 @@ else
         //Get the product destiation's ID:
         $_UserID = $_POST['SelectedUserID'];
     }
-    $stmt = $conn->prepare("UPDATE messages SET Amount1=?,Amount2=?,ProductName2=?,BarterMessage=?,MessageUserID=?,Product2UserID=? WHERE MessageID=?");
-    $stmt->bind_param("iisssss", $_Amount2, $_Amount1, $_ProductName1, $_Message, $_GUserID, $_UserID, $_MessageID);
+    $stmt = $conn->prepare("UPDATE messages SET Amount1=?,Amount2=?,ProductName2=?,ProductID2=?,BarterMessage=?,MessageUserID=?,Product2UserID=? WHERE MessageID=?");
+    $stmt->bind_param("iissssss", $_Amount2, $_Amount1, $_ProductName1, $_ProductID1, $_Message, $_GUserID, $_UserID, $_MessageID);
     $stmt->execute();
     $stmt->close();
 

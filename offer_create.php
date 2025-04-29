@@ -86,10 +86,11 @@ if(isset($_SESSION["AdminID"]) && $_SESSION["AdminID"] != '0')
 }
 
 //Get the second amount from the transaction
-$result = mysqli_query($conn, "SELECT Quantity1 AS amount1 FROM transactions WHERE TransactionID='$_TransactionID'");
+$result = mysqli_query($conn, "SELECT Quantity1 AS amount1, ProductID1 AS productID1 FROM transactions WHERE TransactionID='$_TransactionID'");
 $row = mysqli_fetch_array($result);
-$PrevID = $row['amount1'];
-$_Amount2 = intval($PrevID);
+$Amount = $row['amount1'];
+$_Amount2 = intval($Amount);
+$_ProductID2 = $row['productID1'];
 
 //Get the second productname from the transaction
 $result = mysqli_query($conn, "SELECT ProductName1 AS pname1 FROM transactions WHERE TransactionID='$_TransactionID'");
@@ -114,7 +115,7 @@ $stmt->execute();
 $stmt->close();
 
 //Create the initial message
-$stmt = $conn->prepare("INSERT INTO messages (MessageID, UserID1, UserID2, BarterMessage, TransactionID, Amount1, Amount2, ProductName1, ProductName2, MessageUserID, Product1UserID, Product2UserID  ) VALUES (?, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')");
+$stmt = $conn->prepare("INSERT INTO messages (MessageID, UserID1, UserID2, BarterMessage, TransactionID, Amount1, Amount2, ProductName1, ProductID1, ProductName2, ProductID2, MessageUserID, Product1UserID, Product2UserID  ) VALUES (?, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')");
 $stmt->bind_param("s", $_MessageID);
 $stmt->execute();
 $stmt->close();
@@ -124,7 +125,9 @@ $stmt = $conn->prepare("UPDATE messages SET
     Product1UserID = ?, 
     Product2UserID = ?, 
     ProductName1 = ?, 
-    ProductName2 = ?, 
+    ProductID1 = ?, 
+    ProductName2 = ?,  
+    ProductID2 = ?, 
     TransactionID = ?, 
     Amount1 = ?, 
     Amount2 = ?, 
@@ -135,11 +138,13 @@ $stmt = $conn->prepare("UPDATE messages SET
     WHERE MessageID = ?"
 );
 $stmt->bind_param(
-    "ssssssssssss", 
+    "ssssssssssssss", 
     $_UserID,
     $_UserID1,
     $_ProductName,
+    $_ProductID,
     $_ProductName2,
+    $_ProductID2,
     $_TransactionID,
     $_Amount1,
     $_Amount2,
