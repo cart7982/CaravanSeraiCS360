@@ -357,10 +357,10 @@
                                         <div class="text-center">
                                             <h5 class="fw-bolder"><?php echo htmlspecialchars($row['GroupName']); ?></h5>
                                             <?php echo htmlspecialchars($row['Email']); ?><br>
-                                            <?php echo htmlspecialchars($row['GroupID']); ?>
+                                            <?php echo htmlspecialchars($row['GroupID']); ?><br>
                                             <form action="group_delete.php" method="post">
                                                 <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Delete</button></form>
-                                            <form action="group_edit.php" method="post">
+                                            <form action="group_edit_form.php" method="post">
                                                 <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Update</button></form>
                                         </div>
                                     </div>
@@ -604,7 +604,9 @@
                     <h6>Once you make an offer on an item, the transaction will appear here.  <br>
                     Keep an eye on it to remain aware of counteroffers!  <br>
                     Once you've accepted the terms, hit the 'Accept' button. <br>
-                    The transaction will go through once both parties have accepted the terms.</h6>
+                    The barter will only complete if you were the last to receive an offer or counteroffer, <br>
+                    as the party who made the last offer is considered to have already accepted, <br>
+                    so be careful and watch your trades!</h6>
                     <?php
                         $_UserID = $_SESSION["UserID"];
                         $conn = mysqli_connect("localhost","root","","caravanserai");
@@ -655,7 +657,9 @@
                     <h2>OFFERS MADE TO YOU:</h2> 
                     <h6>If somebody wants some of your goods, the transaction will appear here. <br>
                     Make counteroffers to satisfy yourself with the deal, then hit 'Accept' once you're satisfied. <br>
-                    The transaction will only go through once both sides have accepted the terms.</h6>
+                    The barter will only complete if you were the last to receive an offer or counteroffer, <br>
+                    as the party who made the last offer is considered to have already accepted, <br>
+                    so be careful and watch your trades!</h6>
                         <?php
                         $_UserID = $_SESSION["UserID"];
                         $conn = mysqli_connect("localhost","root","","caravanserai");
