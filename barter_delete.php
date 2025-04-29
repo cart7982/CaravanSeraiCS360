@@ -13,9 +13,8 @@ if(!isset($_SESSION["UserID"]))
 {
     echo "First User not detected!  Please log in to proceed!";
     header('Location:login.html');
+    exit();
 }
-else
-{
 
 //UserID from the session global
 $_UserID = $_SESSION["UserID"];
@@ -25,9 +24,11 @@ $_TransactionID = $_POST['TransactionID'];
 
 echo '_TransactionID is '.$_TransactionID;
 
-$sql = "DELETE FROM messages WHERE MessageID='$_TransactionID'";
+$sql = "DELETE FROM messages WHERE TransactionID='$_TransactionID'";
+$conn->query($sql);
+$sql = "DELETE FROM transactions WHERE TransactionID='$_TransactionID'";
 $conn->query($sql);
 header('Location:profile.php');
 
-}
+
 ?>

@@ -82,7 +82,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
     }
 
     //Change the groupID last so as to not affect previous updates
-    if(isset($_POST['GroupID']) && $_GroupID != null && $_GroupID != '')
+    if(isset($_POST['NewGroupID']) && $_NewGroupID != null && $_NewGroupID != '')
     {    
         $stmt = $conn->prepare("UPDATE groups SET GroupID=? WHERE GroupID='$_GroupID'");
         $stmt->bind_param("s", $_NewGroupID);

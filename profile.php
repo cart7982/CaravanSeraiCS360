@@ -265,7 +265,7 @@
 
                             <?php 
                             //Select all users:
-                            $sql = "SELECT * FROM users";
+                            $sql = "SELECT * FROM users LIMIT 50";
                             $result = $conn->query($sql);
 
                             //Go through list to display dynamically:
@@ -358,6 +358,7 @@
                                             <h5 class="fw-bolder"><?php echo htmlspecialchars($row['GroupName']); ?></h5>
                                             <?php echo htmlspecialchars($row['Email']); ?><br>
                                             <?php echo htmlspecialchars($row['GroupID']); ?><br>
+                                            <?php echo htmlspecialchars($row['Documents']); ?><br>
                                             <form action="group_delete.php" method="post">
                                                 <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Delete</button></form>
                                             <form action="group_edit_entry.php" method="post">
@@ -473,7 +474,7 @@
                 </table> 
             </div>    
             
-            <!-- Admin Table of All Messages -->
+            <!-- Admin Messages table -->
             <div class = "card-body">
                 <h2>ALL OFFERS ON THE MARKET:</h2> 
                 <?php
