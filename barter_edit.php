@@ -27,7 +27,7 @@ $_Completed = $_POST["Completed"];
 
 //Check if each variable has been set, and then update it if it has.
 //TransactionID is updated at the end.
-if(isset($_POST["ProductID1"]))
+if(isset($_POST["ProductID1"]) && $_ProductID1 != '' && $_ProductID1 != null)
 {
     $stmt = $conn->prepare("UPDATE transactions SET ProductID1 = ? WHERE TransactionID = ?");
     $stmt->bind_param("ss", $_ProductID1, $_TransactionID);
@@ -35,56 +35,56 @@ if(isset($_POST["ProductID1"]))
     $stmt->close();
 }
 
-if (isset($_POST["ProductID2"])) {
+if (isset($_POST["ProductID2"]) && $_ProductID2 != '' && $_ProductID2 != null) {
     $stmt = $conn->prepare("UPDATE transactions SET ProductID2 = ? WHERE TransactionID = ?");
     $stmt->bind_param("ss", $_ProductID2, $_TransactionID);
     $stmt->execute();
     $stmt->close();
 }
 
-if (isset($_POST["Quantity1"])) {
+if (isset($_POST["Quantity1"]) && $_Quantity1 != '' && $_Quantity1 != null) {
     $stmt = $conn->prepare("UPDATE transactions SET Quantity1 = ? WHERE TransactionID = ?");
     $stmt->bind_param("ss", $_Quantity1, $_TransactionID);
     $stmt->execute();
     $stmt->close();
 }
 
-if (isset($_POST["Quantity2"])) {
+if (isset($_POST["Quantity2"]) && $_Quantity2 != '' && $_Quantity2 != null) {
     $stmt = $conn->prepare("UPDATE transactions SET Quantity2 = ? WHERE TransactionID = ?");
     $stmt->bind_param("ss", $_Quantity2, $_TransactionID);
     $stmt->execute();
     $stmt->close();
 }
 
-if (isset($_POST["UserID1"])) {
+if (isset($_POST["UserID1"]) && $_UserID1 != '' && $_UserID1 != null) {
     $stmt = $conn->prepare("UPDATE transactions SET UserID1 = ? WHERE TransactionID = ?");
     $stmt->bind_param("ss", $_UserID1, $_TransactionID);
     $stmt->execute();
     $stmt->close();
 }
 
-if (isset($_POST["UserID2"])) {
+if (isset($_POST["UserID2"]) && $_UserID2 != '' && $_UserID2 != null) {
     $stmt = $conn->prepare("UPDATE transactions SET UserID2 = ? WHERE TransactionID = ?");
     $stmt->bind_param("ss", $_UserID2, $_TransactionID);
     $stmt->execute();
     $stmt->close();
 }
 
-if (isset($_POST["ProductName1"])) {
+if (isset($_POST["ProductName1"]) && $_ProductName1 != '' && $_ProductName1 != null) {
     $stmt = $conn->prepare("UPDATE transactions SET ProductName1 = ? WHERE TransactionID = ?");
     $stmt->bind_param("ss", $_ProductName1, $_TransactionID);
     $stmt->execute();
     $stmt->close();
 }
 
-if (isset($_POST["ProductName2"])) {
+if (isset($_POST["ProductName2"]) && $_ProductName2 != '' && $_ProductName2 != null) {
     $stmt = $conn->prepare("UPDATE transactions SET ProductName2 = ? WHERE TransactionID = ?");
     $stmt->bind_param("ss", $_ProductName2, $_TransactionID);
     $stmt->execute();
     $stmt->close();
 }
 
-if (isset($_POST["Completed"])) {
+if (isset($_POST["Completed"]) && $_Completed != '' && $_Completed != null) {
     $stmt = $conn->prepare("UPDATE transactions SET Completed = ? WHERE TransactionID = ?");
     $stmt->bind_param("ss", $_Completed, $_TransactionID);
     $stmt->execute();
