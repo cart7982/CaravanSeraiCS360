@@ -40,14 +40,14 @@ $_MessageID = $_POST['MessageID'];
 
 $result = mysqli_query($conn, "SELECT MessageUserID AS accept1 FROM messages WHERE MessageID='$_MessageID'");
 $row = mysqli_fetch_array($result);
-$accept1 = $row['accept1'];
+$_accept1 = $row['accept1'];
 
 //echo "accept1 is: ".$accept1;
 
 //$sql = "SELECT MessageUserID AS accept1 FROM messages WHERE MessageID='$_MessageID'";
 //$conn->query($sql);
 
-if($accept1 != null && $accept1 != $_UserID)
+if($_accept1 != null && $_accept1 != $_UserID)
 {
     $result = mysqli_query($conn, "SELECT Amount1 AS amt1, Amount2 AS amt2, TransactionID as trnID, Product1UserID as prd1, Product2UserID as prd2, ProductName1 as prdName1, ProductName2 as prdName2 FROM messages WHERE MessageID='$_MessageID'");
     $row = mysqli_fetch_array($result);
@@ -226,6 +226,7 @@ else
 }
     
 header('Location:profile.php');
+exit();
 
 }
 
