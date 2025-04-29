@@ -47,6 +47,7 @@ echo "_Filename is: ".$_Filename;
 echo "_TempFilename is: ".$_TempFilename;
 echo "_ProductName is: ".$_ProductName;
 echo "_Description is: ".$_Description;
+echo "_Amount is: ".$_Amount;
 echo "_NewProductID is: ".$_NewProductID;
 
 //Check if a new product image is set
@@ -101,6 +102,14 @@ if(isset($_POST['productname']) && $_ProductName != null && $_ProductName != '')
 {    
     $stmt = $conn->prepare("UPDATE products SET ProductName=? WHERE ProductID='$_ProductID'");
     $stmt->bind_param("s", $_ProductName);
+    $stmt->execute();
+    $stmt->close();
+}
+
+if(isset($_POST['amount']) && $_Amount != null && $_Amount != '')
+{    
+    $stmt = $conn->prepare("UPDATE products SET Amount=? WHERE ProductID='$_ProductID'");
+    $stmt->bind_param("s", $_Amount);
     $stmt->execute();
     $stmt->close();
 }
