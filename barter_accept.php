@@ -42,7 +42,7 @@ $result = mysqli_query($conn, "SELECT MessageUserID AS accept1 FROM messages WHE
 $row = mysqli_fetch_array($result);
 $_accept1 = $row['accept1'];
 
-//echo "accept1 is: ".$accept1;
+echo "_accept1 is: ".$_accept1;
 
 //$sql = "SELECT MessageUserID AS accept1 FROM messages WHERE MessageID='$_MessageID'";
 //$conn->query($sql);
@@ -222,10 +222,10 @@ if($_accept1 != null && $_accept1 != $_UserID)
 }
 else
 {
-    echo "Not your offer to accept!  accept1 is: ".$accept1;
+    echo "Not your offer to accept!  accept1 is: ".$_accept1;
 }
     
-header('Location:profile.php');
+//header('Location:profile.php');
 exit();
 
 }
