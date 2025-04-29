@@ -225,7 +225,7 @@ else
     echo "Not your offer to accept!  accept1 is: ".$_accept1;
 }
     
-//header('Location:profile.php');
+header('Location:profile.php');
 exit();
 
 }
