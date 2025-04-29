@@ -125,7 +125,7 @@
                                 </div>
                 
                                 <div class = "modal-body">
-                                    <form action="product_add.php" method="post">
+                                    <form action="product_add.php" method="post" enctype="multipart/form-data">
                                         <div class = "mb-3 mt-3">
                                             <label for = "product-name" class = "form-label">Product to sell: </label>
                                             <input type = "text" class = "form-control" id = "product-name" placeholder = "Enter product name" name = "product-name">
@@ -475,8 +475,56 @@
             </div>    
             
             <!-- Admin Messages table -->
-            <div class = "card-body">
+            <div class="card bg-primary">
                 <h2>ALL OFFERS ON THE MARKET:</h2> 
+
+<!-- Modal button to create new transaction -->
+<div class = "card-footer bg-success">
+    <button type = "button" class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal9">
+        Create an Offer (Message)
+    </button>
+
+    <div class = "modal" id = "myModal9">
+        <div class = "modal-dialog">
+            <div class = "modal-content">
+
+                <div class = "modal-header">
+                    <button type = "button" class = "btn-close" data-bs-dismiss = "modal"></button>
+                </div>
+             
+                <div class = "modal-body">
+                    <form action="offer_create.php" method="post">
+                        <div class = "mb-3 mt-3">
+                            <label for = "UserID" class = "form-label">Product UserID: </label>
+                            <input type = "text" class = "form-control" id = "UserID" placeholder = "Enter User id" name = "UserID">
+                        </div>
+                        <div class = "mb-3 mt-3">
+                            <label for = "message" class = "form-label">BarterMessage: </label>
+                            <input type = "text" class = "form-control" id = "message" placeholder = "Enter message" name = "message">
+                        </div>
+                        <div class = "mb-3 mt-3">
+                            <label for = "TransactionID" class = "form-label">TransactionID: </label>
+                            <input type = "text" class = "form-control" id = "TransactionID" placeholder = "Enter TransactionID" name = "TransactionID">
+                        </div>
+                        <div class = "mb-3">
+                            <label for = "ProductID" class = "form-label">Product ID:  </label>
+                            <input type = "text" class = "form-control" id = "ProductID" placeholder = "Enter product ProductID" name = "ProductID">
+                        </div>
+                        <div class = "mb-3">
+                            <label for = "ProductName" class = "form-label">ProductName:  </label>
+                            <input type = "text" class = "form-control" id = "ProductName" placeholder = "Enter product ProductName" name = "ProductName">
+                        </div>
+                        <button type = "submit" class = "btn btn-secondary"> Submit</button>
+                    </form>
+                </div>
+
+                <div class = "modal-footer">
+                    <button type = "button" class = "btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                 <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");

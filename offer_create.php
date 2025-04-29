@@ -79,6 +79,12 @@ $PrevID = $row['u2ID'];
 //$_UserID2 = intval($PrevID);
 $_UserID2 = $PrevID;
 
+//This lets an admin create new messages that don't use their own ID
+if(isset($_SESSION["AdminID"]) && $_SESSION["AdminID"] != '0')
+{
+    $_UserID = $_UserID2;
+}
+
 //Get the second amount from the transaction
 $result = mysqli_query($conn, "SELECT Quantity1 AS amount1 FROM transactions WHERE TransactionID='$_TransactionID'");
 $row = mysqli_fetch_array($result);
