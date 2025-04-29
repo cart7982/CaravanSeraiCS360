@@ -81,11 +81,10 @@
                     header('Location:login.html');
                     exit();
                 }
-                //UserID is posted when an admin is making an edit
-                //Otherwise it is the logged in user
-                if(isset($_POST["UserID"]))
+                //This sets the user ID if an Admin is making an edit
+                if(isset($_POST["UpdateUserID"]))
                 {
-                    $_UserID = $_POST["UserID"];
+                    $_UserID = $_POST["UpdateUserID"];
                 }
                 $conn = mysqli_connect("localhost","root","","caravanserai");
                 $result = mysqli_query($conn,"SELECT * FROM users WHERE UserID='$_UserID'");

@@ -279,7 +279,7 @@
                                             <form action="user_remove.php" method="post">
                                                 <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Delete</button></form>
                                             <form action="profile_edit_entry.php" method="post">
-                                                <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">Update</button></form>
+                                                <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="UpdateUserID" value="<?= htmlspecialchars($row['UserID']) ?>">Update</button></form>
                                         </div>
                                     </div>
                                 </div>
