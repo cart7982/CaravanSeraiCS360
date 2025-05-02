@@ -174,6 +174,7 @@
                     <tr>
                         <th>Product Name</th>
                         <th>Product ID</th>
+                        <th>User ID</th>
                         <th>Amount</th>
                         <th>Description</th>
                         <th>Image</th>
@@ -183,6 +184,7 @@
                     <tr>
                         <td><?= htmlspecialchars($row['ProductName']) ?></td>
                         <td><?= htmlspecialchars($row['ProductID']) ?></td>
+                        <td><?= htmlspecialchars($row['UserID']) ?></td>
                         <td><?= htmlspecialchars($row['Amount']) ?></td>
                         <td><?= htmlspecialchars($row['Description']) ?></td>
                         <td><img class="img-productthumb" src="./Images/<?php echo $row['ImagePath']; ?>"></td>
@@ -191,6 +193,7 @@
                             <button style="height:30px; width:100px" class="btn btn-dark" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Delete</button></form>
                             </td>
                         <td><form action="product_edit_entry.php" method="post">
+                            <input type="hidden" name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>"></input>
                             <button style="height:30px; width:100px" class="btn btn-dark" input type="submit" name="ProductID" value="<?= htmlspecialchars($row['ProductID']) ?>">Update</button></form>
                             </td>
                     </tr>
@@ -335,7 +338,7 @@
                     <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM groups");
+                    $result = mysqli_query($conn,"SELECT * FROM groups LIMIT 50");
                     $data = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
@@ -430,19 +433,35 @@
                 <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM transactions");
+                    $result = mysqli_query($conn,"SELECT * FROM transactions LIMIT 50");
                     $data = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
 
                 <table border="1" class="table table-secondary table-striped table-hover">
                     <tr>
                         <th>Transaction ID</th>
+                        <th>Product ID 1</th>
+                        <th>Product ID 2</th>
+                        <th>Quantity 1</th>
+                        <th>Quantity 2</th>
+                        <th>User ID 1</th>
+                        <th>User ID 2</th>
+                        <th>Product Name 1</th>
+                        <th>Product Name 2</th>
                         <th>Completed</th>
                         <th>Action</th>
                     </tr>
                     <?php foreach($data as $row): ?>
                     <tr>
                         <td><?= htmlspecialchars($row['TransactionID']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductID1']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductID2']) ?></td>
+                        <td><?= htmlspecialchars($row['Quantity1']) ?></td>
+                        <td><?= htmlspecialchars($row['Quantity2']) ?></td>
+                        <td><?= htmlspecialchars($row['UserID1']) ?></td>
+                        <td><?= htmlspecialchars($row['UserID2']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductName1']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductName2']) ?></td>
                         <td><?= htmlspecialchars($row['Completed']) ?></td>
                         <td><form action="barter_delete.php" method="post">
                                 <button style="height:30px; width:100px" class="btn btn-primary" input type="submit" name="TransactionID" value="<?= htmlspecialchars($row['TransactionID']) ?>">Delete</button>
@@ -476,12 +495,24 @@
                 <div class = "modal-body">
                     <form action="offer_create.php" method="post">
                         <div class = "mb-3 mt-3">
+                            <label for = "UserID" class = "form-label">Product UserID: </label>
+                            <input type = "text" class = "form-control" id = "UserID" placeholder = "Enter User id" name = "UserID">
+                        </div>
+                        <div class = "mb-3 mt-3">
                             <label for = "message" class = "form-label">BarterMessage: </label>
                             <input type = "text" class = "form-control" id = "message" placeholder = "Enter message" name = "message">
                         </div>
                         <div class = "mb-3 mt-3">
-                            <label for = "MessageID" class = "form-label">MessageID: </label>
-                            <input type = "text" class = "form-control" id = "MessageID" placeholder = "Enter MessageID" name = "MessageID">
+                            <label for = "TransactionID" class = "form-label">TransactionID: </label>
+                            <input type = "text" class = "form-control" id = "TransactionID" placeholder = "Enter TransactionID" name = "TransactionID">
+                        </div>
+                        <div class = "mb-3">
+                            <label for = "ProductID" class = "form-label">Product ID:  </label>
+                            <input type = "text" class = "form-control" id = "ProductID" placeholder = "Enter product ProductID" name = "ProductID">
+                        </div>
+                        <div class = "mb-3">
+                            <label for = "ProductName" class = "form-label">ProductName:  </label>
+                            <input type = "text" class = "form-control" id = "ProductName" placeholder = "Enter product ProductName" name = "ProductName">
                         </div>
                         <button type = "submit" class = "btn btn-secondary"> Submit</button>
                     </form>
@@ -497,14 +528,24 @@
                 <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM messages");
+                    $result = mysqli_query($conn,"SELECT * FROM messages LIMIT 50");
                     $data2 = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
                     
                     <table  class="table table-secondary table-striped table-hover" border="1">
                     <tr>
+                        <th>User ID 1</th>
+                        <th>User ID 2</th>
                         <th>Barter Message</th>
+                        <th>Transaction ID</th>
+                        <th>Amount 1</th>
                         <th>Message ID</th>
+                        <th>Amount 2</th>
+                        <th>Product Name 1</th>
+                        <th>Product Name 2</th>
+                        <th>MessageUser ID</th>
+                        <th>Product 1 User ID</th>
+                        <th>Product 2 User ID</th>
                         <th>Action</th>
                     </tr>
                     <?php foreach($data2 as $row): ?>
@@ -512,8 +553,16 @@
                         <td><?= htmlspecialchars($row['UserID1']) ?></td>
                         <td><?= htmlspecialchars($row['UserID2']) ?></td>
                         <td><?= htmlspecialchars($row['BarterMessage']) ?></td>
+                        <td><?= htmlspecialchars($row['TransactionID']) ?></td>
+                        <td><?= htmlspecialchars($row['Amount1']) ?></td>
                         <td><?= htmlspecialchars($row['MessageID']) ?></td>
+                        <td><?= htmlspecialchars($row['Amount2']) ?></td>
+                        <td><?= htmlspecialchars($row['Amount1']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductName1']) ?></td>
+                        <td><?= htmlspecialchars($row['ProductName2']) ?></td>
                         <td><?= htmlspecialchars($row['MessageUserID']) ?></td>
+                        <td><?= htmlspecialchars($row['Product1UserID']) ?></td>
+                        <td><?= htmlspecialchars($row['Product2UserID']) ?></td>
                         
                         <td><form action="offer_delete.php" method="post">
                             <button style="height:30px; width:120px" class="btn btn-primary" input type="submit" name="MessageID" value="<?= htmlspecialchars($row['MessageID']) ?>">Delete</button></form></td>
@@ -566,14 +615,7 @@
                     <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM transactions                     
-                                                                NATURAL JOIN barterers 
-                                                                NATURAL JOIN barterproducts 
-                                                                JOIN products as p  //Cant join with products like this
-                                                                WHERE ProductID2=p.ProductID
-                                                                AND UserID2='$_UserID' 
-                                                                AND Completed='0' 
-                                                                ");
+                    $result = mysqli_query($conn,"SELECT * FROM transactions WHERE UserID2='$_UserID' AND Completed='0' LIMIT 50");
                     $data = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 

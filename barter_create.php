@@ -20,8 +20,9 @@ if(!isset($_SESSION["UserID"]))
 {
     echo "First User not detected!  Please log in to proceed!";
     header('Location:login.html');
-    exit();
 }
+else
+{
 
 //UserID from the session global
 $_UserID = $_SESSION["UserID"];
@@ -80,24 +81,24 @@ $row = mysqli_fetch_array($result);
 $_ProductName = $row['pname'];
 
 //Get the ID of seller of the product
-//Natural joining it with the owners relation gives access to the connected UserIDs in the database
-$result = mysqli_query($conn, "SELECT UserID as u2ID FROM products NATURAL JOIN owners WHERE ProductID='$_ProductID'");
+$result = mysqli_query($conn, "SELECT UserID as u2ID FROM products WHERE ProductID='$_ProductID'");
 $row = mysqli_fetch_array($result);
 $_UserID2 = $row['u2ID'];
 
 //Create new transaction from new ID
-$sql = "INSERT INTO transactions (TransactionID, Completed) VALUES ('$_TransactionID','0')";
+$sql = "INSERT INTO transactions (TransactionID, ProductID1, ProductID2, Quantity1,	Quantity2, UserID1,	UserID2, ProductName1, ProductName2, Completed) VALUES ('$_TransactionID','0','0','0','0','0','0','0','0','0')";
 $conn->query($sql);
 
-//Create barterproduct relation
-$sql = "INSERT INTO barterproducts (ProductID1, ProductID2, MessageID, TransactionID) VALUES ('0','$ProductID','0','$_TransactionID')";
-$conn->query($sql);
-
-//Create barterers relation
-$sql = "INSERT INTO barterers (UserID1, UserID2, TransactionID) VALUES ('$_UserID','$_UserID2','$_TransactionID')";
-$conn->query($sql);
+//Update purchase information on transaction table
+$sql = "UPDATE transactions SET UserID1='$_UserID2',UserID2='$_UserID',Quantity1='$_Quantity',ProductID1='$_ProductID',ProductName1='$_ProductName' WHERE TransactionID='$_TransactionID'";
+$conn->query($sql); 
 
 
+//Update inventory information on products table - THIS SHOULD HAPPEN DURING THE ACCEPT PHASE ONLY
+//$sql = "UPDATE products SET amount='$_TotalAmount' WHERE ProductID='$_ProductID'";
+//$conn->query($sql); 
+
+//header('Location:barter_cart.php');
 
 if(!isset($_SESSION["UserID"]))
 {
@@ -110,5 +111,8 @@ else
     //UserID from the session global
     header('Location:profile.php');
 }
+
+}
+
 
 ?>
