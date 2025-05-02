@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2025 at 10:39 PM
+-- Generation Time: May 02, 2025 at 09:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,62 +24,39 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aaa`
+-- Table structure for table `barterers`
 --
 
-CREATE TABLE `aaa` (
-  `UserID` varchar(255) NOT NULL,
-  `Username` varchar(30) NOT NULL,
-  `FirstName` varchar(30) NOT NULL,
-  `LastName` varchar(30) NOT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+CREATE TABLE `barterers` (
+  `UserID1` int(11) NOT NULL,
+  `UserID2` int(11) NOT NULL,
+  `TransactionID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `aaa`
---
-
-INSERT INTO `aaa` (`UserID`, `Username`, `FirstName`, `LastName`, `Email`, `reg_date`) VALUES
-('64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'aa', '', '', NULL, '2025-04-17 13:32:10'),
-('D30F5AB0-551C-4125-A796-B285BED7742A', 'bb', '', '', NULL, '2025-04-28 14:50:21');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bbb`
+-- Table structure for table `bartermessengers`
 --
 
-CREATE TABLE `bbb` (
-  `UserID` varchar(255) NOT NULL,
-  `Username` varchar(30) NOT NULL,
-  `FirstName` varchar(30) NOT NULL,
-  `LastName` varchar(30) NOT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+CREATE TABLE `bartermessengers` (
+  `UserID1` varchar(255) NOT NULL,
+  `UserID2` varchar(255) NOT NULL,
+  `MessageID` int(11) NOT NULL,
+  `MessageUserID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `bbb`
---
-
-INSERT INTO `bbb` (`UserID`, `Username`, `FirstName`, `LastName`, `Email`, `reg_date`) VALUES
-('432CF462-33B3-498C-865A-1696196E02BB', 'yy', '', '', '', '2025-04-29 14:59:16'),
-('DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', 'xx', '', '', '', '2025-04-29 14:59:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ccc`
+-- Table structure for table `barterproducts`
 --
 
-CREATE TABLE `ccc` (
-  `UserID` varchar(255) NOT NULL,
-  `Username` varchar(30) NOT NULL,
-  `FirstName` varchar(30) NOT NULL,
-  `LastName` varchar(30) NOT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+CREATE TABLE `barterproducts` (
+  `ProductID1` varchar(255) NOT NULL,
+  `ProductID2` varchar(255) NOT NULL,
+  `MessageID` int(11) NOT NULL,
+  `TransactionID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -112,20 +89,19 @@ INSERT INTO `groups` (`GroupID`, `GroupName`, `Documents`, `Password`, `Email`) 
 --
 
 CREATE TABLE `messages` (
-  `UserID1` varchar(255) NOT NULL,
-  `UserID2` varchar(255) NOT NULL,
   `BarterMessage` varchar(350) NOT NULL,
-  `TransactionID` int(11) NOT NULL,
-  `Amount1` int(11) NOT NULL,
-  `MessageID` int(11) NOT NULL,
-  `Amount2` int(11) NOT NULL,
-  `ProductName1` text NOT NULL,
-  `ProductID1` varchar(255) NOT NULL,
-  `ProductName2` text NOT NULL,
-  `ProductID2` varchar(255) NOT NULL,
-  `MessageUserID` varchar(255) NOT NULL,
-  `Product1UserID` varchar(255) NOT NULL,
-  `Product2UserID` varchar(255) NOT NULL
+  `MessageID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `owners`
+--
+
+CREATE TABLE `owners` (
+  `UserID` varchar(255) NOT NULL,
+  `ProductID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -137,7 +113,6 @@ CREATE TABLE `messages` (
 CREATE TABLE `products` (
   `ProductName` text NOT NULL,
   `ProductID` int(11) NOT NULL,
-  `UserID` varchar(255) NOT NULL,
   `Amount` int(11) NOT NULL,
   `Description` text NOT NULL,
   `ImagePath` varchar(255) NOT NULL
@@ -147,21 +122,23 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`ProductName`, `ProductID`, `UserID`, `Amount`, `Description`, `ImagePath`) VALUES
-('Sheep', 19, '7394C80B-91BF-476A-B5F1-B9433F11068F', 378, 'Woolly', 'SheepPicture.png'),
-('Iron Ingots', 20, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 159, 'Tough', 'IronIngots.png'),
-('Bronze Ingots', 21, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 189, 'Pretty tough', 'BronzeIngots.png'),
-('Copper Ingots', 22, '90284C1B-D616-436F-B09D-AA5DE32D35C4', 450, 'Coppery', 'CopperIngots.png'),
-('Jewelry', 25, 'D30F5AB0-551C-4125-A796-B285BED7742A', 65, 'Shiny', 'Jewelry.png'),
-('Cows', 26, '7394C80B-91BF-476A-B5F1-B9433F11068F', 513, 'Beefy', 'Cows.png'),
-('Chickens', 27, '7394C80B-91BF-476A-B5F1-B9433F11068F', 1956, 'Feathery', 'Chickens.png'),
-('Uncut Carnelians', 28, '91FD0C36-27A2-4A71-A681-379378EA9485', 456, 'Red', 'logo_1.jpg'),
-('Sheep', 31, '91FD0C36-27A2-4A71-A681-379378EA9485', 45, 'Woolly', 'SheepPicture.png'),
-('Uncut fluorite', 32, '91FD0C36-27A2-4A71-A681-379378EA9485', 456, 'Green', 'UncutFluorite.png'),
-('E', 36, 'D30F5AB0-551C-4125-A796-B285BED7742A', 1854, 'Product E', 'SilkCloth.png'),
-('P', 37, 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', 134, 'Product P', 'LinenCloth.png'),
-('Uncut topaz', 38, '96CA0EDB-140A-4CE7-9E4D-84A28BC9C3BE', 4356, 'Yellow', 'UncutTopaz.png'),
-('Copper Ingots', 39, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 458, 'Coppery', 'CopperIngots.png');
+INSERT INTO `products` (`ProductName`, `ProductID`, `Amount`, `Description`, `ImagePath`) VALUES
+('Sheep', 19, 378, 'Woolly', 'SheepPicture.png'),
+('Iron Ingots', 20, 159, 'Tough', 'IronIngots.png'),
+('Bronze Ingots', 21, 189, 'Pretty tough', 'BronzeIngots.png'),
+('Copper Ingots', 22, 450, 'Coppery', 'CopperIngots.png'),
+('Jewelry', 25, 65, 'Shiny', 'Jewelry.png'),
+('Cows', 26, 513, 'Beefy', 'Cows.png'),
+('Chickens', 27, 1956, 'Feathery', 'Chickens.png'),
+('Uncut Carnelians', 28, 456, 'Red', 'logo_1.jpg'),
+('Sheep', 31, 45, 'Woolly', 'SheepPicture.png'),
+('Uncut fluorite', 32, 456, 'Green', 'UncutFluorite.png'),
+('E', 36, 1766, 'Product E', 'SilkCloth.png'),
+('P', 37, 45, 'Product P', 'LinenCloth.png'),
+('Uncut topaz', 38, 4356, 'Yellow', 'UncutTopaz.png'),
+('Copper Ingots', 39, 458, 'Coppery', 'CopperIngots.png'),
+('P', 40, 44, '', 'logo_1.jpg'),
+('E', 41, 33, '', 'logo_1.jpg');
 
 -- --------------------------------------------------------
 
@@ -171,14 +148,6 @@ INSERT INTO `products` (`ProductName`, `ProductID`, `UserID`, `Amount`, `Descrip
 
 CREATE TABLE `transactions` (
   `TransactionID` int(11) NOT NULL,
-  `ProductID1` int(11) NOT NULL,
-  `ProductID2` int(11) NOT NULL,
-  `Quantity1` int(11) NOT NULL,
-  `Quantity2` int(11) NOT NULL,
-  `UserID1` varchar(255) NOT NULL,
-  `UserID2` varchar(255) NOT NULL,
-  `ProductName1` text NOT NULL,
-  `ProductName2` text NOT NULL,
   `Completed` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -186,30 +155,32 @@ CREATE TABLE `transactions` (
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`TransactionID`, `ProductID1`, `ProductID2`, `Quantity1`, `Quantity2`, `UserID1`, `UserID2`, `ProductName1`, `ProductName2`, `Completed`) VALUES
-(1, 10, 7, 66, 50, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '91FD0C36-27A2-4A71-A681-379378EA9485', 'Bronze Ingots', 'Uncut topaz', 1),
-(2, 19, 28, 45, 56, '7394C80B-91BF-476A-B5F1-B9433F11068F', '91FD0C36-27A2-4A71-A681-379378EA9485', 'Sheep', 'Uncut carnelian', 1),
-(5, 21, 24, 45, 80, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'D30F5AB0-551C-4125-A796-B285BED7742A', 'Bronze Ingots', 'Wine', 1),
-(6, 21, 27, 78, 210, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '7394C80B-91BF-476A-B5F1-B9433F11068F', 'Bronze Ingots', 'Chickens', 1),
-(8, 36, 37, 300, 59, 'D30F5AB0-551C-4125-A796-B285BED7742A', 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', 'E', 'P', 1),
-(9, 20, 26, 39, 99, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '7394C80B-91BF-476A-B5F1-B9433F11068F', 'Iron Ingots', 'Cows', 1),
-(10, 27, 20, 133, 44, '7394C80B-91BF-476A-B5F1-B9433F11068F', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'Chickens', 'Iron Ingots', 1),
-(11, 20, 26, 44, 66, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '7394C80B-91BF-476A-B5F1-B9433F11068F', 'Iron Ingots', 'Cows', 1),
-(12, 27, 20, 44, 44, '7394C80B-91BF-476A-B5F1-B9433F11068F', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'Chickens', 'Iron Ingots', 1),
-(14, 36, 37, 99, 99, 'D30F5AB0-551C-4125-A796-B285BED7742A', 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', 'E', 'P', 1),
-(15, 0, 0, 55, 55, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
-(16, 36, 0, 15, 20, 'D30F5AB0-551C-4125-A796-B285BED7742A', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
-(17, 0, 0, 40, 15, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
-(18, 20, 23, 45, 13, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'D30F5AB0-551C-4125-A796-B285BED7742A', 'Iron Ingots', 'Spices', 1),
-(19, 21, 22, 33, 0, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '7394C80B-91BF-476A-B5F1-B9433F11068F', 'Bronze Ingots', 'Adfhbareg', 1),
-(20, 0, 0, 20, 45, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
-(21, 20, 38, 40, 34, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '96CA0EDB-140A-4CE7-9E4D-84A28BC9C3BE', 'Iron Ingots', 'Uncut topaz', 0),
-(22, 0, 0, 45, 25, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
-(23, 0, 20, 25, 40, '432CF462-33B3-498C-865A-1696196E02BB', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'P', 'Iron Ingots', 1),
-(24, 41, 20, 33, 40, '432CF462-33B3-498C-865A-1696196E02BB', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'E', 'Iron Ingots', 1),
-(25, 37, 0, 10, 40, 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', '', 'P', 'E', 1),
-(26, 0, 0, 25, 45, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
-(27, 36, 37, 77, 44, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1);
+INSERT INTO `transactions` (`TransactionID`, `Completed`) VALUES
+(1, 1),
+(2, 1),
+(5, 1),
+(6, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(14, 1),
+(15, 1),
+(16, 1),
+(17, 1),
+(18, 1),
+(19, 1),
+(20, 1),
+(21, 0),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1),
+(26, 1),
+(27, 1),
+(28, 1),
+(29, 1);
 
 -- --------------------------------------------------------
 
@@ -1240,28 +1211,6 @@ INSERT INTO `users` (`Username`, `Email`, `Password`, `UserID`, `AdminID`) VALUE
 ('vkleinmintzrp', 'ygoodbannerp@walmart.com', '$2a$04$PO2SKgcejVxsJ5wwh7dunuWUUGSV1Px.4z/xXiu08R3ydGc2QGgHC', '8a7a2009-cd5b-45e7-8b10-7bc81d5da44c', ''),
 ('cshenleyrq', 'mwittkerq@spotify.com', '$2a$04$f7kHN.biBR4m8BeMambx2ONtLR2OolorbtHwTeWb8jCylEXJlxoM2', 'ac7ad79c-d17c-42e0-8ef6-f9abf65c5881', ''),
 ('nscopesrr', 'vferrynrr@unc.edu', '$2a$04$dIBy2cn6.n8NgdHexgyqIefwLSsZWrPzNHx4dMezmJiLXTs42qfeS', '32caab5e-3537-40e9-962e-14ccd992c3d7', '');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `aaa`
---
-ALTER TABLE `aaa`
-  ADD PRIMARY KEY (`UserID`);
-
---
--- Indexes for table `bbb`
---
-ALTER TABLE `bbb`
-  ADD PRIMARY KEY (`UserID`);
-
---
--- Indexes for table `ccc`
---
-ALTER TABLE `ccc`
-  ADD PRIMARY KEY (`UserID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

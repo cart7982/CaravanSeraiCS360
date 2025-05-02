@@ -116,13 +116,6 @@ if(isset($_POST['amount']) && $_Amount != null && $_Amount != '')
 
 if($_SESSION["AdminID"] != '0' && isset($_SESSION["AdminID"]))
 {
-    if(isset($_POST['UserID']) && $_UserID != null && $_UserID != '')
-    {    
-        $stmt = $conn->prepare("UPDATE products SET UserID=? WHERE ProductID='$_ProductID'");
-        $stmt->bind_param("s", $_UserID);
-        $stmt->execute();
-        $stmt->close();
-    }
 
     if(isset($_POST['_NewProductID']) && $_NewProductID != null && $_NewProductID != '')
     {    

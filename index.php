@@ -13,6 +13,47 @@
     </head>
     <body>
     <?php
+
+
+/*
+The caravanserai database is structured into five primary entities with a variable number of relational tables.
+
+    The entities are:
+        users
+            - UserID, Username, etc.
+        transactions
+            - TransactionID, Completed
+        messages
+            - BarterMessage, MessageID
+        groups
+            - GroupName, GroupID
+        products
+            - ProductID, ProductName, etc.
+        
+    The relational tables are:
+        owners
+            - UserID, ProductID
+            - Connects the users and products tables
+        barterers
+            - UserID1, UserID2, TransactionID
+            - Connects the users and transactions tables
+        bartermessengers
+            - UserID1, UserID2, MessageID
+            - Connects the users and messages tables
+        barterproducts
+            - MessageID, TransactionID, ProductID1, ProductID2
+            - Connects the messages, transactions, and products tables
+        (usermade groups)
+            - Connect the users and groups tables 
+            - The number of these are variable.     
+        
+*/
+
+
+
+
+
+
         session_start();
         //Acquire results for product listing table based on user/group:
         if(isset($_SESSION["UserID"]) && isset($_SESSION["GroupID"]))
@@ -26,7 +67,7 @@
             //echo "Group Name is: ".$_GroupName."<br>";
 
             $conn = mysqli_connect("localhost","root","","caravanserai");
-            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID NOT IN (SELECT UserID FROM $_GroupName)");
+            $result = mysqli_query($conn,"SELECT * FROM products");
             $data = $result->fetch_all(MYSQLI_ASSOC);
 
         }
@@ -34,14 +75,14 @@
         {
             $_UserID = $_SESSION["UserID"];
             $conn = mysqli_connect("localhost","root","","caravanserai");
-            $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID!='$_UserID' LIMIT 50");
+            $result = mysqli_query($conn,"SELECT * FROM products");
             $data = $result->fetch_all(MYSQLI_ASSOC);
         }
         else
         {
             session_destroy();
             $conn = mysqli_connect("localhost","root","","caravanserai");
-            $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
+            $result = mysqli_query($conn,"SELECT * FROM products");
             $data = $result->fetch_all(MYSQLI_ASSOC);
         }
 
@@ -123,7 +164,7 @@
                 $_GroupName = $_SESSION["GroupName"];
 
                 $conn = mysqli_connect("localhost","root","","caravanserai");
-                $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID NOT IN (SELECT UserID FROM $_GroupName)");
+                $result = mysqli_query($conn,"SELECT * FROM products");
 
             }
             else if(isset($_SESSION["UserID"]) && !isset($_SESSION["GroupID"]))
@@ -132,12 +173,12 @@
                 $_Username = $_SESSION["Username"];
 
                 $conn = mysqli_connect("localhost","root","","caravanserai");
-                $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID!='$_UserID' LIMIT 50");
+                $result = mysqli_query($conn,"SELECT * FROM products");
             }
             else
             {
                 $conn = mysqli_connect("localhost","root","","caravanserai");
-                $result = mysqli_query($conn,"SELECT * FROM products LIMIT 50");
+                $result = mysqli_query($conn,"SELECT * FROM products");
             }
 
             while ($row = $result->fetch_assoc()) { ?>

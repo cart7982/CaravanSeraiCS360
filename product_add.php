@@ -41,8 +41,13 @@ if(isset($_ProductName) && isset($_Amount) && isset($_Description) && isset($_Fi
 {
     //Insert information for new product
     //bind_param is used to sanitize
-    $stmt = $conn->prepare("INSERT INTO products (ProductName, ProductID, UserID, Amount, Description, ImagePath) VALUES (?,?,?,?,?,?)");
-    $stmt->bind_param("ssssss", $_ProductName, $_ProductID, $_UserID, $_Amount, $_Description, $_Filename);
+    $stmt = $conn->prepare("INSERT INTO products (ProductName, ProductID, Amount, Description, ImagePath) VALUES (?,?,?,?,?)");
+    $stmt->bind_param("sssss", $_ProductName, $_ProductID, $_Amount, $_Description, $_Filename);
+    $stmt->execute();
+
+    //Create the relation in the owners relational table
+    $stmt = $conn->prepare("INSERT INTO owners (ProductID, UserID) VALUES (?,?)");
+    $stmt->bind_param("ss", $_ProductID, $_UserID);
     $stmt->execute();
 
     if (move_uploaded_file($_TempFilename, $targetFile)) {
