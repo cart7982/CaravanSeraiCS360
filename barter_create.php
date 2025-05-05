@@ -81,7 +81,7 @@ $row = mysqli_fetch_array($result);
 $_ProductName = $row['pname'];
 
 //Get the ID of seller of the product
-$result = mysqli_query($conn, "SELECT UserID as u2ID FROM products WHERE ProductID='$_ProductID'");
+$result = mysqli_query($conn, "SELECT UserID as u2ID FROM products NATURAL JOIN owners WHERE ProductID='$_ProductID'");
 $row = mysqli_fetch_array($result);
 $_UserID2 = $row['u2ID'];
 

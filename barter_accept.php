@@ -155,7 +155,7 @@ if($_accept1 != null && $_accept1 != $_UserID)
     echo "_UserID2 is: ".$_UserID2;
 
     //Check for products crossing UserID with ProductID
-    $result = mysqli_query($conn, "SELECT ProductID as pID FROM products WHERE UserID='$_UserID1' AND ProductName='$_ProductName2'");
+    $result = mysqli_query($conn, "SELECT ProductID as pID FROM products NATURAL JOIN owners WHERE UserID='$_UserID1' AND ProductName='$_ProductName2'");
     $row = mysqli_fetch_array($result);
 
     if($row != null)
@@ -187,14 +187,20 @@ if($_accept1 != null && $_accept1 != $_UserID)
         $PrevID = $row['max'];
         $_newProductID1 = intval($PrevID) + 1;
 
-        $sql = "INSERT INTO products (ProductName, ProductID, UserID, Amount, Description, ImagePath) VALUES ('$_ProductName2', '$_newProductID1', '$_UserID1', '$Amount2', '', '$default')";
+        $sql = "INSERT INTO products (ProductName, ProductID, Amount, Description, ImagePath) VALUES ('$_ProductName2', '$_newProductID1', '$Amount2', '', '$default')";
         //Commit the query to the database connection.
         $conn->query($sql);
+
+        //'$_UserID1',
+        
+        $sql = "INSERT INTO owners (ProductID, UserID) VALUES ('$_newProductID1', '$_UserID1')";
+        $conn->query($sql);
+
     }
 
 
     //Do the same, but for the other user
-    $result = mysqli_query($conn, "SELECT ProductID as pID FROM products WHERE UserID='$_UserID2' AND ProductName='$_ProductName1'");
+    $result = mysqli_query($conn, "SELECT ProductID as pID FROM products NATURAL JOIN owners WHERE UserID='$_UserID2' AND ProductName='$_ProductName1'");
     $row = mysqli_fetch_array($result);
 
     if($row != null)
@@ -220,9 +226,11 @@ if($_accept1 != null && $_accept1 != $_UserID)
         $PrevID = $row['max'];
         $_newProductID2 = intval($PrevID) + 1;
 
-        $sql = "INSERT INTO products (ProductName, ProductID, UserID, Amount, Description, ImagePath) VALUES ('$_ProductName1', '$_newProductID2', '$_UserID2', '$Amount1', '', '$default')";
-
+        $sql = "INSERT INTO products (ProductName, ProductID, Amount, Description, ImagePath) VALUES ('$_ProductName1', '$_newProductID2', '$Amount1', '', '$default')";
         //Commit the query to the database connection.
+        $conn->query($sql);
+
+        $sql = "INSERT INTO owners (ProductID, UserID) VALUES ('$_newProductID2', '$_UserID2')";
         $conn->query($sql);
     }
 

@@ -166,7 +166,7 @@
             <?php
 
                 $conn = mysqli_connect("localhost","root","","caravanserai");
-                $result = mysqli_query($conn,"SELECT * FROM products");
+                $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners");
                 $data = $result->fetch_all(MYSQLI_ASSOC);                
 
             ?>	
@@ -813,7 +813,7 @@
                             //echo "Group Name is: ".$_GroupName."<br>";
 
                             $conn = mysqli_connect("localhost","root","","caravanserai");
-                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID IN (SELECT UserID FROM $_GroupName)");
+                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners NATURAL JOIN users WHERE UserID IN (SELECT UserID FROM $_GroupName)");
                             $data = $result->fetch_all(MYSQLI_ASSOC);
 
                         }
@@ -821,7 +821,7 @@
                         {
                             $_UserID = $_SESSION["UserID"];
                             $conn = mysqli_connect("localhost","root","","caravanserai");
-                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID='$_UserID' LIMIT 50");
+                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners NATURAL JOIN users WHERE UserID='$_UserID' LIMIT 50");
                             $data = $result->fetch_all(MYSQLI_ASSOC);
                         }
                         ?>

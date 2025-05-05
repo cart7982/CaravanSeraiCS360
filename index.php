@@ -26,7 +26,7 @@
             //echo "Group Name is: ".$_GroupName."<br>";
 
             $conn = mysqli_connect("localhost","root","","caravanserai");
-            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID NOT IN (SELECT UserID FROM $_GroupName)");
+            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners WHERE UserID NOT IN (SELECT UserID FROM $_GroupName)");
             $data = $result->fetch_all(MYSQLI_ASSOC);
 
         }
@@ -34,7 +34,7 @@
         {
             $_UserID = $_SESSION["UserID"];
             $conn = mysqli_connect("localhost","root","","caravanserai");
-            $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID!='$_UserID' LIMIT 50");
+            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners WHERE UserID!='$_UserID' LIMIT 50");
             $data = $result->fetch_all(MYSQLI_ASSOC);
         }
         else
@@ -123,7 +123,7 @@
                 $_GroupName = $_SESSION["GroupName"];
 
                 $conn = mysqli_connect("localhost","root","","caravanserai");
-                $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID NOT IN (SELECT UserID FROM $_GroupName)");
+                $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners WHERE UserID NOT IN (SELECT UserID FROM $_GroupName)");
 
             }
             else if(isset($_SESSION["UserID"]) && !isset($_SESSION["GroupID"]))
@@ -132,7 +132,7 @@
                 $_Username = $_SESSION["Username"];
 
                 $conn = mysqli_connect("localhost","root","","caravanserai");
-                $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID!='$_UserID' LIMIT 50");
+                $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners WHERE UserID!='$_UserID' LIMIT 50");
             }
             else
             {

@@ -77,7 +77,7 @@ else
             }
 
             //Groupname was sanitized above
-            $stmt3 = $conn->prepare("INSERT INTO $_Groupname (UserID, Username, FirstName, LastName, Email) VALUES (?, ?, '', '', '')");
+            $stmt3 = $conn->prepare("INSERT INTO $_Groupname (UserID, Username) VALUES (?, ?)");
             $stmt3->bind_param("ss", $_UserID, $_Username);
             $stmt3->execute();
 

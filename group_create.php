@@ -45,26 +45,33 @@ else
     else
     {
         //Register the new group.  This assigns them a unique GroupID.
-        $sql = "INSERT INTO groups (GroupName, Password, Documents, Email, GroupID) VALUES ('$_Groupname', '$_HashedPassword', '', '$_Email', '$NewID')";
+        //$sql = "INSERT INTO groups (GroupName, Password, Documents, Email, GroupID) VALUES ('$_Groupname', '$_HashedPassword', '', '$_Email', '$NewID')";
         //$sql = "INSERT INTO users (FirstName, LastName, Passwrd, Email) VALUES ('Saruman', 'TheWhite', 'mine', 'neutral@sauron.com')";
 
-        //Commit the query to the database connection.
-        $conn->query($sql);
+        //Commit the query to the database connection.ss
+        //$conn->query($sql);
+
+        $stmt = $conn->prepare("INSERT INTO groups (GroupName, Password, Documents, Email, GroupID) VALUES (?, ?, '', ?, ?)");
+        $stmt->bind_param("ssss", $_Groupname, $_HashedPassword, $_Email, $NewID);
+        $stmt->execute();
+
 
         // sql to create table
         //Each group contains basic user data to keep track of members.
         $sql = "CREATE TABLE $_Groupname (
             UserID VARCHAR(255) PRIMARY KEY,
             Username VARCHAR(30) NOT NULL,
-            FirstName VARCHAR(30) NOT NULL,
-            LastName VARCHAR(30) NOT NULL,
-            Email VARCHAR(50),
-            reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            GroupID VARCHAR(255) NOT NULL,
             )";
 
         $conn->query($sql);
 
+        $stmt = $conn->prepare("INSERT INTO $_Groupname (GroupID) VALUES (?)");
+        $stmt->bind_param("s", $NewID);
+        $stmt->execute();
 
+
+        $stmt->close();
         $conn->close();
     }
     header('Location:profile.php');

@@ -38,7 +38,9 @@ if ($row = $result->fetch_assoc()) {
 $stmt->close();
 
 $sql = "DELETE FROM products WHERE ProductID='$ID'";
+$conn->query($sql);
 
+$sql = "DELETE FROM owners WHERE ProductID='$ID'";
 $conn->query($sql);
 
 $conn->close();

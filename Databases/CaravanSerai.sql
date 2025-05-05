@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2025 at 10:39 PM
+-- Generation Time: May 05, 2025 at 10:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,19 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `aaa` (
   `UserID` varchar(255) NOT NULL,
   `Username` varchar(30) NOT NULL,
-  `FirstName` varchar(30) NOT NULL,
-  `LastName` varchar(30) NOT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `GroupID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `aaa`
 --
 
-INSERT INTO `aaa` (`UserID`, `Username`, `FirstName`, `LastName`, `Email`, `reg_date`) VALUES
-('64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'aa', '', '', NULL, '2025-04-17 13:32:10'),
-('D30F5AB0-551C-4125-A796-B285BED7742A', 'bb', '', '', NULL, '2025-04-28 14:50:21');
+INSERT INTO `aaa` (`UserID`, `Username`, `GroupID`) VALUES
+('64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'aa', ''),
+('D30F5AB0-551C-4125-A796-B285BED7742A', 'bb', '');
 
 -- --------------------------------------------------------
 
@@ -52,35 +49,16 @@ INSERT INTO `aaa` (`UserID`, `Username`, `FirstName`, `LastName`, `Email`, `reg_
 
 CREATE TABLE `bbb` (
   `UserID` varchar(255) NOT NULL,
-  `Username` varchar(30) NOT NULL,
-  `FirstName` varchar(30) NOT NULL,
-  `LastName` varchar(30) NOT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `Username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `bbb`
 --
 
-INSERT INTO `bbb` (`UserID`, `Username`, `FirstName`, `LastName`, `Email`, `reg_date`) VALUES
-('432CF462-33B3-498C-865A-1696196E02BB', 'yy', '', '', '', '2025-04-29 14:59:16'),
-('DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', 'xx', '', '', '', '2025-04-29 14:59:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ccc`
---
-
-CREATE TABLE `ccc` (
-  `UserID` varchar(255) NOT NULL,
-  `Username` varchar(30) NOT NULL,
-  `FirstName` varchar(30) NOT NULL,
-  `LastName` varchar(30) NOT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `bbb` (`UserID`, `Username`) VALUES
+('432CF462-33B3-498C-865A-1696196E02BB', 'yy'),
+('DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', 'xx');
 
 -- --------------------------------------------------------
 
@@ -101,9 +79,8 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`GroupID`, `GroupName`, `Documents`, `Password`, `Email`) VALUES
-('38FEFCE9-7909-4DFB-AB4E-0A74C3552A22', 'aaa', '', '$2y$12$8Eqj18EKkc8hYPYZOGlQgOvzgHGHsu/FGVESWAc3T564xoT/g5aUS', 'aaa@aa'),
-('8242E78B-EE31-468B-8BDF-58045CEA8722', 'bbb', '', '$2y$12$ZtpMMiTA74YBnYr8/P3E4OuliXg1X1EAz82CUpBj6NZ4SR.m2IIWu', 'bbb@bb'),
-('9107382B-CC7B-43D0-8ADA-21EB72D7628E', 'ccc', 'This is for group C.', '$2y$12$q.Fa6cMb4Tp8JsW/mmhiku2JkazPZM3mmQjStJQGfhUEQ/ph1US/K', 'ccc@cc');
+('65359DB1-8677-418F-A490-4FE2E0ACAA86', 'aaa', '', '$2y$12$Am3YpwEaWw50qdxerGMSsevbt4wRojClpXTN7vqVgzVQ1zEZVimwK', 'aa@aa'),
+('4413643A-7443-4AC0-BA8A-29587F8FD8F4', 'bbb', '', '$2y$12$sLpB09Rkj98lz9pvtzmHYON0gVgEBWy6trC/uP.zadBTljiZLVst6', 'bbb@bb');
 
 -- --------------------------------------------------------
 
@@ -131,13 +108,32 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `owners`
+--
+
+CREATE TABLE `owners` (
+  `ProductID` varchar(255) NOT NULL,
+  `UserID` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `owners`
+--
+
+INSERT INTO `owners` (`ProductID`, `UserID`) VALUES
+('1', '64E721A3-70DF-40C7-97AE-0AB1DC04048F'),
+('2', 'D30F5AB0-551C-4125-A796-B285BED7742A'),
+('3', 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
   `ProductName` text NOT NULL,
   `ProductID` int(11) NOT NULL,
-  `UserID` varchar(255) NOT NULL,
   `Amount` int(11) NOT NULL,
   `Description` text NOT NULL,
   `ImagePath` varchar(255) NOT NULL
@@ -147,21 +143,10 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`ProductName`, `ProductID`, `UserID`, `Amount`, `Description`, `ImagePath`) VALUES
-('Sheep', 19, '7394C80B-91BF-476A-B5F1-B9433F11068F', 378, 'Woolly', 'SheepPicture.png'),
-('Iron Ingots', 20, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 159, 'Tough', 'IronIngots.png'),
-('Bronze Ingots', 21, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 189, 'Pretty tough', 'BronzeIngots.png'),
-('Copper Ingots', 22, '90284C1B-D616-436F-B09D-AA5DE32D35C4', 450, 'Coppery', 'CopperIngots.png'),
-('Jewelry', 25, 'D30F5AB0-551C-4125-A796-B285BED7742A', 65, 'Shiny', 'Jewelry.png'),
-('Cows', 26, '7394C80B-91BF-476A-B5F1-B9433F11068F', 513, 'Beefy', 'Cows.png'),
-('Chickens', 27, '7394C80B-91BF-476A-B5F1-B9433F11068F', 1956, 'Feathery', 'Chickens.png'),
-('Uncut Carnelians', 28, '91FD0C36-27A2-4A71-A681-379378EA9485', 456, 'Red', 'logo_1.jpg'),
-('Sheep', 31, '91FD0C36-27A2-4A71-A681-379378EA9485', 45, 'Woolly', 'SheepPicture.png'),
-('Uncut fluorite', 32, '91FD0C36-27A2-4A71-A681-379378EA9485', 456, 'Green', 'UncutFluorite.png'),
-('E', 36, 'D30F5AB0-551C-4125-A796-B285BED7742A', 1854, 'Product E', 'SilkCloth.png'),
-('P', 37, 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', 134, 'Product P', 'LinenCloth.png'),
-('Uncut topaz', 38, '96CA0EDB-140A-4CE7-9E4D-84A28BC9C3BE', 4356, 'Yellow', 'UncutTopaz.png'),
-('Copper Ingots', 39, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 458, 'Coppery', 'CopperIngots.png');
+INSERT INTO `products` (`ProductName`, `ProductID`, `Amount`, `Description`, `ImagePath`) VALUES
+('Iron Ingots', 1, 3424, 'Sturdy', 'logo_1.jpg'),
+('E', 2, 343206, 'Product E', 'SilkCloth.png'),
+('P', 3, 53206, 'Product P', 'LinenCloth.png');
 
 -- --------------------------------------------------------
 
@@ -209,7 +194,8 @@ INSERT INTO `transactions` (`TransactionID`, `ProductID1`, `ProductID2`, `Quanti
 (24, 41, 20, 33, 40, '432CF462-33B3-498C-865A-1696196E02BB', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'E', 'Iron Ingots', 1),
 (25, 37, 0, 10, 40, 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', '', 'P', 'E', 1),
 (26, 0, 0, 25, 45, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
-(27, 36, 37, 77, 44, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1);
+(27, 36, 37, 77, 44, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
+(28, 2, 3, 676, 456, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1);
 
 -- --------------------------------------------------------
 
@@ -1255,12 +1241,6 @@ ALTER TABLE `aaa`
 -- Indexes for table `bbb`
 --
 ALTER TABLE `bbb`
-  ADD PRIMARY KEY (`UserID`);
-
---
--- Indexes for table `ccc`
---
-ALTER TABLE `ccc`
   ADD PRIMARY KEY (`UserID`);
 COMMIT;
 

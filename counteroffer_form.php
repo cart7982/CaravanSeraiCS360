@@ -81,7 +81,7 @@
                             //echo"\nSigned into group: ".$_SESSION['GroupID'];
 
                             $conn = mysqli_connect("localhost","root","","caravanserai");
-                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN users WHERE UserID IN (SELECT UserID FROM $_GroupName)");
+                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners WHERE UserID IN (SELECT UserID FROM $_GroupName)");
                             $data = $result->fetch_all(MYSQLI_ASSOC);
 
                         }
@@ -89,7 +89,7 @@
                         {
                             $_UserID = $_SESSION["UserID"];
                             $conn = mysqli_connect("localhost","root","","caravanserai");
-                            $result = mysqli_query($conn,"SELECT * FROM products WHERE UserID='$_UserID' LIMIT 50");
+                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners WHERE UserID='$_UserID' LIMIT 50");
                             $data = $result->fetch_all(MYSQLI_ASSOC);
 
                         }

@@ -55,7 +55,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['UserID1']) && $_UserID1 != null && $_UserID1 != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET UserID1=? WHERE MessageID='$_MessageID'");
+        $stmt = $conn->prepare("UPDATE messages SET UserID1=? WHERE MessageID='$_MessageID'");
         $stmt->bind_param("s", $_UserID1);
         $stmt->execute();
         $stmt->close();
@@ -63,7 +63,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['UserID2']) && $_UserID2 != null && $_UserID2 != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET UserID2=? WHERE MessageID='$_MessageID'");
+        $stmt = $conn->prepare("UPDATE messages SET UserID2=? WHERE MessageID='$_MessageID'");
         $stmt->bind_param("s", $_UserID2);
         $stmt->execute();
         $stmt->close();
@@ -71,7 +71,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['BarterMessage']) && $_BarterMessage != null && $_BarterMessage != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET BarterMessage=? WHERE MessageID='$_MessageID'");
+        $stmt = $conn->prepare("UPDATE messages SET BarterMessage=? WHERE MessageID='$_MessageID'");
         $stmt->bind_param("s", $_BarterMessage);
         $stmt->execute();
         $stmt->close();
@@ -79,7 +79,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['TransactionID']) && $_TransactionID != null && $_TransactionID != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET TransactionID=? WHERE MessageID='$_MessageID'");
+        $stmt = $conn->prepare("UPDATE messages SET TransactionID=? WHERE MessageID='$_MessageID'");
         $stmt->bind_param("s", $_TransactionID);
         $stmt->execute();
         $stmt->close();
@@ -87,7 +87,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['Amount1']) && $_Amount1 != null && $_Amount1 != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET Amount1=? WHERE MessageID='$_MessageID'");
+        $stmt = $conn->prepare("UPDATE messages SET Amount1=? WHERE MessageID='$_MessageID'");
         $stmt->bind_param("s", $_Amount1);
         $stmt->execute();
         $stmt->close();
@@ -95,7 +95,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['Amount2']) && $_Amount2 != null && $_Amount2 != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET Amount2=? WHERE MessageID='$_MessageID'");
+        $stmt = $conn->prepare("UPDATE messages SET Amount2=? WHERE MessageID='$_MessageID'");
         $stmt->bind_param("s", $_Amount2);
         $stmt->execute();
         $stmt->close();
@@ -103,7 +103,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['ProductName1']) && $_ProductName1 != null && $_ProductName1 != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET ProductName1=? WHERE MessageID='$_ProductName1'");
+        $stmt = $conn->prepare("UPDATE messages SET ProductName1=? WHERE MessageID='$_ProductName1'");
         $stmt->bind_param("s", $_ProductName1);
         $stmt->execute();
         $stmt->close();
@@ -111,7 +111,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['ProductName2']) && $_ProductName2 != null && $_ProductName2 != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET ProductName2=? WHERE MessageID='$_ProductName2'");
+        $stmt = $conn->prepare("UPDATE messages SET ProductName2=? WHERE MessageID='$_ProductName2'");
         $stmt->bind_param("s", $_ProductName2);
         $stmt->execute();
         $stmt->close();
@@ -119,7 +119,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['MessageUserID']) && $_MessageUserID != null && $_MessageUserID != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET UserID2=? WHERE MessageID='$_MessageID'");
+        $stmt = $conn->prepare("UPDATE messages SET UserID2=? WHERE MessageID='$_MessageID'");
         $stmt->bind_param("s", $_MessageUserID);
         $stmt->execute();
         $stmt->close();
@@ -127,7 +127,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['Product1UserID']) && $_Product1UserID != null && $_Product1UserID != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET Product1UserID=? WHERE MessageID='$_MessageID'");
+        $stmt = $conn->prepare("UPDATE messages SET Product1UserID=? WHERE MessageID='$_MessageID'");
         $stmt->bind_param("s", $_Product1UserID);
         $stmt->execute();
         $stmt->close();
@@ -135,7 +135,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['Product2UserID']) && $_Product2UserID != null && $_Product2UserID != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET Product2UserID=? WHERE MessageID='$_MessageID'");
+        $stmt = $conn->prepare("UPDATE messages SET Product2UserID=? WHERE MessageID='$_MessageID'");
         $stmt->bind_param("s", $_Product2UserID);
         $stmt->execute();
         $stmt->close();
@@ -143,7 +143,7 @@ if($_SESSION["AdminID"] != '0' && $_SESSION["AdminID"] != "0" && isset($_SESSION
 
     if(isset($_POST['NewMessageID']) && $_NewMessageID != null && $_NewMessageID != '')
     {    
-        $stmt = $conn->prepare("UPDATE groups SET MessageID=? WHERE MessageID='$_MessageID'");
+        $stmt = $conn->prepare("UPDATE messages SET MessageID=? WHERE MessageID='$_MessageID'");
         $stmt->bind_param("s", $_NewMessageID);
         $stmt->execute();
         $stmt->close();

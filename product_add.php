@@ -25,6 +25,13 @@ $_TempFilename = $_FILES['uploadfile']['tmp_name'];
 $targetDir = './Images/';
 $targetFile = $targetDir . $_Filename;
 
+$default = "logo_1.jpg";
+
+if($_Filename == '' || $_Filename == null)
+{
+    $_Filename = $default;
+}
+
 echo "_Filename is: ".$_Filename;
 echo "_TempFilename is: ".$_TempFilename;
 
@@ -41,9 +48,13 @@ if(isset($_ProductName) && isset($_Amount) && isset($_Description) && isset($_Fi
 {
     //Insert information for new product
     //bind_param is used to sanitize
-    $stmt = $conn->prepare("INSERT INTO products (ProductName, ProductID, UserID, Amount, Description, ImagePath) VALUES (?,?,?,?,?,?)");
-    $stmt->bind_param("ssssss", $_ProductName, $_ProductID, $_UserID, $_Amount, $_Description, $_Filename);
+    $stmt = $conn->prepare("INSERT INTO products (ProductName, ProductID, Amount, Description, ImagePath) VALUES (?,?,?,?,?)");
+    $stmt->bind_param("sssss", $_ProductName, $_ProductID, $_Amount, $_Description, $_Filename);
     $stmt->execute();
+
+    //Create the relation in the owners table
+    $sql = "INSERT INTO owners (ProductID, UserID) VALUES ('$_ProductID','$_UserID')";    
+    $conn->query($sql);
 
     if (move_uploaded_file($_TempFilename, $targetFile)) {
         echo "File uploaded successfully to $targetFile!";
