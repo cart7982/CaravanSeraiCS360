@@ -4,10 +4,15 @@ $username = "root";
 $password = "";
 $dbname = "caravanserai";
 
-session_start();
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
+
+
+session_start();
+
+$_UserID = $_SESSION['UserID'];
+$_Username = $_SESSION['Username'];
+
 
 // Check connection
 if ($conn->connect_error) {
@@ -21,6 +26,7 @@ $_Password = $_POST['pwd'];
 
 //Generate a new GUID for the group.
 $NewID = GUID();
+$NewUserGroupID = GUID();
 
 //Create hashed password
 $_HashedPassword = password_hash($_Password, PASSWORD_DEFAULT);
@@ -56,19 +62,29 @@ else
         $stmt->execute();
 
 
-        // sql to create table
-        //Each group contains basic user data to keep track of members.
-        $sql = "CREATE TABLE $_Groupname (
-            UserID VARCHAR(255) PRIMARY KEY,
-            Username VARCHAR(30) NOT NULL,
-            GroupID VARCHAR(255) NOT NULL,
-            )";
 
-        $conn->query($sql);
-
-        $stmt = $conn->prepare("INSERT INTO $_Groupname (GroupID) VALUES (?)");
-        $stmt->bind_param("s", $NewID);
+        $stmt = $conn->prepare("INSERT INTO user_groups (UserGroupID, UserID, GroupID, Username, Joined_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)");
+        $stmt->bind_param("ssss", $NewUserGroupID, $_UserID, $NewID, $_Username);
         $stmt->execute();
+
+
+
+        //sql to create table
+        //Each group contains basic user data to keep track of members.
+        // $sql = "CREATE TABLE $_Groupname (
+        //     UserGroupID VARCHAR(255) PRIMARY KEY,
+        //     Username VARCHAR(30) NOT NULL,
+        //     UserID VARCHAR(255) NOT NULL,
+        //     Joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        //     )";
+
+        // $conn->query($sql);
+
+
+
+        // $stmt = $conn->prepare("INSERT INTO $_Groupname (GroupID) VALUES (?)");
+        // $stmt->bind_param("s", $NewID);
+        // $stmt->execute();
 
 
         $stmt->close();

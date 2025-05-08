@@ -81,7 +81,12 @@
                             //echo"\nSigned into group: ".$_SESSION['GroupID'];
 
                             $conn = mysqli_connect("localhost","root","","caravanserai");
-                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners WHERE UserID IN (SELECT UserID FROM $_GroupName)");
+                            $result = mysqli_query($conn,"SELECT * FROM products 
+                                                                        NATURAL JOIN owners 
+                                                                        WHERE UserID IN 
+                                                                            (SELECT UserID 
+                                                                            FROM user_groups 
+                                                                            WHERE GroupID='$_GroupID')");
                             $data = $result->fetch_all(MYSQLI_ASSOC);
 
                         }
@@ -131,8 +136,9 @@
                                     <?php
                                     if(isset($_SESSION["GroupID"]))
                                     { 
+                                            $_GroupID = $_SESSION["GroupID"];
                                             $conn = mysqli_connect("localhost","root","","caravanserai");
-                                            $result = mysqli_query($conn,"SELECT Username FROM $_GroupName");
+                                            $result = mysqli_query($conn,"SELECT Username FROM user_groups WHERE GroupID='$_GroupID'");
                                             ?>
                                     <!-- Start form here -->
                                     <label for="SelectedUserID">Who gets their product:</label>
@@ -141,7 +147,7 @@
                                         <option value="">Select User</option>
                                         <?php
                                         
-                                        $users_result = mysqli_query($conn, "SELECT UserID, Username FROM $_GroupName ORDER BY Username ASC");
+                                        $users_result = mysqli_query($conn, "SELECT UserID, Username FROM user_groups WHERE GroupID='$_GroupID' ORDER BY Username ASC");
                                         while($user = mysqli_fetch_assoc($users_result)):
                                         ?>
                                             <option value="<?= htmlspecialchars($user['UserID']) ?>">

@@ -191,9 +191,15 @@ if($_accept1 != null && $_accept1 != $_UserID)
         //Commit the query to the database connection.
         $conn->query($sql);
 
+        //Grab the highest ID in the OwnerID column, then increment it by one for the new ProductID to be assigned.
+        $result = mysqli_query($conn, "SELECT MAX(OwnerID) AS max FROM owners");
+        $row = mysqli_fetch_array($result);
+        $PrevID = $row['max'];
+        $_OwnerID = intval($PrevID) + 1;
+
         //'$_UserID1',
         
-        $sql = "INSERT INTO owners (ProductID, UserID) VALUES ('$_newProductID1', '$_UserID1')";
+        $sql = "INSERT INTO owners (ProductID, UserID, OwnerID) VALUES ('$_newProductID1', '$_UserID1', '$_OwnerID')";
         $conn->query($sql);
 
     }
@@ -226,11 +232,17 @@ if($_accept1 != null && $_accept1 != $_UserID)
         $PrevID = $row['max'];
         $_newProductID2 = intval($PrevID) + 1;
 
+        //Grab the highest ID in the OwnerID column, then increment it by one for the new ProductID to be assigned.
+        $result = mysqli_query($conn, "SELECT MAX(OwnerID) AS max FROM owners");
+        $row = mysqli_fetch_array($result);
+        $PrevID = $row['max'];
+        $_OwnerID = intval($PrevID) + 1;
+
         $sql = "INSERT INTO products (ProductName, ProductID, Amount, Description, ImagePath) VALUES ('$_ProductName1', '$_newProductID2', '$Amount1', '', '$default')";
         //Commit the query to the database connection.
         $conn->query($sql);
 
-        $sql = "INSERT INTO owners (ProductID, UserID) VALUES ('$_newProductID2', '$_UserID2')";
+        $sql = "INSERT INTO owners (ProductID, UserID, OwnerID) VALUES ('$_newProductID2', '$_UserID2', '$_OwnerID')";
         $conn->query($sql);
     }
 

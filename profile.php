@@ -265,7 +265,7 @@
 
                             <?php 
                             //Select all users:
-                            $sql = "SELECT * FROM users LIMIT 50";
+                            $sql = "SELECT * FROM users";
                             $result = $conn->query($sql);
 
                             //Go through list to display dynamically:
@@ -338,7 +338,7 @@
                     <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM groups LIMIT 50");
+                    $result = mysqli_query($conn,"SELECT * FROM groups");
                     $data = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
@@ -373,7 +373,55 @@
             </div>
 
 
-            <!-- All Transactions-->
+
+
+            <!-- Admin User Groups Table -->
+            <div class = "card bg-primary">
+                <div class = "card-body">
+                    <h2>All Users In Groups In The Database: </h2>
+
+
+                <!-- Start of admin user groups list -->
+                    <?php
+                    $_UserID = $_SESSION["UserID"];
+                    $conn = mysqli_connect("localhost","root","","caravanserai");
+                    $result = mysqli_query($conn,"SELECT * FROM user_groups");
+                    $data = $result->fetch_all(MYSQLI_ASSOC);
+                    ?>
+
+                    <div class="container px-4 px-lg-5 mt-5">
+                        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                            <?php 
+                            //Select all users that are in groups, per the user_groups table:
+                            $sql = "SELECT * FROM users AS u 
+                                    JOIN (user_groups AS ug JOIN groups AS g ON ug.GroupID=g.GroupID) ON u.UserID=ug.UserID;";
+                            $result = $conn->query($sql);
+
+                            //Go through list to display dynamically:
+                            while ($row = $result->fetch_assoc()) { ?>
+                                <div class="card h-100 bg-light">
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <h5 class="fw-bolder"><?php echo htmlspecialchars($row['Username']); ?></h5>
+                                            <?php echo "Group Email is: ".htmlspecialchars($row['Email']); ?><br>
+                                            <?php echo "UserID is: ".htmlspecialchars($row['UserID']); ?><br>
+                                            <?php echo "Group Name is: ".htmlspecialchars($row['GroupName']); ?><br>
+                                            <?php echo "GroupID is: ".htmlspecialchars($row['GroupID']); ?><br>
+                                            <form action="group_remove.php" method="post">
+                                                <input type="hidden" id="UserID"  name="UserID" value="<?= htmlspecialchars($row['UserID']) ?>">
+                                                <button style="height:30px; width:100px" class="btn btn-success" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Delete</button></form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php }?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Admin Transactions Table -->
             <div class="card bg-primary">
             
                 <h2>ALL CURRENT TRANSACTIONS</h2><br>
@@ -433,7 +481,7 @@
                 <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM transactions LIMIT 50");
+                    $result = mysqli_query($conn,"SELECT * FROM transactions");
                     $data = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
 
@@ -528,7 +576,7 @@
                 <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM messages LIMIT 50");
+                    $result = mysqli_query($conn,"SELECT * FROM messages");
                     $data2 = $result->fetch_all(MYSQLI_ASSOC);
                 ?>
                     
@@ -615,7 +663,7 @@
                     <?php
                     $_UserID = $_SESSION["UserID"];
                     $conn = mysqli_connect("localhost","root","","caravanserai");
-                    $result = mysqli_query($conn,"SELECT * FROM transactions WHERE UserID2='$_UserID' AND Completed='0' LIMIT 50");
+                    $result = mysqli_query($conn,"SELECT * FROM transactions WHERE UserID2='$_UserID' AND Completed='0'");
                     $data = $result->fetch_all(MYSQLI_ASSOC);
                     ?>
 
@@ -659,7 +707,7 @@
                     <?php
                         $_UserID = $_SESSION["UserID"];
                         $conn = mysqli_connect("localhost","root","","caravanserai");
-                        $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID1='$_UserID' LIMIT 50");
+                        $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID1='$_UserID'");
                         $data2 = $result->fetch_all(MYSQLI_ASSOC);
                         ?>
 
@@ -712,7 +760,7 @@
                         <?php
                         $_UserID = $_SESSION["UserID"];
                         $conn = mysqli_connect("localhost","root","","caravanserai");
-                        $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID2='$_UserID' LIMIT 50");
+                        $result = mysqli_query($conn,"SELECT * FROM messages WHERE UserID2='$_UserID'");
                         $data2 = $result->fetch_all(MYSQLI_ASSOC);
                         ?>
 
@@ -813,7 +861,13 @@
                             //echo "Group Name is: ".$_GroupName."<br>";
 
                             $conn = mysqli_connect("localhost","root","","caravanserai");
-                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners NATURAL JOIN users WHERE UserID IN (SELECT UserID FROM $_GroupName)");
+                            $result = mysqli_query($conn,"SELECT * FROM products 
+                                                                        NATURAL JOIN owners 
+                                                                        NATURAL JOIN users
+                                                                        WHERE UserID IN 
+                                                                            (SELECT UserID 
+                                                                            FROM user_groups 
+                                                                            WHERE GroupID='$_GroupID')");
                             $data = $result->fetch_all(MYSQLI_ASSOC);
 
                         }
@@ -821,7 +875,7 @@
                         {
                             $_UserID = $_SESSION["UserID"];
                             $conn = mysqli_connect("localhost","root","","caravanserai");
-                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners NATURAL JOIN users WHERE UserID='$_UserID' LIMIT 50");
+                            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners NATURAL JOIN users WHERE UserID='$_UserID'");
                             $data = $result->fetch_all(MYSQLI_ASSOC);
                         }
                         ?>
@@ -854,6 +908,71 @@
                     </div>
 
                 </div>
+
+
+
+
+                <div class = "card-body">
+                    <h2>Your Groups: </h2>
+                    <h6>Here's where you can leave groups you have joined!</h6>
+
+                    <div class = "card-footer">
+
+                        <?php
+                        if(isset($_SESSION["UserID"]))
+                        {
+                            $_UserID = $_SESSION["UserID"];
+                            $_Username = $_SESSION["Username"];
+
+                            //echo "Username is: ".$_Username."<br>";
+                            //echo "Group Name is: ".$_GroupName."<br>";
+
+                            $conn = mysqli_connect("localhost","root","","caravanserai");
+                            $result = mysqli_query($conn,"SELECT * FROM groups 
+                                                                        NATURAL JOIN user_groups
+                                                                        WHERE UserID='$_UserID'");
+                            $data = $result->fetch_all(MYSQLI_ASSOC);
+
+                        }
+                        else
+                        {
+                            $data = null;
+                        }
+                        ?>
+
+                        <table border="1" class="table table-secondary table-striped table-hover">
+                            <tr>
+                                <th>Group Name</th>
+                                <th>Group Documents</th>
+                                <th>Email</th>
+                                <th></th>
+                            </tr>
+                            <?php foreach($data as $row): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($row['GroupName']) ?></td>
+                                <td><?= htmlspecialchars($row['Documents']) ?></td>
+                                <td><?= htmlspecialchars($row['Email']) ?></td>
+                                <td><form action="group_remove.php" method="post">
+                                    <button style="height:30px; width:150px" class="btn btn-light" input type="submit" name="GroupID" value="<?= htmlspecialchars($row['GroupID']) ?>">Leave Group</button></form></td>
+                            </tr>
+                            <?php endforeach ?>
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
 
         </section>

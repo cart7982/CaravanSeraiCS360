@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2025 at 10:48 PM
+-- Generation Time: May 08, 2025 at 07:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,52 +24,13 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aaa`
---
-
-CREATE TABLE `aaa` (
-  `UserID` varchar(255) NOT NULL,
-  `Username` varchar(30) NOT NULL,
-  `GroupID` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `aaa`
---
-
-INSERT INTO `aaa` (`UserID`, `Username`, `GroupID`) VALUES
-('64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'aa', ''),
-('D30F5AB0-551C-4125-A796-B285BED7742A', 'bb', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bbb`
---
-
-CREATE TABLE `bbb` (
-  `UserID` varchar(255) NOT NULL,
-  `Username` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `bbb`
---
-
-INSERT INTO `bbb` (`UserID`, `Username`) VALUES
-('432CF462-33B3-498C-865A-1696196E02BB', 'yy'),
-('DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', 'xx');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `groups`
 --
 
 CREATE TABLE `groups` (
   `GroupID` varchar(255) NOT NULL,
   `GroupName` text NOT NULL,
-  `Documents` text NOT NULL,
+  `Documents` varchar(255) NOT NULL,
   `Password` text NOT NULL,
   `Email` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -79,8 +40,9 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`GroupID`, `GroupName`, `Documents`, `Password`, `Email`) VALUES
-('65359DB1-8677-418F-A490-4FE2E0ACAA86', 'aaa', '', '$2y$12$Am3YpwEaWw50qdxerGMSsevbt4wRojClpXTN7vqVgzVQ1zEZVimwK', 'aa@aa'),
-('4413643A-7443-4AC0-BA8A-29587F8FD8F4', 'bbb', '', '$2y$12$sLpB09Rkj98lz9pvtzmHYON0gVgEBWy6trC/uP.zadBTljiZLVst6', 'bbb@bb');
+('83283611-1229-42FA-AF82-07D307DB4094', 'aaa', '', '$2y$12$AlWFBt7kUTvN8pATC20e.uodTgTHQ0w.Dsn9ISmhpY4VEVKkofOMu', 'aaa@aa'),
+('C21A3BCF-5AF2-4322-8DC3-B57912D37702', 'bbb', '', '$2y$12$BrvbXnAd3ciaIaTz/paBD.k/kRattZdjh7EMxC7RNI6JoNZm3.TQ2', 'bbb@bb'),
+('0010CF1D-CF64-450F-A153-54A320397C92', 'ccc', '', '$2y$12$gluLX2HRtp8DGTFC3whdMuZtsQ31l2Ph5ojxRKuYe1SReF5t6KMk2', 'ccc@cc');
 
 -- --------------------------------------------------------
 
@@ -113,17 +75,18 @@ CREATE TABLE `messages` (
 
 CREATE TABLE `owners` (
   `ProductID` varchar(255) NOT NULL,
-  `UserID` varchar(255) NOT NULL
+  `UserID` varchar(255) NOT NULL,
+  `OwnerID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `owners`
 --
 
-INSERT INTO `owners` (`ProductID`, `UserID`) VALUES
-('1', '64E721A3-70DF-40C7-97AE-0AB1DC04048F'),
-('2', 'D30F5AB0-551C-4125-A796-B285BED7742A'),
-('3', 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF');
+INSERT INTO `owners` (`ProductID`, `UserID`, `OwnerID`) VALUES
+('4', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '1'),
+('5', 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', '2'),
+('6', 'D30F5AB0-551C-4125-A796-B285BED7742A', '3');
 
 -- --------------------------------------------------------
 
@@ -144,9 +107,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductName`, `ProductID`, `Amount`, `Description`, `ImagePath`) VALUES
-('Iron Ingots', 1, 3424, 'Sturdy', 'logo_1.jpg'),
-('E', 2, 343206, 'Product E', 'SilkCloth.png'),
-('P', 3, 53206, 'Product P', 'LinenCloth.png');
+('Iron Ingots', 4, 222, 'Sturdy', 'IronIngots.png'),
+('P', 5, 456023, 'Product P', 'SilkCloth.png'),
+('E', 6, 3332912, 'Product E', 'LinenCloth.png');
 
 -- --------------------------------------------------------
 
@@ -188,14 +151,15 @@ INSERT INTO `transactions` (`TransactionID`, `ProductID1`, `ProductID2`, `Quanti
 (18, 20, 23, 45, 13, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'D30F5AB0-551C-4125-A796-B285BED7742A', 'Iron Ingots', 'Spices', 1),
 (19, 21, 22, 33, 0, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '7394C80B-91BF-476A-B5F1-B9433F11068F', 'Bronze Ingots', 'Adfhbareg', 1),
 (20, 0, 0, 20, 45, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
-(21, 20, 38, 40, 34, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '96CA0EDB-140A-4CE7-9E4D-84A28BC9C3BE', 'Iron Ingots', 'Uncut topaz', 0),
 (22, 0, 0, 45, 25, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
 (23, 0, 20, 25, 40, '432CF462-33B3-498C-865A-1696196E02BB', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'P', 'Iron Ingots', 1),
 (24, 41, 20, 33, 40, '432CF462-33B3-498C-865A-1696196E02BB', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', 'E', 'Iron Ingots', 1),
 (25, 37, 0, 10, 40, 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', '', 'P', 'E', 1),
 (26, 0, 0, 25, 45, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
 (27, 36, 37, 77, 44, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
-(28, 2, 3, 676, 456, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1);
+(28, 2, 3, 676, 456, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
+(29, 2, 3, 250, 350, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1),
+(30, 6, 5, 555, 333, '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '432CF462-33B3-498C-865A-1696196E02BB', 'E', 'P', 1);
 
 -- --------------------------------------------------------
 
@@ -224,7 +188,6 @@ INSERT INTO `users` (`Username`, `Email`, `Password`, `UserID`, `AdminID`) VALUE
 ('nn', 'nn@nn', '$2y$12$kzt6sjZh8sLQLeLvVTAu9enjrt92j1nAqtfOl.LVHZkyCdDAjGtUS', '90284C1B-D616-436F-B09D-AA5DE32D35C4', '3CE50B35-7ACB-456A-A7DF-652B039D466F'),
 ('xx', 'xx@xx', '$2y$12$81YCYSPP4DLSdM1mhJtGReN3yrb3JZtmsXfG/VzaiV4sL5eRgo/5m', 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', '0'),
 ('yy', 'yy@yy', '$2y$12$QF1CumYe5wa2EzHFdf8qDekIYeLA.QdFx824HXrhRZjFdjSom2aUK', '432CF462-33B3-498C-865A-1696196E02BB', '0'),
-('Username', 'Email', 'Password', 'UserID', 'AdminID'),
 ('hcrump0', 'gpattini0@gmpg.org', '$2a$04$.XqoDTizEUJSUhJIHbU0i.cp5x4I4FqnG.yc0XReXL7jzFFKvqfZi', '180885c1-2f49-4f0d-a395-9d180241ac84', ''),
 ('kdoud1', 'scracoe1@netvibes.com', '$2a$04$HpUOoROMcGwCBTFrIXgA3Ow7w18anfshS7kmapqVQASvPZwoXaq9S', 'a1bea8eb-f7d2-419f-8ada-620361218b7a', ''),
 ('pcroke2', 'dpoulett2@wsj.com', '$2a$04$cuStvbIVPkaf4FQnAaBoruFVQA6KXzNPh0i/YnVvzVZn23d.UXSIG', 'eabbbc03-e9ff-4b5e-bc87-e3acbbefb248', ''),
@@ -1227,21 +1190,29 @@ INSERT INTO `users` (`Username`, `Email`, `Password`, `UserID`, `AdminID`) VALUE
 ('cshenleyrq', 'mwittkerq@spotify.com', '$2a$04$f7kHN.biBR4m8BeMambx2ONtLR2OolorbtHwTeWb8jCylEXJlxoM2', 'ac7ad79c-d17c-42e0-8ef6-f9abf65c5881', ''),
 ('nscopesrr', 'vferrynrr@unc.edu', '$2a$04$dIBy2cn6.n8NgdHexgyqIefwLSsZWrPzNHx4dMezmJiLXTs42qfeS', '32caab5e-3537-40e9-962e-14ccd992c3d7', '');
 
---
--- Indexes for dumped tables
---
+-- --------------------------------------------------------
 
 --
--- Indexes for table `aaa`
+-- Table structure for table `user_groups`
 --
-ALTER TABLE `aaa`
-  ADD PRIMARY KEY (`UserID`);
+
+CREATE TABLE `user_groups` (
+  `UserGroupID` varchar(255) NOT NULL,
+  `UserID` varchar(255) NOT NULL,
+  `GroupID` varchar(255) NOT NULL,
+  `Username` text NOT NULL,
+  `Joined_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for table `bbb`
+-- Dumping data for table `user_groups`
 --
-ALTER TABLE `bbb`
-  ADD PRIMARY KEY (`UserID`);
+
+INSERT INTO `user_groups` (`UserGroupID`, `UserID`, `GroupID`, `Username`, `Joined_at`) VALUES
+('008EB324-CF80-4007-9C93-5772027806C6', '64E721A3-70DF-40C7-97AE-0AB1DC04048F', '83283611-1229-42FA-AF82-07D307DB4094', 'aa', '2025-05-07'),
+('2C4F5027-06A4-438A-9120-A4D1CCCE9D8E', 'DBA7C7A7-0E73-465F-953B-EF5B1802FBBF', 'C21A3BCF-5AF2-4322-8DC3-B57912D37702', 'xx', '2025-05-07'),
+('576320AE-DE3E-47B7-8FE5-6548B6278D9F', '432CF462-33B3-498C-865A-1696196E02BB', 'C21A3BCF-5AF2-4322-8DC3-B57912D37702', 'yy', '2025-05-07'),
+('69A5F089-0E94-426A-9B38-5AC4BA4EE0BC', 'D30F5AB0-551C-4125-A796-B285BED7742A', '83283611-1229-42FA-AF82-07D307DB4094', 'bb', '2025-05-08');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

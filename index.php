@@ -26,7 +26,12 @@
             //echo "Group Name is: ".$_GroupName."<br>";
 
             $conn = mysqli_connect("localhost","root","","caravanserai");
-            $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners WHERE UserID NOT IN (SELECT UserID FROM $_GroupName)");
+            $result = mysqli_query($conn,"SELECT * FROM products 
+                                                        NATURAL JOIN owners 
+                                                        WHERE UserID NOT IN 
+                                                            (SELECT UserID 
+                                                            FROM user_groups 
+                                                            WHERE GroupID='$_GroupID')");
             $data = $result->fetch_all(MYSQLI_ASSOC);
 
         }
@@ -123,7 +128,12 @@
                 $_GroupName = $_SESSION["GroupName"];
 
                 $conn = mysqli_connect("localhost","root","","caravanserai");
-                $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners WHERE UserID NOT IN (SELECT UserID FROM $_GroupName)");
+                $result = mysqli_query($conn,"SELECT * FROM products 
+                                                            NATURAL JOIN owners 
+                                                            WHERE UserID NOT IN 
+                                                                (SELECT UserID 
+                                                                FROM user_groups 
+                                                                WHERE GroupID='$_GroupID')");
 
             }
             else if(isset($_SESSION["UserID"]) && !isset($_SESSION["GroupID"]))

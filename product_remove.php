@@ -37,10 +37,10 @@ if ($row = $result->fetch_assoc()) {
 }
 $stmt->close();
 
-$sql = "DELETE FROM products WHERE ProductID='$ID'";
+$sql = "DELETE FROM products WHERE ProductID='$_ProductID'";
 $conn->query($sql);
 
-$sql = "DELETE FROM owners WHERE ProductID='$ID'";
+$sql = "DELETE FROM owners WHERE ProductID='$_ProductID'";
 $conn->query($sql);
 
 $conn->close();

@@ -30,6 +30,11 @@ $_Groupname = $_POST['groupname'];
 $_Password = $_POST['pwd'];
 
 
+//Generate a new GUID for the user.
+$NewID = GUID();
+$NewUserGroupID = GUID();
+
+echo "GUID is: ".$NewID;
 
 if($_Groupname == NULL || $_Password == NULL)
 {
@@ -60,25 +65,28 @@ else
         //Retrieve the hashed password
         $_pwd = $row['Password'];
 
+        //Retrieve the group ID
+        $_GroupID = $row['GroupID'];
+
         //Check the hashed password against inputted password
         if(password_verify($_Password, $_pwd))
         {
             //Check if user already exists in the group table
             //Groupname was sanitized above
-            $stmt2 = $conn->prepare("SELECT UserID FROM $_Groupname WHERE UserID=?");
-            $stmt2->bind_param("s", $_UserID);
+            $stmt2 = $conn->prepare("SELECT UserID FROM user_groups WHERE UserID=? AND GroupID=?");
+            $stmt2->bind_param("ss", $_UserID, $_GroupID);
             $stmt2->execute();
             $result = $stmt2->get_result();
 
-            if($result->num_rows < 0)
+            if($result->num_rows > 0)
             {
-                echo "UserID already in table!";
-                exit();
+                echo "UserID already in that group!";
+                //exit();
             }
 
-            //Groupname was sanitized above
-            $stmt3 = $conn->prepare("INSERT INTO $_Groupname (UserID, Username) VALUES (?, ?)");
-            $stmt3->bind_param("ss", $_UserID, $_Username);
+            //Add the user into the user_groups table
+            $stmt3 = $conn->prepare("INSERT INTO user_groups (UserGroupID, UserID, GroupID, Username, Joined_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)");
+            $stmt3->bind_param("ssss", $NewUserGroupID, $_UserID, $_GroupID, $_Username);
             $stmt3->execute();
 
             $stmt3->close();
@@ -96,4 +104,16 @@ else
 
 }
 
+
+
+function GUID()
+{
+    if (function_exists('com_create_guid') === true)
+    {
+        //It says this is wrong, but it still works, so w/e
+        return trim(com_create_guid(), '{}');
+    }
+
+    return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+}
 ?>

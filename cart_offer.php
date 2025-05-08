@@ -70,13 +70,19 @@
                     {
                         $_GroupID = $_SESSION["GroupID"];
                         $_GroupName = $_SESSION["GroupName"];
+                        $_UserID = $_SESSION["UserID"];
 
                         //$GroupID = intval($_GroupID);
                         echo"Signed into group: ".$_SESSION['GroupName'];
                         //echo"\nSigned into group: ".$_SESSION['GroupID'];
 
                         $conn = mysqli_connect("localhost","root","","caravanserai");
-                        $result = mysqli_query($conn,"SELECT * FROM products NATURAL JOIN owners WHERE UserID IN (SELECT UserID FROM $_GroupName)");
+                        $result = mysqli_query($conn,"SELECT * FROM products 
+                                                                    NATURAL JOIN owners 
+                                                                    WHERE UserID IN 
+                                                                        (SELECT UserID 
+                                                                        FROM user_groups 
+                                                                        WHERE GroupID='$_GroupID')");
                         $data = $result->fetch_all(MYSQLI_ASSOC);
 
                     }

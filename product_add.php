@@ -41,6 +41,12 @@ $row = mysqli_fetch_array($result);
 $PrevID = $row['max'];
 $_ProductID = intval($PrevID) + 1;
 
+//Grab the highest ID in the ProductID column, then increment it by one for the new ProductID to be assigned.
+$result = mysqli_query($conn, "SELECT MAX(OwnerID) AS max FROM owners");
+$row = mysqli_fetch_array($result);
+$PrevID = $row['max'];
+$_OwnerID = intval($PrevID) + 1;
+
 //UserID from the session global
 $_UserID = $_SESSION["UserID"];
 
@@ -53,7 +59,7 @@ if(isset($_ProductName) && isset($_Amount) && isset($_Description) && isset($_Fi
     $stmt->execute();
 
     //Create the relation in the owners table
-    $sql = "INSERT INTO owners (ProductID, UserID) VALUES ('$_ProductID','$_UserID')";    
+    $sql = "INSERT INTO owners (ProductID, UserID, OwnerID) VALUES ('$_ProductID','$_UserID', '$_OwnerID')";    
     $conn->query($sql);
 
     if (move_uploaded_file($_TempFilename, $targetFile)) {

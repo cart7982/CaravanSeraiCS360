@@ -36,6 +36,12 @@ if (isset($_POST['GroupID'])) {
     $stmt->execute();
     $stmt->close();
 
+    //Delete from the groups table
+    $stmt = $conn->prepare("DELETE FROM user_groups WHERE GroupID = ?");
+    $stmt->bind_param("s", $_GroupID);
+    $stmt->execute();
+    $stmt->close();
+
     //Drop the related group table
     $drop_sql = "DROP TABLE IF EXISTS `$_GroupName`";
     $conn->query($drop_sql);

@@ -31,37 +31,32 @@ echo $_Groupname;
 echo $_Password;
 
 //Check if that groupname exists in the database:
-$sql = "SELECT GroupName as grpname, Password as pwd FROM groups WHERE GroupName='$_Groupname'";
+$sql = "SELECT GroupName as grpname, Password as pwd, GroupID as grpID FROM groups WHERE GroupName='$_Groupname'";
 $result = $conn->query($sql);
-
 
 //Check that the group name exists
 if($result->num_rows != 0 )
 {
+    $row = mysqli_fetch_array($result);
+    $_GroupID = $row['grpID'];
+
     //Check if user is in the group
-    $sql = "SELECT UserID as userID FROM $_Groupname WHERE UserID='$_UserID'";
+    $sql = "SELECT UserID as userID FROM user_groups WHERE UserID='$_UserID' AND GroupID='$_GroupID'";
     $userCheck = $conn->query($sql);
 
     //If user is found, then proceed
     if($userCheck->num_rows != 0)
     {
-        $row = mysqli_fetch_array($result); 
-
         //Retrieve the hashed password
         $_pwd = $row['pwd'];
     
         if(password_verify($_Password, $_pwd))
         {
-            //Get the group ID to be put into a global form.
-            $result = mysqli_query($conn, "SELECT GroupID as gID FROM groups WHERE GroupName='$_Groupname'");
-            $row = mysqli_fetch_array($result);
-            $GroupID = $row['gID'];
-            //$_UserID = intval($UserID);
-    
+            //Get the group ID to be put into a global form.    
             //Declare global session variables.
             //These variables can then be used in any session() page.
             $_SESSION["GroupName"] = $_Groupname;
-            $_SESSION["GroupID"] = $GroupID;
+            $_SESSION["GroupID"] = $_GroupID;
 
             echo "GroupID is: ".$GroupID;
             echo "_Groupname is: ".$_Groupname;
